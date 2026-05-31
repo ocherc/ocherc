@@ -796,7 +796,7 @@
                 <div class="service-card">
                     <div class="icon">⚙️</div>
                     <h3>Consultoría de Flujos</h3>
-                    <p>Asesoramiento estratégico. Identificamos qué automatizar primero en tu operación.</p>
+                    <p>Asesoramiento strategic. Identificamos qué automatizar primero en tu operación.</p>
                     <div class="service-tag">💡 Auditoría, planning, roadmap</div>
                 </div>
             </div>
@@ -946,25 +946,54 @@
         </div>
     </section>
 
-    <!-- CTA -->
+    <!-- CTA CON FORMULARIO INTEGRADO -->
     <section class="cta" id="contacto">
         <div class="container">
-            <div class="cta-content">
+            <div class="cta-content" style="max-width: 850px; text-align: center;">
                 <h2>¿Listo para delegar tu operación en la IA?</h2>
-                <p>Solicita una sesión estratégica de 30 minutos. Te mostramos cómo los flujos y agentes de SG Agents pueden optimizar tus operaciones, sin compromisos.</p> <!-- Nombre modificado -->
+                <p>Dejanos tus datos o agendá una sesión estratégica. Te mostramos cómo los flujos y agentes de SG Agents pueden optimizar tus operaciones, sin compromisos.</p>
                 
-                <div class="cta-features">
-                    <div class="cta-feature">✓ <strong>Análisis personalizado</strong> de tu ecosistema actual</div>
-                    <div class="cta-feature">✓ <strong>Ideas concretas</strong> sobre qué delegar en agentes autónomos</div>
-                    <div class="cta-feature">✓ <strong>Estimación real de ahorro</strong> de tiempos operativos</div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 40px; text-align: left;">
+                    
+                    <!-- Columna Izquierda: Info y Calendly -->
+                    <div>
+                        <div class="cta-features" style="margin: 0 0 30px 0; display: block;">
+                            <div class="cta-feature">✓ <strong>Análisis personalizado</strong> de tu ecosistema actual</div>
+                            <div class="cta-feature">✓ <strong>Ideas concretas</strong> sobre qué delegar en agentes autónomos</div>
+                            <div class="cta-feature">✓ <strong>Estimación real de ahorro</strong> de tiempos operativos</div>
+                        </div>
+                        <p style="color: #9ca3af; font-size: 0.9rem; margin-bottom: 15px;">¿Preferís elegir un horario directamente?</p>
+                        <button class="btn-primary" style="width: 100%;" onclick="window.open('https://calendly.com/tu-usuario', '_blank')">Agendar por Calendly 📅</button>
+                    </div>
+
+                    <!-- Columna Derecha: Formulario de Contacto Real -->
+                    <form action="https://formsubmit.co/santiago.grazziani@gmail.com" method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+                        
+                        <!-- Configuración oculta para FormSubmit -->
+                        <input type="hidden" name="_next" value="https://sgagents.vercel.app">
+                        <input type="hidden" name="_captcha" value="false">
+
+                        <div>
+                            <label style="display: block; margin-bottom: 5px; font-size: 0.85rem; color: var(--primary); font-family: 'Courier New', monospace;">[01] NOMBRE Y APELLIDO</label>
+                            <input type="text" name="name" required style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(0, 217, 255, 0.2); border-radius: 6px; color: #fff; font-family: inherit; outline: none; transition: border 0.3s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='rgba(0, 217, 255, 0.2)'">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 5px; font-size: 0.85rem; color: var(--primary); font-family: 'Courier New', monospace;">[02] EMAIL DE CONTACTO</label>
+                            <input type="email" name="email" required style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(0, 217, 255, 0.2); border-radius: 6px; color: #fff; font-family: inherit; outline: none; transition: border 0.3s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='rgba(0, 217, 255, 0.2)'">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 5px; font-size: 0.85rem; color: var(--primary); font-family: 'Courier New', monospace;">[03] ¿QUÉ NECESITÁS AUTOMATIZAR?</label>
+                            <textarea name="message" rows="4" required placeholder="Contanos brevemente sobre tu negocio o los procesos que querés delegar..." style="width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(0, 217, 255, 0.2); border-radius: 6px; color: #fff; font-family: inherit; outline: none; resize: none; transition: border 0.3s;" onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='rgba(0, 217, 255, 0.2)'"></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-secondary" style="width: 100%; padding: 12px; margin-top: 5px;">Enviar Consulta ⚡</button>
+                    </form>
+
                 </div>
 
-                <div class="cta-buttons">
-                    <button class="btn-primary" onclick="alert('Abre tu calendario Calendly aquí 📅\n\nhttps://calendly.com/tu-enlace')">Agendar Demo Gratuita</button>
-                    <button class="btn-secondary" onclick="alert('Envía email a:\n\ncontacto@sgagents.com')">Escribir Email</button> <!-- Email modificado con la marca -->
-                </div>
-
-                <p style="color: #9ca3af; font-size: 0.875rem; margin-top: 20px;">Respuesta en menos de 24 horas • Sin obligaciones contractuales • Consulta inicial incluida</p>
+                <p style="color: #9ca3af; font-size: 0.875rem; margin-top: 30px;">Respuesta en menos de 24 horas • Sin obligaciones contractuales • Consulta inicial incluida</p>
             </div>
         </div>
     </section>
@@ -996,7 +1025,7 @@
                 <div class="footer-section">
                     <h4>Contacto</h4>
                     <ul>
-                        <li><a href="mailto:santiago.grazziani@gmail.com">Email</a></li> <!-- Email modificado -->
+                        <li><a href="mailto:santiago.grazziani@gmail.com">Email</a></li> <!-- Correo real configurado -->
                         <li><a href="#contacto">Solicitar Demo</a></li>
                     </ul>
                 </div>
@@ -1007,5 +1036,14 @@
             </div>
         </div>
     </footer>
+
+    <!-- BOTÓN FLOTANTE DE WHATSAPP -->
+    <a href="https://wa.me/5493415598979?text=Hola%20Santiago,%20vi%20tu%20web%20y%20me%20gustar%C3%ADa%20consultarte%20por%20una%20automatizaci%C3%B3n." 
+       target="_blank" 
+       style="position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background-color: #25d366; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 100; text-decoration: none; transition: all 0.3s ease;"
+       onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 4px 25px rgba(37, 211, 102, 0.7)'"
+       onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(37, 211, 102, 0.4)'">
+        💬
+    </a>
 </body>
 </html>
