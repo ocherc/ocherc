@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+
+# Lock files (keep pnpm-lock.yaml as it's tracked)
+# pnpm-lock.yaml should be committed for consistency
+
+# Build outputs
+dist/
+build/
+out/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
