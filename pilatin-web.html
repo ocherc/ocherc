@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pilatin · Reservá tu clase</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#1e3a3f;--card:#fff;--primary:#1e3a3f;
+  --accent:#4ecdc4;--text:#1a1a1a;--muted:#6b7280;
+  --border:#e5e7eb;--danger:#ef4444;--success:#22c55e
+}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);min-height:100vh;color:var(--text)}
+
+/* ── LOADING ── */
+#loading{position:fixed;inset:0;background:rgba(30,58,63,.85);display:none;align-items:center;justify-content:center;z-index:999}
+.spinner{width:40px;height:40px;border:3px solid rgba(78,205,196,.3);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ── AUTH ── */
+.auth-wrap{display:flex;min-height:100vh}
+.auth-left{flex:1;display:flex;flex-direction:column;justify-content:center;padding:60px;color:#fff}
+.auth-left .brand{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;opacity:.5;margin-bottom:48px}
+.auth-left h1{font-size:2.8rem;font-weight:800;line-height:1.1;color:var(--accent);margin-bottom:14px}
+.auth-left p{font-size:.95rem;opacity:.55;max-width:280px;line-height:1.7}
+.auth-right{width:440px;background:#fff;display:flex;flex-direction:column;justify-content:center;padding:52px 48px}
+.form-title{font-size:1.45rem;font-weight:800;margin-bottom:5px}
+.form-sub{font-size:13px;color:var(--muted);margin-bottom:26px}
+.fg{margin-bottom:13px}
+.fg label{display:block;font-size:11px;font-weight:700;color:var(--muted);margin-bottom:5px;text-transform:uppercase;letter-spacing:.5px}
+.fg input,.fg select{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:10px 14px;font-size:14px;outline:none;transition:border .15s;background:#fff}
+.fg input:focus,.fg select:focus{border-color:var(--accent)}
+.row2{display:flex;gap:10px}.row2 .fg{flex:1}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:none;border-radius:8px;padding:11px 18px;font-size:14px;font-weight:600;cursor:pointer;transition:opacity .15s,transform .1s}
+.btn:active{transform:scale(.98)}.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn-w{width:100%}
+.btn-primary{background:var(--primary);color:#fff}.btn-primary:hover:not(:disabled){opacity:.85}
+.btn-accent{background:var(--accent);color:var(--primary)}.btn-accent:hover:not(:disabled){opacity:.85}
+.btn-outline{background:transparent;border:1.5px solid var(--border);color:var(--text)}
+.btn-danger{background:var(--danger);color:#fff}.btn-danger:hover:not(:disabled){opacity:.85}
+.btn-ghost{background:transparent;border:none;color:var(--muted);padding:7px 12px}
+.btn-sm{padding:7px 13px;font-size:13px;border-radius:6px}
+.btn-warn{background:#f59e0b;color:#fff}
+.form-footer{text-align:center;margin-top:18px;font-size:13px;color:var(--muted)}
+.form-footer a{color:var(--primary);font-weight:600;cursor:pointer}
+.alert{border-radius:8px;padding:10px 14px;font-size:13px;margin-bottom:13px}
+.alert-e{background:#fef2f2;border:1px solid #fecaca;color:#dc2626;display:none}
+.alert-w{background:#fffbeb;border:1px solid #fde68a;color:#92400e}
+.alert-s{background:#f0fdf4;border:1px solid #bbf7d0;color:#15803d;display:none}
+
+/* ── APP ── */
+.app-wrap{min-height:100vh;background:#f3f4f6}
+.app-header{background:var(--bg);color:#fff;padding:0 28px;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+.logo{font-weight:800;color:var(--accent);font-size:1.15rem}
+.hdr-r{display:flex;align-items:center;gap:10px;font-size:13px}
+.hdr-r .uname{opacity:.65}
+.hdr-r .btn-ghost{color:rgba(255,255,255,.55)}.hdr-r .btn-ghost:hover{color:#fff}
+.app-nav{background:#fff;border-bottom:1px solid var(--border);padding:0 28px;display:flex;gap:2px;overflow-x:auto}
+.nav-tab{padding:15px 18px;font-size:14px;font-weight:500;cursor:pointer;color:var(--muted);border-bottom:2.5px solid transparent;white-space:nowrap;transition:all .15s}
+.nav-tab.active{color:var(--primary);border-bottom-color:var(--accent);font-weight:700}
+.nav-tab:hover:not(.active){color:var(--text)}
+.app-content{max-width:860px;margin:0 auto;padding:30px 22px}
+.section-title{font-size:1.25rem;font-weight:800;margin-bottom:20px;color:var(--primary)}
+.card{background:#fff;border-radius:12px;padding:22px;margin-bottom:16px;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.card-title{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:14px}
+
+/* ── TIPO TABS ── */
+.tipo-tabs{display:flex;gap:10px}
+.tipo-tab{flex:1;padding:15px;border:2px solid var(--border);border-radius:10px;text-align:center;cursor:pointer;transition:all .15s}
+.tipo-tab:hover{border-color:var(--accent)}
+.tipo-tab.active{border-color:var(--accent);background:#f0fdfc}
+.tipo-tab h4{font-size:14px;font-weight:700;margin-bottom:4px}
+.tipo-tab p{font-size:12px;color:var(--muted);line-height:1.4}
+
+/* ── DAY / SLOTS ── */
+.day-picker{display:flex;gap:8px;flex-wrap:wrap}
+.day-chip{padding:7px 13px;border-radius:20px;border:1.5px solid var(--border);font-size:13px;cursor:pointer;transition:all .15s;white-space:nowrap}
+.day-chip.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.day-chip:hover:not(.active){border-color:var(--accent)}
+.slots-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(105px,1fr));gap:9px}
+.slot{border:2px solid var(--border);border-radius:10px;padding:13px 8px;text-align:center;cursor:pointer;transition:all .15s}
+.slot .hora{font-size:1rem;font-weight:700}
+.slot .cupos{font-size:11px;color:var(--muted);margin-top:3px}
+.slot.available:hover{border-color:var(--accent);background:#f0fdfc}
+.slot.selected{border-color:var(--accent);background:#f0fdfc}
+.slot.full{opacity:.38;cursor:not-allowed}
+
+/* ── TURNO ITEMS ── */
+.turno-item{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--border)}
+.turno-item:last-child{border-bottom:none}
+.ti-info .fecha{font-weight:600;font-size:14px}
+.ti-info .tipo{font-size:12px;color:var(--muted);margin-top:3px}
+.ti-actions{display:flex;gap:6px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end}
+.badge{display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700}
+.b-green{background:#dcfce7;color:#15803d}
+.b-blue{background:#dbeafe;color:#1d4ed8}
+.b-red{background:#fee2e2;color:#dc2626}
+.b-gray{background:#f3f4f6;color:#6b7280}
+.b-orange{background:#fff7ed;color:#c2410c}
+
+/* ── ADMIN ── */
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:11px;margin-bottom:22px}
+.stat-card{background:#fff;border-radius:10px;padding:18px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.stat-card .num{font-size:2rem;font-weight:800;color:var(--primary)}
+.stat-card .label{font-size:12px;color:var(--muted);margin-top:3px}
+.admin-sec-nav{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:20px}
+.agenda-block{margin-bottom:20px;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.07)}
+.ag-day-hdr{background:var(--primary);color:#fff;padding:11px 17px;font-weight:700;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+.ag-hour{padding:11px 17px;border-bottom:1px solid var(--border);background:#fff}
+.ag-hour:last-child{border-bottom:none}
+.ag-hour-hdr{font-weight:700;font-size:13px;color:var(--accent);margin-bottom:7px;display:flex;justify-content:space-between}
+.alumno-row{font-size:13px;padding:3px 0;display:flex;align-items:center;gap:7px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--success);flex-shrink:0}
+.empty-hora{font-size:12px;color:var(--muted);font-style:italic}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:9px 13px;border-bottom:2px solid var(--border);color:var(--muted);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap}
+td{padding:11px 13px;border-bottom:1px solid var(--border);vertical-align:middle}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#fafafa}
+
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;z-index:200;padding:20px}
+.modal-overlay.show{display:flex}
+.modal{background:#fff;border-radius:16px;padding:30px;width:100%;max-width:440px;max-height:90vh;overflow-y:auto}
+.modal h3{font-size:1.1rem;font-weight:800;margin-bottom:6px}
+.modal .msub{color:var(--muted);font-size:13px;margin-bottom:18px;line-height:1.5}
+.modal-actions{display:flex;gap:9px;margin-top:18px}
+.modal-actions .btn{flex:1}
+.check-row{display:flex;align-items:center;gap:9px;padding:12px;border:1.5px solid var(--border);border-radius:8px;cursor:pointer;font-size:14px;font-weight:500;transition:all .15s}
+.check-row:hover{border-color:var(--accent)}
+.check-row input[type=checkbox]{width:16px;height:16px;accent-color:var(--accent);cursor:pointer}
+
+/* ── EMPTY / UTILS ── */
+.hidden{display:none!important}
+.mt-14{margin-top:14px}
+.empty-state{text-align:center;padding:36px 20px;color:var(--muted)}
+.empty-state .icon{font-size:2.2rem;margin-bottom:10px}
+@media(max-width:640px){
+  .auth-left{display:none}.auth-right{width:100%;padding:36px 22px}
+  .tipo-tabs{flex-direction:column}.app-content{padding:14px}
+  .modal{padding:22px}.ti-actions{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ LOADING ══ -->
+<div id="loading"><div class="spinner"></div></div>
+
+<!-- ══ LOGIN ══ -->
+<div id="page-login" class="auth-wrap hidden">
+  <div class="auth-left">
+    <div class="brand">Pilatin</div>
+    <h1>Reservá tu clase de Pilates</h1>
+    <p>Gestioná tus turnos de forma fácil y rápida, las 24hs desde cualquier dispositivo.</p>
+  </div>
+  <div class="auth-right">
+    <div class="form-title">Bienvenid@</div>
+    <div class="form-sub">Ingresá con tu cuenta para continuar.</div>
+    <div class="alert alert-e" id="login-err"></div>
+    <div class="fg"><label>E-mail</label><input type="email" id="login-email" placeholder="tu@email.com" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <div class="fg"><label>Contraseña</label><input type="password" id="login-pass" placeholder="Tu contraseña" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <button class="btn btn-primary btn-w" onclick="doLogin()">Iniciar sesión</button>
+    <div class="form-footer">¿No tenés cuenta? <a onclick="showPage('page-register')">Registrate gratis</a></div>
+  </div>
+</div>
+
+<!-- ══ REGISTER ══ -->
+<div id="page-register" class="auth-wrap hidden">
+  <div class="auth-left">
+    <div class="brand">Pilatin</div>
+    <h1>Tu primer clase te espera</h1>
+    <p>Creá tu cuenta en segundos y empezá a reservar hoy mismo.</p>
+  </div>
+  <div class="auth-right">
+    <div class="form-title">Crear cuenta</div>
+    <div class="form-sub">Completá tus datos para registrarte.</div>
+    <div class="alert alert-e" id="reg-err"></div>
+    <div class="fg"><label>E-mail</label><input type="email" id="reg-email" placeholder="tu@email.com"></div>
+    <div class="fg"><label>Contraseña</label><input type="password" id="reg-pass" placeholder="Mínimo 8 caracteres"></div>
+    <div class="row2">
+      <div class="fg"><label>Nombre</label><input type="text" id="reg-nombre" placeholder="María"></div>
+      <div class="fg"><label>Apellido</label><input type="text" id="reg-apellido" placeholder="García"></div>
+    </div>
+    <div class="fg"><label>Teléfono (sin +54)</label><input type="tel" id="reg-tel" placeholder="1166420683"></div>
+    <button class="btn btn-primary btn-w" onclick="doRegister()">Crear cuenta</button>
+    <div class="form-footer">¿Ya tenés cuenta? <a onclick="showPage('page-login')">Iniciá sesión</a></div>
+  </div>
+</div>
+
+<!-- ══ APP ══ -->
+<div id="page-app" class="app-wrap hidden">
+  <header class="app-header">
+    <div class="logo">Pilatin</div>
+    <div class="hdr-r">
+      <span class="uname" id="header-name"></span>
+      <button class="btn btn-ghost" onclick="doLogout()">Salir →</button>
+    </div>
+  </header>
+  <nav class="app-nav" id="app-nav">
+    <div class="nav-tab active" data-tab="tab-reservar" onclick="switchTab('tab-reservar')">Reservar</div>
+    <div class="nav-tab" data-tab="tab-mis-turnos" onclick="switchTab('tab-mis-turnos')">Mis turnos</div>
+  </nav>
+  <div class="app-content">
+
+    <!-- ─ RESERVAR ─ -->
+    <div id="tab-reservar">
+      <div class="section-title">Reservar clase</div>
+      <div class="card">
+        <div class="card-title">Tipo de turno</div>
+        <div class="tipo-tabs">
+          <div class="tipo-tab active" id="tt-puntual" onclick="selectTipo('puntual')">
+            <h4>Por única vez</h4>
+            <p>Una clase en una fecha puntual. Elegís día y horario disponible.</p>
+          </div>
+          <div class="tipo-tab" id="tt-fijo" onclick="selectTipo('fijo')">
+            <h4>Alumno fijo</h4>
+            <p>Mismo día y hora cada semana. Asegurás tu lugar permanente.</p>
+          </div>
+        </div>
+      </div>
+      <div id="flow-puntual">
+        <div class="card">
+          <div class="card-title">Elegí un día</div>
+          <div class="day-picker" id="day-picker"></div>
+        </div>
+        <div class="card" id="slots-card" style="display:none">
+          <div class="card-title">Horarios disponibles</div>
+          <div class="slots-grid" id="slots-grid"></div>
+          <button class="btn btn-accent btn-w mt-14" id="btn-ok-puntual" style="display:none" onclick="openConfirmModal('puntual')">Confirmar reserva →</button>
+        </div>
+      </div>
+      <div id="flow-fijo" class="hidden">
+        <div class="card">
+          <div class="card-title">Elegí el día de la semana</div>
+          <div class="slots-grid" id="fijo-dias"></div>
+        </div>
+        <div class="card" id="fijo-horas-card" style="display:none">
+          <div class="card-title">Elegí el horario</div>
+          <div class="slots-grid" id="fijo-horas"></div>
+          <button class="btn btn-accent btn-w mt-14" id="btn-ok-fijo" style="display:none" onclick="openConfirmModal('fijo')">Confirmar turno fijo →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─ MIS TURNOS ─ -->
+    <div id="tab-mis-turnos" class="hidden">
+      <div class="section-title">Mis turnos</div>
+      <div class="card">
+        <div class="card-title">Turnos fijos (semanales)</div>
+        <div id="lista-fijos"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">Turnos puntuales</div>
+        <div id="lista-puntuales"></div>
+      </div>
+    </div>
+
+    <!-- ─ ADMIN ─ -->
+    <div id="tab-admin" class="hidden">
+      <div class="section-title">Panel de Belu</div>
+      <div class="stats-grid" id="admin-stats"></div>
+      <div class="admin-sec-nav">
+        <button class="btn btn-primary btn-sm" id="abtn-agenda"       onclick="showAdminSec('agenda')">📅 Agenda</button>
+        <button class="btn btn-outline btn-sm" id="abtn-alumnos"      onclick="showAdminSec('alumnos')">👥 Alumnos</button>
+        <button class="btn btn-outline btn-sm" id="abtn-fijos"        onclick="showAdminSec('fijos')">📌 Fijos</button>
+        <button class="btn btn-outline btn-sm" id="abtn-puntuales"    onclick="showAdminSec('puntuales')">📋 Puntuales</button>
+        <button class="btn btn-outline btn-sm" id="abtn-cancelaciones" onclick="showAdminSec('cancelaciones')">❌ Cancelaciones</button>
+      </div>
+      <div id="admin-agenda"></div>
+      <div id="admin-alumnos"       class="hidden"></div>
+      <div id="admin-fijos"         class="hidden"></div>
+      <div id="admin-puntuales"     class="hidden"></div>
+      <div id="admin-cancelaciones" class="hidden"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ MODAL: CONFIRM BOOKING ══ -->
+<div class="modal-overlay" id="modal-confirm">
+  <div class="modal">
+    <h3 id="mc-title">Confirmar reserva</h3>
+    <div class="msub" id="mc-body" style="white-space:pre-line"></div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('modal-confirm')">Cancelar</button>
+      <button class="btn btn-accent"  id="mc-ok">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL: CANCEL ══ -->
+<div class="modal-overlay" id="modal-cancel">
+  <div class="modal">
+    <h3>Cancelar turno</h3>
+    <div class="msub" id="mcancel-body"></div>
+    <div class="alert alert-e" id="mcancel-multa">⚠️ <strong>Cancelación tardía:</strong> el turno es hoy y faltan menos de 3 horas. Se registrará una multa de $10.000.</div>
+    <div class="alert alert-w" style="display:block;margin-bottom:0">💡 Recordá que para recuperar sin cargo necesitás avisar con al menos 3 horas de anticipación.</div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('modal-cancel')">Volver</button>
+      <button class="btn btn-danger"  id="mcancel-ok">Sí, cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL: RESCHEDULE (puntual) ══ -->
+<div class="modal-overlay" id="modal-reschedule">
+  <div class="modal">
+    <h3>Reprogramar turno</h3>
+    <div class="msub">Elegí el nuevo día y horario para tu clase.</div>
+    <div class="fg"><label>Nuevo día</label>
+      <select id="rs-dia" onchange="loadRsHoras()"></select></div>
+    <div class="fg"><label>Horario</label>
+      <select id="rs-hora"></select></div>
+    <div class="alert alert-e" id="rs-err"></div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('modal-reschedule')">Cancelar</button>
+      <button class="btn btn-accent"  onclick="confirmReschedule()">Reprogramar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL: FALTAR (fijo) ══ -->
+<div class="modal-overlay" id="modal-faltar">
+  <div class="modal">
+    <h3 id="faltar-title">Faltar un día</h3>
+    <div class="msub">Registrá tu ausencia sin perder el lugar fijo. Las demás semanas siguen igual.</div>
+
+    <div class="fg"><label>¿Qué fecha vas a faltar?</label>
+      <select id="faltar-fecha" onchange="onFaltarFechaChange()"></select></div>
+
+    <div class="alert alert-e" id="faltar-multa" style="margin-top:4px">
+      ⚠️ <strong>Cancelación tardía:</strong> el turno es hoy y faltan menos de 3 horas. Se registrará una multa de $10.000.
+    </div>
+    <div class="alert alert-w" style="display:block;margin-bottom:4px">💡 Para evitar multa avisá con al menos 3 horas de anticipación.</div>
+
+    <label class="check-row mt-14">
+      <input type="checkbox" id="faltar-recuperar" onchange="toggleFaltarRecuperar()">
+      Quiero recuperar la clase en otro horario esta semana
+    </label>
+
+    <div id="faltar-reprog-section" class="hidden" style="margin-top:14px">
+      <div class="fg"><label>Día alternativo</label>
+        <select id="faltar-reprog-dia" onchange="loadFaltarReprogHoras()"></select></div>
+      <div class="fg"><label>Horario</label>
+        <select id="faltar-reprog-hora"></select></div>
+    </div>
+
+    <div class="alert alert-e" id="faltar-err" style="margin-top:8px"></div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('modal-faltar')">Cancelar</button>
+      <button class="btn btn-accent"  onclick="confirmFaltar()">Confirmar ausencia</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL: ADMIN ADD MANUAL ══ -->
+<div class="modal-overlay" id="modal-add-slot">
+  <div class="modal">
+    <h3>Agregar turno manual</h3>
+    <div class="msub">Reservá un turno para un alumno sin cuenta registrada.</div>
+    <div class="row2">
+      <div class="fg"><label>Nombre</label><input type="text" id="as-nombre" placeholder="María"></div>
+      <div class="fg"><label>Apellido</label><input type="text" id="as-apellido" placeholder="García"></div>
+    </div>
+    <div class="fg"><label>Teléfono</label><input type="tel" id="as-tel" placeholder="1166420683"></div>
+    <div class="fg"><label>Día</label>
+      <select id="as-dia" onchange="loadAsHoras()">
+        <option value="">Elegí un día...</option></select></div>
+    <div class="fg"><label>Horario</label>
+      <select id="as-hora"></select></div>
+    <div class="alert alert-e" id="as-err"></div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('modal-add-slot')">Cancelar</button>
+      <button class="btn btn-primary"  onclick="confirmAddSlot()">Agregar turno</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SUPABASE CDN ══ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+// ════════════════════════════════════════════════
+// ⚠️ CONFIGURACIÓN — Reemplazá con tus valores de Supabase
+// ════════════════════════════════════════════════
+const SUPABASE_URL = 'https://wwijruzziqeshsmcyrul.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind3aWpydXp6aXFlc2hzbWN5cnVsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDA2ODEsImV4cCI6MjA5NjY3NjY4MX0.d_ncREp8PHByEPEJYBafkjThhiBcH6Vqr9Mf1Mw9vww';
+
+const { createClient } = supabase;
+const sb = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// ════════════════════════════════════════════════
+// CONFIG NEGOCIO
+// ════════════════════════════════════════════════
+const HORARIOS = {
+  'Lunes':     ['7:00','8:00','9:00','16:00','17:00','18:00'],
+  'Martes':    ['8:00','9:00','16:00','17:00','18:00','19:00'],
+  'Miércoles': ['7:00','8:00','9:00','16:00','17:00','18:00'],
+  'Jueves':    ['8:00','9:00','16:00','17:00','18:00','19:00'],
+  'Viernes':   ['7:00','8:00','9:00','16:00','17:00','18:00'],
+};
+const DIAS_SEMANA = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
+const DIA_JS = { 'Lunes':1,'Martes':2,'Miércoles':3,'Jueves':4,'Viernes':5 };
+const MAX_CUPOS = 6;
+const ADMIN_EMAIL = 'belu@pilatin.com';
+
+// ════════════════════════════════════════════════
+// STATE
+// ════════════════════════════════════════════════
+let curUser = null, curProfile = null;
+let allTurnos = [], allFijos = [], allCancels = [];
+let selDate = null, selHora = null, curTipo = 'puntual';
+let selFijoDia = null, selFijoHora = null;
+let pendId = null, pendType = null;
+let pendRsId = null;
+let faltarFijoId = null;
+
+// ════════════════════════════════════════════════
+// UTILS
+// ════════════════════════════════════════════════
+const MESES = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+const DIAS_ABR = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+const DIAS_FULL = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+
+function getNombreDia(d) { return DIAS_FULL[d.getDay()]; }
+function formatDate(d) {
+  return String(d.getDate()).padStart(2,'0')+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+d.getFullYear();
+}
+function parseDate(s) { const [dd,mm,yyyy]=s.split('-'); return new Date(+yyyy,+mm-1,+dd); }
+function displayDate(d) { return DIAS_ABR[d.getDay()]+' '+d.getDate()+' '+MESES[d.getMonth()]; }
+function uid() { return Date.now().toString(36)+Math.random().toString(36).slice(2,6); }
+
+function getNext30Days() {
+  const days=[], t=new Date();
+  for(let i=0;i<45&&days.length<20;i++){
+    const d=new Date(t); d.setDate(t.getDate()+i);
+    if(HORARIOS[getNombreDia(d)]) days.push(d);
+  }
+  return days;
+}
+function getNextOccurrences(dia, count=5) {
+  const target = DIA_JS[dia], result=[], today=new Date();
+  for(let i=0;i<60&&result.length<count;i++){
+    const d=new Date(today); d.setDate(today.getDate()+i);
+    if(d.getDay()===target) result.push(d);
+  }
+  return result;
+}
+function showAlert(id, msg) {
+  const el=document.getElementById(id);
+  if(!el) return;
+  el.textContent=msg; el.style.display='block';
+}
+function hideAlert(id) {
+  const el=document.getElementById(id);
+  if(el) el.style.display='none';
+}
+function loading(show) {
+  document.getElementById('loading').style.display = show ? 'flex' : 'none';
+}
+function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+
+// ════════════════════════════════════════════════
+// AVAILABILITY (sobre datos en memoria)
+// ════════════════════════════════════════════════
+function cuposOcupados(fecha, hora) {
+  const dia = getNombreDia(parseDate(fecha));
+  const pts  = allTurnos.filter(t=>t.fecha===fecha && t.hora===hora).length;
+  const fixA = allFijos.filter(f=>f.dia===dia && f.hora===hora).length;
+  const fixC = allCancels.filter(c=>c.fecha===fecha && c.hora===hora && c.tipo==='fijo_puntual').length;
+  return pts + Math.max(0, fixA - fixC);
+}
+function cuposOcupadosFijo(dia, hora) {
+  return allFijos.filter(f=>f.dia===dia && f.hora===hora).length;
+}
+function cuposLibres(fecha, hora)    { return Math.max(0, MAX_CUPOS - cuposOcupados(fecha, hora)); }
+function cuposLibresFijo(dia, hora)  { return Math.max(0, MAX_CUPOS - cuposOcupadosFijo(dia, hora)); }
+function hayMulta(fecha, hora) {
+  if(fecha !== formatDate(new Date())) return false;
+  const [hh,mm]=hora.split(':').map(Number);
+  const t=new Date(); t.setHours(hh,mm||0,0,0);
+  const diff=(t-new Date())/60000;
+  return diff < 180 && diff > -30;
+}
+
+// ════════════════════════════════════════════════
+// SUPABASE DATA LAYER
+// ════════════════════════════════════════════════
+async function fetchAll() {
+  const [t, f, c] = await Promise.all([
+    sb.from('turnos').select('*'),
+    sb.from('fijos').select('*'),
+    sb.from('cancelaciones').select('*'),
+  ]);
+  allTurnos  = t.data || [];
+  allFijos   = f.data || [];
+  allCancels = c.data || [];
+}
+async function fetchProfile(uid) {
+  const { data } = await sb.from('profiles').select('*').eq('id', uid).single();
+  return data;
+}
+
+// ════════════════════════════════════════════════
+// AUTH
+// ════════════════════════════════════════════════
+function showPage(id) {
+  ['page-login','page-register','page-app'].forEach(p =>
+    document.getElementById(p).classList.toggle('hidden', p !== id)
+  );
+}
+
+async function doLogin() {
+  hideAlert('login-err');
+  const email = (document.getElementById('login-email').value||'').trim().toLowerCase();
+  const pass  = document.getElementById('login-pass').value||'';
+  if(!email||!pass) { showAlert('login-err','Completá email y contraseña.'); return; }
+  loading(true);
+  const { data, error } = await sb.auth.signInWithPassword({ email, password: pass });
+  if(error) { loading(false); showAlert('login-err', 'Email o contraseña incorrectos.'); return; }
+  curUser = data.user;
+  await onLogin();
+}
+
+async function doRegister() {
+  hideAlert('reg-err');
+  const email    = (document.getElementById('reg-email').value||'').trim().toLowerCase();
+  const pass     = document.getElementById('reg-pass').value||'';
+  const nombre   = (document.getElementById('reg-nombre').value||'').trim();
+  const apellido = (document.getElementById('reg-apellido').value||'').trim();
+  const phone    = (document.getElementById('reg-tel').value||'').trim().replace(/\D/g,'');
+  if(!email||!pass||!nombre||!apellido) { showAlert('reg-err','Completá todos los campos.'); return; }
+  if(pass.length<8) { showAlert('reg-err','La contraseña necesita al menos 8 caracteres.'); return; }
+  loading(true);
+  const { data, error } = await sb.auth.signUp({
+    email, password: pass,
+    options: { data: { nombre, apellido, phone } }
+  });
+  if(error) { loading(false); showAlert('reg-err', error.message); return; }
+  curUser = data.user;
+  await onLogin();
+}
+
+async function doLogout() {
+  loading(true);
+  await sb.auth.signOut();
+  curUser=null; curProfile=null;
+  loading(false);
+  showPage('page-login');
+}
+
+async function onLogin() {
+  curProfile = await fetchProfile(curUser.id);
+  await fetchAll();
+  loading(false);
+  showPage('page-app');
+  initApp();
+}
+
+// ════════════════════════════════════════════════
+// APP
+// ════════════════════════════════════════════════
+function initApp() {
+  document.getElementById('header-name').textContent =
+    (curProfile?.nombre||'') + (curProfile?.apellido ? ' '+curProfile.apellido : '');
+  const nav = document.getElementById('app-nav');
+  const isAdmin = curProfile?.role === 'admin' || curUser?.email === ADMIN_EMAIL;
+  if(isAdmin && !document.getElementById('nav-admin')) {
+    const t = document.createElement('div');
+    t.className='nav-tab'; t.id='nav-admin';
+    t.setAttribute('data-tab','tab-admin');
+    t.textContent='⚙ Administración';
+    t.onclick=()=>switchTab('tab-admin');
+    nav.appendChild(t);
+  }
+  renderDayPicker(); renderFijoDias();
+  selectTipo('puntual'); switchTab('tab-reservar');
+}
+
+function switchTab(tabId) {
+  ['tab-reservar','tab-mis-turnos','tab-admin'].forEach(t =>
+    document.getElementById(t).classList.toggle('hidden', t!==tabId)
+  );
+  document.querySelectorAll('.nav-tab').forEach(t =>
+    t.classList.toggle('active', t.getAttribute('data-tab')===tabId)
+  );
+  if(tabId==='tab-mis-turnos') renderMisTurnos();
+  if(tabId==='tab-admin') renderAdmin();
+}
+
+// ════════════════════════════════════════════════
+// BOOKING UI
+// ════════════════════════════════════════════════
+function selectTipo(tipo) {
+  curTipo=tipo;
+  ['puntual','fijo'].forEach(t => {
+    document.getElementById('tt-'+t).classList.toggle('active', t===tipo);
+    document.getElementById('flow-'+t).classList.toggle('hidden', t!==tipo);
+  });
+  if(tipo==='puntual'){ selHora=null; document.getElementById('btn-ok-puntual').style.display='none'; }
+  if(tipo==='fijo')   { selFijoDia=null; selFijoHora=null; document.getElementById('fijo-horas-card').style.display='none'; document.getElementById('btn-ok-fijo').style.display='none'; }
+}
+
+function renderDayPicker() {
+  const p=document.getElementById('day-picker'); p.innerHTML='';
+  getNext30Days().forEach((d,i)=>{
+    const chip=document.createElement('div');
+    chip.className='day-chip';
+    chip.textContent=displayDate(d);
+    chip.onclick=()=>{ document.querySelectorAll('.day-chip').forEach(c=>c.classList.remove('active')); chip.classList.add('active'); selDate=d; selHora=null; renderSlots(); };
+    p.appendChild(chip);
+    if(i===0) chip.click();
+  });
+}
+function renderSlots() {
+  document.getElementById('slots-card').style.display='block';
+  document.getElementById('btn-ok-puntual').style.display='none';
+  const g=document.getElementById('slots-grid'); g.innerHTML='';
+  const fecha=formatDate(selDate);
+  (HORARIOS[getNombreDia(selDate)]||[]).forEach(hora=>{
+    const lib=cuposLibres(fecha,hora);
+    const d=document.createElement('div');
+    d.className='slot '+(lib>0?'available':'full');
+    d.innerHTML=`<div class="hora">${hora}</div><div class="cupos">${lib>0?lib+' cupo'+(lib!==1?'s':''):'Sin cupos'}</div>`;
+    if(lib>0) d.onclick=()=>{ document.querySelectorAll('#slots-grid .slot').forEach(s=>s.classList.remove('selected')); d.classList.add('selected'); selHora=hora; document.getElementById('btn-ok-puntual').style.display='flex'; };
+    g.appendChild(d);
+  });
+}
+
+function renderFijoDias() {
+  const g=document.getElementById('fijo-dias'); g.innerHTML='';
+  DIAS_SEMANA.forEach(dia=>{
+    const v=(HORARIOS[dia]||[]).filter(h=>cuposLibresFijo(dia,h)>0).length;
+    const d=document.createElement('div');
+    d.className='slot '+(v>0?'available':'full');
+    d.innerHTML=`<div class="hora" style="font-size:.85rem">${dia}</div><div class="cupos">${v>0?v+' horarios':'Sin vacantes'}</div>`;
+    if(v>0) d.onclick=()=>{ document.querySelectorAll('#fijo-dias .slot').forEach(s=>s.classList.remove('selected')); d.classList.add('selected'); selFijoDia=dia; selFijoHora=null; renderFijoHoras(); document.getElementById('fijo-horas-card').style.display='block'; document.getElementById('btn-ok-fijo').style.display='none'; };
+    g.appendChild(d);
+  });
+}
+function renderFijoHoras() {
+  const g=document.getElementById('fijo-horas'); g.innerHTML='';
+  (HORARIOS[selFijoDia]||[]).forEach(hora=>{
+    const lib=cuposLibresFijo(selFijoDia,hora);
+    const d=document.createElement('div');
+    d.className='slot '+(lib>0?'available':'full');
+    d.innerHTML=`<div class="hora">${hora}</div><div class="cupos">${lib>0?lib+' cupo'+(lib!==1?'s':''):'Sin cupos'}</div>`;
+    if(lib>0) d.onclick=()=>{ document.querySelectorAll('#fijo-horas .slot').forEach(s=>s.classList.remove('selected')); d.classList.add('selected'); selFijoHora=hora; document.getElementById('btn-ok-fijo').style.display='flex'; };
+    g.appendChild(d);
+  });
+}
+
+// ── CONFIRM BOOKING ──
+function openConfirmModal(tipo) {
+  let title, body;
+  if(tipo==='puntual') {
+    if(!selDate||!selHora) return;
+    title='Confirmar reserva';
+    body=`📅 ${displayDate(selDate)} (${getNombreDia(selDate)})\n⏰ ${selHora}hs\n👤 ${curProfile?.nombre} ${curProfile?.apellido}`;
+    document.getElementById('mc-ok').onclick=()=>confirmBooking('puntual');
+  } else {
+    if(!selFijoDia||!selFijoHora) return;
+    title='Confirmar turno fijo';
+    body=`📅 Todos los ${selFijoDia}\n⏰ ${selFijoHora}hs\n👤 ${curProfile?.nombre} ${curProfile?.apellido}\n\n📌 Se repite todas las semanas automáticamente.`;
+    document.getElementById('mc-ok').onclick=()=>confirmBooking('fijo');
+  }
+  document.getElementById('mc-title').textContent=title;
+  document.getElementById('mc-body').textContent=body;
+  document.getElementById('modal-confirm').classList.add('show');
+}
+
+async function confirmBooking(tipo) {
+  closeModal('modal-confirm');
+  loading(true);
+  if(tipo==='puntual') {
+    const fecha=formatDate(selDate);
+    if(cuposLibres(fecha,selHora)<=0){ loading(false); alert('Ya no hay cupos en ese horario. Actualizá la página.'); renderSlots(); return; }
+    const { error } = await sb.from('turnos').insert({
+      user_id:curUser.id, nombre:curProfile.nombre, apellido:curProfile.apellido,
+      phone:curProfile.phone, fecha, dia:getNombreDia(selDate), hora:selHora
+    });
+    if(error){ loading(false); alert('Error al reservar: '+error.message); return; }
+    await fetchAll();
+    loading(false);
+    alert('✅ ¡Turno reservado! Te esperamos el '+displayDate(selDate)+' a las '+selHora+'hs.');
+    selHora=null;
+    document.querySelectorAll('#slots-grid .slot').forEach(s=>s.classList.remove('selected'));
+    document.getElementById('btn-ok-puntual').style.display='none';
+    renderSlots();
+  } else {
+    if(cuposLibresFijo(selFijoDia,selFijoHora)<=0){ loading(false); alert('Ya no hay cupos. Actualizá la página.'); renderFijoHoras(); return; }
+    const { error } = await sb.from('fijos').insert({
+      user_id:curUser.id, nombre:curProfile.nombre, apellido:curProfile.apellido,
+      phone:curProfile.phone, dia:selFijoDia, hora:selFijoHora
+    });
+    if(error){ loading(false); alert('Error: '+error.message); return; }
+    await fetchAll();
+    loading(false);
+    alert('✅ ¡Turno fijo confirmado! Te esperamos todos los '+selFijoDia+' a las '+selFijoHora+'hs.');
+    selFijoDia=null; selFijoHora=null;
+    document.getElementById('fijo-horas-card').style.display='none';
+    document.getElementById('btn-ok-fijo').style.display='none';
+    renderFijoDias();
+  }
+}
+
+// ════════════════════════════════════════════════
+// MIS TURNOS
+// ════════════════════════════════════════════════
+function renderMisTurnos() {
+  const hoy=formatDate(new Date());
+  const misFijos   = allFijos.filter(f=>f.user_id===curUser.id);
+  const misTurnos  = allTurnos.filter(t=>t.user_id===curUser.id).sort((a,b)=>a.fecha>b.fecha?1:-1);
+
+  // ─ Fijos ─
+  document.getElementById('lista-fijos').innerHTML = misFijos.length===0
+    ? '<div class="empty-state"><div class="icon">📅</div><p>No tenés turnos fijos.</p></div>'
+    : misFijos.map(f=>`
+      <div class="turno-item">
+        <div class="ti-info">
+          <div class="fecha">Todos los <strong>${f.dia}</strong> · ${f.hora}hs</div>
+          <div class="tipo"><span class="badge b-blue">Fijo semanal</span></div>
+        </div>
+        <div class="ti-actions">
+          <button class="btn btn-warn btn-sm" onclick="openFaltar('${f.id}')">Faltar un día</button>
+          <button class="btn btn-danger btn-sm" onclick="openCancelFijo('${f.id}')">Cancelar fijo</button>
+        </div>
+      </div>`).join('');
+
+  // ─ Puntuales ─
+  document.getElementById('lista-puntuales').innerHTML = misTurnos.length===0
+    ? '<div class="empty-state"><div class="icon">🗓</div><p>No tenés turnos puntuales.</p></div>'
+    : misTurnos.map(t=>{
+      const past=t.fecha<hoy;
+      return `
+      <div class="turno-item">
+        <div class="ti-info">
+          <div class="fecha">${t.dia} ${t.fecha.slice(0,5)} · ${t.hora}hs</div>
+          <div class="tipo"><span class="badge ${past?'b-gray':'b-green'}">${past?'Pasado':'Próximo'}</span></div>
+        </div>
+        <div class="ti-actions">
+          ${!past?`
+            <button class="btn btn-outline btn-sm" onclick="openReschedule('${t.id}')">Reprogramar</button>
+            <button class="btn btn-danger btn-sm"  onclick="openCancelTurno('${t.id}')">Cancelar</button>`:''}
+        </div>
+      </div>`;
+    }).join('');
+}
+
+// ── FALTAR (fijo, sin perder el lugar) ──
+function openFaltar(fijoId) {
+  faltarFijoId=fijoId;
+  const f=allFijos.find(x=>x.id===fijoId);
+  document.getElementById('faltar-title').textContent=`Faltar: ${f.dia} a las ${f.hora}hs`;
+  hideAlert('faltar-multa'); hideAlert('faltar-err');
+  document.getElementById('faltar-recuperar').checked=false;
+  document.getElementById('faltar-reprog-section').classList.add('hidden');
+
+  // Próximas ocurrencias de ese día
+  const sel=document.getElementById('faltar-fecha'); sel.innerHTML='';
+  getNextOccurrences(f.dia, 5).forEach(d=>{
+    const opt=document.createElement('option');
+    opt.value=formatDate(d);
+    opt.textContent=displayDate(d)+' ('+formatDate(d).slice(0,5)+')';
+    sel.appendChild(opt);
+  });
+
+  // Cargar días alternativos para recupero
+  const sdR=document.getElementById('faltar-reprog-dia'); sdR.innerHTML='';
+  getNext30Days().forEach(d=>{
+    const opt=document.createElement('option');
+    opt.value=formatDate(d);
+    opt.textContent=displayDate(d)+' — '+getNombreDia(d);
+    sdR.appendChild(opt);
+  });
+  loadFaltarReprogHoras();
+  onFaltarFechaChange();
+  document.getElementById('modal-faltar').classList.add('show');
+}
+function onFaltarFechaChange() {
+  const f=allFijos.find(x=>x.id===faltarFijoId);
+  const fecha=document.getElementById('faltar-fecha').value;
+  if(!fecha||!f) return;
+  if(hayMulta(fecha, f.hora)) document.getElementById('faltar-multa').style.display='block';
+  else hideAlert('faltar-multa');
+}
+function toggleFaltarRecuperar() {
+  const checked=document.getElementById('faltar-recuperar').checked;
+  document.getElementById('faltar-reprog-section').classList.toggle('hidden',!checked);
+}
+function loadFaltarReprogHoras() {
+  const fecha=document.getElementById('faltar-reprog-dia').value; if(!fecha) return;
+  const dia=getNombreDia(parseDate(fecha));
+  const sel=document.getElementById('faltar-reprog-hora'); sel.innerHTML='';
+  (HORARIOS[dia]||[]).forEach(h=>{
+    const lib=cuposLibres(fecha,h);
+    const opt=document.createElement('option');
+    opt.value=h; opt.disabled=lib<=0;
+    opt.textContent=h+'hs'+(lib>0?` (${lib} cupo${lib!==1?'s':''})`:'  — Sin cupos');
+    sel.appendChild(opt);
+  });
+}
+async function confirmFaltar() {
+  hideAlert('faltar-err');
+  const fijo=allFijos.find(x=>x.id===faltarFijoId);
+  const fecha=document.getElementById('faltar-fecha').value;
+  const recuperar=document.getElementById('faltar-recuperar').checked;
+  const reprogFecha=document.getElementById('faltar-reprog-dia').value;
+  const reprogHora=document.getElementById('faltar-reprog-hora').value;
+
+  if(recuperar && (!reprogFecha||!reprogHora)){
+    showAlert('faltar-err','Elegí día y horario para recuperar la clase.'); return;
+  }
+  if(recuperar && cuposLibres(reprogFecha,reprogHora)<=0){
+    showAlert('faltar-err','No hay cupos en ese horario. Elegí otro.'); return;
+  }
+
+  loading(true);
+  const multa=hayMulta(fecha, fijo.hora);
+
+  // 1. Registrar ausencia fijo
+  const { error: e1 } = await sb.from('cancelaciones').insert({
+    user_id:curUser.id, nombre:fijo.nombre, apellido:fijo.apellido, phone:fijo.phone,
+    fecha, dia:fijo.dia, hora:fijo.hora, tipo:'fijo_puntual', multa
+  });
+  if(e1){ loading(false); showAlert('faltar-err','Error: '+e1.message); return; }
+
+  // 2. Si quiere recuperar, crear turno puntual
+  if(recuperar) {
+    const nd=parseDate(reprogFecha);
+    const { error: e2 } = await sb.from('turnos').insert({
+      user_id:curUser.id, nombre:fijo.nombre, apellido:fijo.apellido, phone:fijo.phone,
+      fecha:reprogFecha, dia:getNombreDia(nd), hora:reprogHora
+    });
+    if(e2){ loading(false); showAlert('faltar-err','Ausencia registrada pero no se pudo crear el turno de recupero: '+e2.message); return; }
+  }
+
+  await fetchAll();
+  loading(false);
+  closeModal('modal-faltar');
+  let msg = multa
+    ? `✅ Ausencia registrada.\n⚠️ Multa de $10.000 por cancelación tardía.`
+    : `✅ Ausencia registrada. Tu turno fijo queda igual para las próximas semanas.`;
+  if(recuperar) msg += `\n📅 Turno de recupero creado: ${displayDate(parseDate(reprogFecha))} a las ${reprogHora}hs.`;
+  alert(msg);
+  renderMisTurnos();
+}
+
+// ── CANCEL FIJO ──
+function openCancelFijo(id) {
+  pendId=id;
+  const f=allFijos.find(x=>x.id===id);
+  document.getElementById('mcancel-body').textContent=`¿Dar de baja el turno fijo de todos los ${f.dia} a las ${f.hora}hs? Se eliminará tu cupo permanentemente.`;
+  document.getElementById('mcancel-multa').style.display='none';
+  document.getElementById('mcancel-ok').onclick=doCancelFijo;
+  document.getElementById('modal-cancel').classList.add('show');
+}
+async function doCancelFijo() {
+  loading(true);
+  await sb.from('fijos').delete().eq('id',pendId);
+  await fetchAll(); loading(false);
+  closeModal('modal-cancel'); renderMisTurnos();
+  alert('✅ Turno fijo cancelado.');
+}
+
+// ── CANCEL PUNTUAL ──
+function openCancelTurno(id) {
+  pendId=id;
+  const t=allTurnos.find(x=>x.id===id);
+  document.getElementById('mcancel-body').textContent=`¿Cancelar el turno del ${t.dia} ${t.fecha.slice(0,5)} a las ${t.hora}hs?`;
+  const multa=hayMulta(t.fecha,t.hora);
+  document.getElementById('mcancel-multa').style.display=multa?'block':'none';
+  document.getElementById('mcancel-ok').onclick=()=>doCancelTurno(multa);
+  document.getElementById('modal-cancel').classList.add('show');
+}
+async function doCancelTurno(multa) {
+  const t=allTurnos.find(x=>x.id===pendId);
+  loading(true);
+  await Promise.all([
+    sb.from('cancelaciones').insert({ user_id:curUser.id, nombre:t.nombre, apellido:t.apellido, phone:t.phone, fecha:t.fecha, dia:t.dia, hora:t.hora, tipo:'puntual', multa }),
+    sb.from('turnos').delete().eq('id',pendId)
+  ]);
+  await fetchAll(); loading(false);
+  closeModal('modal-cancel'); renderMisTurnos();
+  alert(multa?'❌ Turno cancelado. Multa de $10.000 registrada.':'✅ Turno cancelado sin cargo.');
+}
+
+// ── RESCHEDULE ──
+function openReschedule(id) {
+  pendRsId=id; hideAlert('rs-err');
+  const sel=document.getElementById('rs-dia'); sel.innerHTML='';
+  getNext30Days().forEach(d=>{
+    const opt=document.createElement('option');
+    opt.value=formatDate(d); opt.textContent=displayDate(d)+' — '+getNombreDia(d);
+    sel.appendChild(opt);
+  });
+  loadRsHoras();
+  document.getElementById('modal-reschedule').classList.add('show');
+}
+function loadRsHoras() {
+  const fecha=document.getElementById('rs-dia').value;
+  const dia=getNombreDia(parseDate(fecha));
+  const sel=document.getElementById('rs-hora'); sel.innerHTML='';
+  (HORARIOS[dia]||[]).forEach(h=>{
+    const lib=cuposLibres(fecha,h);
+    const opt=document.createElement('option');
+    opt.value=h; opt.disabled=lib<=0;
+    opt.textContent=h+'hs'+(lib>0?` (${lib} cupo${lib!==1?'s':''})`:'  — Sin cupos');
+    sel.appendChild(opt);
+  });
+}
+async function confirmReschedule() {
+  hideAlert('rs-err');
+  const nf=document.getElementById('rs-dia').value, nh=document.getElementById('rs-hora').value;
+  if(!nf||!nh){ showAlert('rs-err','Elegí día y horario.'); return; }
+  if(cuposLibres(nf,nh)<=0){ showAlert('rs-err','Sin cupos en ese horario.'); return; }
+  const t=allTurnos.find(x=>x.id===pendRsId);
+  const nd=parseDate(nf);
+  loading(true);
+  await Promise.all([
+    sb.from('cancelaciones').insert({ user_id:curUser.id, nombre:t.nombre, apellido:t.apellido, phone:t.phone, fecha:t.fecha, dia:t.dia, hora:t.hora, tipo:'reprogramado', multa:false }),
+    sb.from('turnos').update({ fecha:nf, dia:getNombreDia(nd), hora:nh }).eq('id',pendRsId)
+  ]);
+  await fetchAll(); loading(false);
+  closeModal('modal-reschedule'); renderMisTurnos();
+  alert('✅ Turno reprogramado para el '+displayDate(nd)+' a las '+nh+'hs.');
+}
+
+// ════════════════════════════════════════════════
+// ADMIN
+// ════════════════════════════════════════════════
+function renderAdmin() {
+  const hoy=formatDate(new Date()), diahoy=getNombreDia(new Date());
+  const hoyT=allTurnos.filter(t=>t.fecha===hoy).length;
+  const hoyF=allFijos.filter(f=>f.dia===diahoy).length;
+  document.getElementById('admin-stats').innerHTML=[
+    {n:hoyT+hoyF, l:'Alumnos hoy'},
+    {n:allFijos.length, l:'Turnos fijos'},
+    {n:allTurnos.length, l:'Turnos puntuales'},
+    {n:allCancels.filter(c=>c.multa).length, l:'Multas registradas'},
+    {n:allCancels.length, l:'Cancelaciones'},
+  ].map(s=>`<div class="stat-card"><div class="num">${s.n}</div><div class="label">${s.l}</div></div>`).join('');
+  showAdminSec('agenda');
+}
+
+function showAdminSec(sec) {
+  ['agenda','alumnos','fijos','puntuales','cancelaciones'].forEach(s=>{
+    document.getElementById('admin-'+s).classList.toggle('hidden',s!==sec);
+    const btn=document.getElementById('abtn-'+s);
+    if(btn){ btn.classList.toggle('btn-primary',s===sec); btn.classList.toggle('btn-outline',s!==sec); }
+  });
+  ({agenda:renderAdminAgenda,alumnos:renderAdminAlumnos,fijos:renderAdminFijos,puntuales:renderAdminPuntuales,cancelaciones:renderAdminCancelaciones})[sec]?.();
+}
+
+function renderAdminAgenda() {
+  const days=getNext30Days().slice(0,7);
+  document.getElementById('admin-agenda').innerHTML=
+    `<div style="display:flex;justify-content:flex-end;margin-bottom:14px">
+      <button class="btn btn-primary btn-sm" onclick="openAddSlotModal()">+ Agregar turno manual</button>
+     </div>`+
+    days.map(d=>{
+      const fecha=formatDate(d), dia=getNombreDia(d);
+      return `<div class="agenda-block">
+        <div class="ag-day-hdr"><span>${dia} ${d.getDate()}/${d.getMonth()+1}</span><span style="opacity:.55;font-size:12px">${fecha}</span></div>
+        ${(HORARIOS[dia]||[]).map(hora=>{
+          const pts=allTurnos.filter(t=>t.fecha===fecha&&t.hora===hora);
+          const fixC=allCancels.filter(c=>c.fecha===fecha&&c.hora===hora&&c.tipo==='fijo_puntual');
+          const fixA=allFijos.filter(f=>f.dia===dia&&f.hora===hora).filter(f=>!fixC.find(c=>c.user_id===f.user_id));
+          const occ=pts.length+fixA.length;
+          const todos=[...pts.map(t=>({...t,_t:'Puntual'})),...fixA.map(f=>({...f,_t:'Fijo'}))];
+          return `<div class="ag-hour">
+            <div class="ag-hour-hdr"><span>${hora}hs</span><span style="font-size:12px;color:var(--muted)">${occ}/${MAX_CUPOS} ${occ>=MAX_CUPOS?'🔴':'🟢'}</span></div>
+            ${todos.length?todos.map(a=>`
+              <div class="alumno-row">
+                <div class="dot"></div>
+                <span>${a.nombre} ${a.apellido}</span>
+                <span class="badge ${a._t==='Fijo'?'b-blue':'b-green'}" style="font-size:10px">${a._t}</span>
+                ${a._t==='Puntual'?`<button class="btn btn-ghost btn-sm" style="color:var(--danger);padding:2px 6px;font-size:11px" onclick="adminDelTurno('${a.id}')">✕</button>`:''}
+              </div>`).join('')
+            :`<div class="empty-hora">Sin alumnos</div>`}
+          </div>`;
+        }).join('')}
+      </div>`;
+    }).join('');
+}
+
+async function adminDelTurno(id) {
+  if(!confirm('¿Cancelar este turno?')) return;
+  const t=allTurnos.find(x=>x.id===id); if(!t) return;
+  loading(true);
+  await Promise.all([
+    sb.from('cancelaciones').insert({user_id:t.user_id,nombre:t.nombre,apellido:t.apellido,phone:t.phone,fecha:t.fecha,dia:t.dia,hora:t.hora,tipo:'admin_cancel',multa:false}),
+    sb.from('turnos').delete().eq('id',id)
+  ]);
+  await fetchAll(); loading(false); renderAdminAgenda(); renderAdmin();
+}
+
+function renderAdminAlumnos() {
+  sb.from('profiles').select('*').then(({data})=>{
+    const users=(data||[]).filter(u=>u.role!=='admin');
+    document.getElementById('admin-alumnos').innerHTML=`
+      <div class="card">
+        <div class="card-title">Usuarios registrados (${users.length})</div>
+        <div class="tw"><table>
+          <tr><th>Nombre</th><th>Email</th><th>Teléfono</th></tr>
+          ${users.length?users.map(u=>`<tr><td><strong>${u.nombre} ${u.apellido}</strong></td><td>${u.id}</td><td>${u.phone||'—'}</td></tr>`).join('')
+          :'<tr><td colspan="3" style="color:var(--muted);text-align:center;padding:28px">Sin usuarios aún.</td></tr>'}
+        </table></div>
+      </div>`;
+  });
+}
+
+function renderAdminFijos() {
+  const sorted=[...allFijos].sort((a,b)=>DIAS_SEMANA.indexOf(a.dia)-DIAS_SEMANA.indexOf(b.dia));
+  document.getElementById('admin-fijos').innerHTML=`
+    <div class="card">
+      <div class="card-title">Alumnos fijos (${sorted.length})</div>
+      <div class="tw"><table>
+        <tr><th>Alumno</th><th>Día</th><th>Horario</th><th>Teléfono</th><th></th></tr>
+        ${sorted.length?sorted.map(f=>`
+          <tr>
+            <td><strong>${f.nombre} ${f.apellido}</strong></td>
+            <td>${f.dia}</td><td>${f.hora}hs</td><td>${f.phone||'—'}</td>
+            <td><button class="btn btn-danger btn-sm" onclick="adminDelFijo('${f.id}')">Eliminar</button></td>
+          </tr>`).join('')
+        :'<tr><td colspan="5" style="color:var(--muted);text-align:center;padding:28px">Sin alumnos fijos.</td></tr>'}
+      </table></div>
+    </div>`;
+}
+async function adminDelFijo(id) {
+  if(!confirm('¿Eliminar este alumno fijo?')) return;
+  loading(true);
+  await sb.from('fijos').delete().eq('id',id);
+  await fetchAll(); loading(false); renderAdminFijos(); renderAdmin();
+}
+
+function renderAdminPuntuales() {
+  const sorted=[...allTurnos].sort((a,b)=>a.fecha>b.fecha?1:-1);
+  document.getElementById('admin-puntuales').innerHTML=`
+    <div class="card">
+      <div class="card-title">Turnos puntuales (${sorted.length})</div>
+      <div class="tw"><table>
+        <tr><th>Alumno</th><th>Fecha</th><th>Día</th><th>Horario</th><th>Teléfono</th><th></th></tr>
+        ${sorted.length?sorted.map(t=>`
+          <tr>
+            <td><strong>${t.nombre} ${t.apellido}</strong></td>
+            <td>${t.fecha.slice(0,5)}</td><td>${t.dia}</td><td>${t.hora}hs</td><td>${t.phone||'—'}</td>
+            <td><button class="btn btn-danger btn-sm" onclick="adminDelTurno('${t.id}')">Cancelar</button></td>
+          </tr>`).join('')
+        :'<tr><td colspan="6" style="color:var(--muted);text-align:center;padding:28px">Sin turnos.</td></tr>'}
+      </table></div>
+    </div>`;
+}
+
+function renderAdminCancelaciones() {
+  const sorted=[...allCancels].sort((a,b)=>b.created_at?.localeCompare(a.created_at||'')||0);
+  document.getElementById('admin-cancelaciones').innerHTML=`
+    <div class="card">
+      <div class="card-title">Historial de cancelaciones (${sorted.length})</div>
+      <div class="tw"><table>
+        <tr><th>Alumno</th><th>Fecha</th><th>Horario</th><th>Tipo</th><th>Multa</th></tr>
+        ${sorted.length?sorted.map(c=>`
+          <tr>
+            <td><strong>${c.nombre} ${c.apellido}</strong></td>
+            <td>${c.fecha.slice(0,5)} (${c.dia})</td>
+            <td>${c.hora}hs</td>
+            <td><span class="badge b-gray">${{fijo_puntual:'Fijo (día)',reprogramado:'Reprogramado',admin_cancel:'Por admin',puntual:'Puntual'}[c.tipo]||c.tipo}</span></td>
+            <td>${c.multa?'<span class="badge b-red">$10.000</span>':'<span class="badge b-gray">No</span>'}</td>
+          </tr>`).join('')
+        :'<tr><td colspan="5" style="color:var(--muted);text-align:center;padding:28px">Sin cancelaciones.</td></tr>'}
+      </table></div>
+    </div>`;
+}
+
+// ── ADMIN: add manual slot ──
+function openAddSlotModal() {
+  ['as-nombre','as-apellido','as-tel'].forEach(id=>document.getElementById(id).value='');
+  hideAlert('as-err');
+  const sel=document.getElementById('as-dia');
+  sel.innerHTML='<option value="">Elegí un día...</option>';
+  getNext30Days().forEach(d=>{
+    const opt=document.createElement('option');
+    opt.value=formatDate(d); opt.textContent=displayDate(d)+' — '+getNombreDia(d);
+    sel.appendChild(opt);
+  });
+  document.getElementById('as-hora').innerHTML='';
+  document.getElementById('modal-add-slot').classList.add('show');
+}
+function loadAsHoras() {
+  const fecha=document.getElementById('as-dia').value; if(!fecha) return;
+  const dia=getNombreDia(parseDate(fecha));
+  const sel=document.getElementById('as-hora'); sel.innerHTML='';
+  (HORARIOS[dia]||[]).forEach(h=>{
+    const lib=cuposLibres(fecha,h);
+    const opt=document.createElement('option');
+    opt.value=h; opt.disabled=lib<=0;
+    opt.textContent=h+'hs'+(lib>0?` (${lib} cupo${lib!==1?'s':''})`:'  — Sin cupos');
+    sel.appendChild(opt);
+  });
+}
+async function confirmAddSlot() {
+  hideAlert('as-err');
+  const nombre   = document.getElementById('as-nombre').value.trim();
+  const apellido = document.getElementById('as-apellido').value.trim();
+  const phone    = document.getElementById('as-tel').value.trim().replace(/\D/g,'');
+  const fecha    = document.getElementById('as-dia').value;
+  const hora     = document.getElementById('as-hora').value;
+  if(!nombre||!apellido||!fecha||!hora){ showAlert('as-err','Completá todos los campos.'); return; }
+  if(cuposLibres(fecha,hora)<=0){ showAlert('as-err','Sin cupos en ese horario.'); return; }
+  const d=parseDate(fecha);
+  loading(true);
+  const { error } = await sb.from('turnos').insert({
+    user_id:curUser.id, nombre, apellido, phone, fecha, dia:getNombreDia(d), hora
+  });
+  if(error){ loading(false); showAlert('as-err','Error: '+error.message); return; }
+  await fetchAll(); loading(false);
+  closeModal('modal-add-slot'); renderAdminAgenda(); renderAdmin();
+  alert('✅ Turno agregado para '+nombre+' '+apellido+' el '+displayDate(d)+' a las '+hora+'hs.');
+}
+
+// ════════════════════════════════════════════════
+// INIT
+// ════════════════════════════════════════════════
+(async function init() {
+  loading(true);
+  try {
+    const { data: { session } } = await sb.auth.getSession();
+    if(session?.user) {
+      curUser=session.user;
+      curProfile=await fetchProfile(curUser.id);
+      await fetchAll();
+      loading(false);
+      showPage('page-app');
+      initApp();
+    } else {
+      loading(false);
+      showPage('page-login');
+    }
+  } catch(e) {
+    loading(false);
+    showPage('page-login');
+    console.error('Init error:', e);
+  }
+
+  // Auth state changes
+  sb.auth.onAuthStateChange(async(event, session)=>{
+    if(event==='SIGNED_OUT'){ showPage('page-login'); }
+  });
+})();
+</script>
+</body>
+</html>
