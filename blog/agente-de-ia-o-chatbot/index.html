@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agente de IA o chatbot: la diferencia real | SG Agents</title>
+
+<meta name="description" content="La diferencia real entre un chatbot y un agente de IA, una prueba de tres preguntas para distinguirlos, y cuándo alcanza con el más barato.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Santiago Grazziani">
+<link rel="canonical" href="https://sgagents.vercel.app/blog/agente-de-ia-o-chatbot/">
+
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="SG Agents">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://sgagents.vercel.app/blog/agente-de-ia-o-chatbot/">
+<meta property="og:title" content="Agente de IA o chatbot: la diferencia real">
+<meta property="og:description" content="La diferencia real entre un chatbot y un agente de IA, una prueba de tres preguntas para distinguirlos, y cuándo alcanza con el más barato.">
+<meta property="og:image" content="https://sgagents.vercel.app/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Agente de IA o chatbot: la diferencia real">
+<meta name="twitter:description" content="La diferencia real entre un chatbot y un agente de IA, una prueba de tres preguntas para distinguirlos, y cuándo alcanza con el más barato.">
+<meta name="twitter:image" content="https://sgagents.vercel.app/og-image.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body, h1, h2, h3, p, figure, blockquote, dl, dd, dt, table { margin: 0; }
+
+    :root {
+        --paper:       #EFF1EC;
+        --surface:     #FFFFFF;
+        --ink:         #15181A;
+        --muted:       #5B645E;
+        --line:        #E2E6E1;
+        --accent:      #0F5C48;
+        --accent-ink:  #0B4738;
+        --accent-wash: #EAF1EE;
+
+        --display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+        --text:    'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+        --mono:    'IBM Plex Mono', ui-monospace, 'Cascadia Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+        font-family: var(--text); background: var(--paper); color: var(--ink);
+        line-height: 1.75; -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { width: 100%; max-width: 720px; margin: 0 auto; padding-inline: 24px; }
+    a { color: var(--accent); }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+    header { border-bottom: 1px solid var(--line); background: var(--paper); }
+    .nav { display: flex; align-items: center; gap: 24px; padding-block: 18px; max-width: 1160px; }
+
+    .wordmark {
+        font-family: var(--display); font-weight: 800; font-size: 1.15rem;
+        letter-spacing: -0.02em; color: var(--ink); text-decoration: none;
+        margin-right: auto; display: inline-flex; align-items: center; gap: 9px;
+    }
+
+    .wordmark .mark { width: 13px; height: 13px; border-radius: 3px; background: var(--accent); }
+
+    .nav-cta {
+        font-size: 0.9rem; font-weight: 500; color: var(--accent); text-decoration: none;
+        border: 1.5px solid var(--accent); border-radius: 6px; padding: 7px 15px;
+        transition: background .18s ease, color .18s ease;
+    }
+
+    .nav-cta:hover { background: var(--accent); color: #fff; }
+
+    .crumbs {
+        font-family: var(--mono); font-size: 0.72rem;
+        letter-spacing: 0.1em; text-transform: uppercase;
+        color: var(--muted); padding-top: 40px;
+    }
+
+    .crumbs a { color: var(--muted); text-decoration: none; }
+    .crumbs a:hover { color: var(--accent); }
+    .crumbs span { margin-inline: 8px; opacity: .5; }
+
+    h1 {
+        font-family: var(--display); font-weight: 800;
+        font-size: clamp(1.95rem, 5.2vw, 2.85rem);
+        line-height: 1.1; letter-spacing: -0.032em;
+        text-wrap: balance; margin: 18px 0 18px;
+    }
+
+    .byline {
+        font-family: var(--mono); font-size: 0.74rem;
+        letter-spacing: 0.08em; text-transform: uppercase;
+        color: var(--muted); margin-bottom: 38px;
+    }
+
+    .standfirst {
+        font-size: 1.14rem; color: var(--ink);
+        border-left: 3px solid var(--accent); padding-left: 20px;
+        margin-bottom: 46px;
+    }
+
+    h2 {
+        font-family: var(--display); font-weight: 800;
+        font-size: clamp(1.4rem, 3.2vw, 1.75rem);
+        line-height: 1.18; letter-spacing: -0.026em; margin: 52px 0 16px;
+    }
+
+    h3 { font-family: var(--display); font-weight: 700; font-size: 1.05rem; letter-spacing: -0.015em; margin-top: 28px; }
+
+    p { margin-bottom: 18px; }
+    .lead-muted { color: var(--muted); }
+
+    ul, ol { margin: 0 0 20px; padding-left: 22px; }
+    li { margin-bottom: 9px; }
+
+    /* tabla de rangos */
+    .table-scroll { overflow-x: auto; margin: 26px 0; }
+
+    table {
+        width: 100%; border-collapse: collapse;
+        background: var(--surface); border: 1px solid var(--line);
+        border-radius: 12px; overflow: hidden;
+        font-size: 0.94rem;
+    }
+
+    th, td { padding: 13px 16px; text-align: left; border-bottom: 1px solid var(--line); }
+    thead th {
+        font-family: var(--mono); font-size: 0.68rem;
+        letter-spacing: 0.11em; text-transform: uppercase;
+        color: var(--muted); font-weight: 500;
+    }
+
+    tbody tr:last-child td { border-bottom: none; }
+    td strong { font-family: var(--mono); font-weight: 500; letter-spacing: -0.02em; }
+
+    /* caja de cuenta */
+    .box {
+        background: var(--accent-wash); border-radius: 12px;
+        padding: 24px 26px; margin: 28px 0;
+    }
+
+    .box h3 { margin-top: 0; color: var(--accent-ink); }
+    .box p { color: var(--accent-ink); }
+    .box p:last-child { margin-bottom: 0; }
+
+    .calc {
+        font-family: var(--mono); font-size: 0.92rem;
+        background: var(--surface); border: 1px solid var(--line);
+        border-radius: 8px; padding: 14px 16px; margin: 14px 0;
+        line-height: 1.9;
+    }
+
+    /* aviso */
+    .note {
+        border-left: 3px solid var(--line); padding-left: 18px;
+        color: var(--muted); font-size: 0.92rem; margin: 26px 0;
+    }
+
+    .cta { background: var(--accent); color: #fff; margin-top: 70px; padding-block: 60px; }
+    .cta h2 { color: #fff; margin: 0 0 14px; }
+    .cta p { color: rgba(255,255,255,.84); max-width: 48ch; }
+
+    .btn-light {
+        display: inline-block; font-size: 1rem; font-weight: 600;
+        background: #fff; color: var(--accent-ink); text-decoration: none;
+        border-radius: 7px; padding: 14px 26px; margin-top: 16px;
+        transition: transform .18s ease;
+    }
+
+    .btn-light:hover { transform: translateY(-1px); }
+
+    footer { background: var(--ink); color: #6E756F; padding-block: 30px; font-size: 0.86rem; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 22px; max-width: 1160px; }
+    footer a { color: #A9AFAB; text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { transition-duration: .01ms !important; animation: none !important; }
+    }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://sgagents.vercel.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://sgagents.vercel.app/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Agente o chatbot"
+        }
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Agente de IA o chatbot: la diferencia real",
+      "description": "La diferencia real entre un chatbot y un agente de IA, una prueba de tres preguntas para distinguirlos, y cuándo alcanza con el más barato.",
+      "image": "https://sgagents.vercel.app/og-image.jpg",
+      "inLanguage": "es-AR",
+      "datePublished": "2026-09-20",
+      "dateModified": "2026-09-20",
+      "mainEntityOfPage": "https://sgagents.vercel.app/blog/agente-de-ia-o-chatbot/",
+      "author": {
+        "@id": "https://sgagents.vercel.app/#santiago"
+      },
+      "publisher": {
+        "@id": "https://sgagents.vercel.app/#organization"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header>
+    <nav class="wrap nav">
+        <a class="wordmark" href="/"><span class="mark"></span>SG Agents</a>
+        <a class="nav-cta" href="https://wa.me/5493415598979?text=Hola%20Santiago,%20le%C3%AD%20la%20nota%20sobre%20agentes%20y%20chatbots%20y%20quer%C3%ADa%20consultarte." target="_blank" rel="noopener">Hablemos</a>
+    </nav>
+</header>
+
+<main class="wrap">
+    <p class="crumbs"><a href="/">Inicio</a><span>/</span><a href="/blog/">Blog</a><span>/</span>Agente o chatbot</p>
+
+    <h1>Agente de IA o chatbot: en qué se diferencian de verdad</h1>
+
+    <p class="byline">20 de septiembre de 2026 &middot; Santiago Grazziani</p>
+
+    <p class="standfirst">Hoy le dicen "agente de IA" a casi cualquier cosa. La diferencia es concreta, se nota en el uso y cambia bastante el presupuesto.</p>
+
+    <p>La palabra "agente" se volvió marketing. Hoy le dicen agente de IA a cosas que son un menú de opciones con otro nombre, y eso hace imposible comparar presupuestos: dos propuestas que dicen lo mismo pueden ser productos distintos.</p>
+
+    <p>La diferencia es real y se puede explicar sin tecnicismos.</p>
+
+    <h2>Qué es un chatbot</h2>
+
+    <p>Un chatbot sigue un <strong>camino que alguien dibujó antes</strong>. Es un árbol: si la persona escribe esto, respondé aquello; si aprieta el botón 2, mostrá el menú de horarios.</p>
+
+    <p>Funciona muy bien cuando las preguntas son pocas y previsibles. Y tiene una ventaja que casi nadie menciona: <strong>es predecible</strong>. Siempre responde lo mismo, nunca inventa nada, y sale más barato.</p>
+
+    <p>Su límite aparece cuando alguien escribe algo que el árbol no contemplaba. Ahí el chatbot responde "no entendí" o te tira el menú otra vez, que es la experiencia que todos odiamos.</p>
+
+    <h2>Qué es un agente</h2>
+
+    <p>Un agente usa un modelo de lenguaje para <strong>interpretar qué te están pidiendo</strong>, aunque esté dicho de una forma que nadie previó. Y después, si hace falta, <strong>hace algo</strong>: consulta una base, chequea disponibilidad, registra un turno.</p>
+
+    <p>Esas son las dos partes, y las dos importan. Un modelo que solo conversa es un chat, no un agente. Lo que lo convierte en agente es que puede <em>actuar</em> sobre tus sistemas.</p>
+
+    <div class="box">
+        <h3>La prueba de tres preguntas</h3>
+        <p>Si estás evaluando una propuesta, preguntá esto:</p>
+        <p><strong>1.</strong> Si alguien escribe "che, tenés lugar mañana a la tarde o mejor paso la semana que viene", ¿lo entiende o pide que reformule?</p>
+        <p><strong>2.</strong> ¿Puede consultar mi sistema antes de responder, o contesta con información cargada a mano?</p>
+        <p><strong>3.</strong> ¿Puede dejar algo registrado, o solo informa y después alguien carga el dato?</p>
+        <p>Tres veces que sí es un agente. Tres veces que no es un chatbot. Mezclado es lo más común, y está bien, siempre que sepas qué estás comprando.</p>
+    </div>
+
+    <h2>Cuándo alcanza con un chatbot</h2>
+
+    <p>Esta es la parte que no te van a decir si te quieren vender lo más caro. Un chatbot es suficiente, y conviene, cuando:</p>
+
+    <ul>
+        <li><strong>Las preguntas son siempre las mismas.</strong> Horarios, dirección, medios de pago. Si son diez preguntas y siempre las mismas diez, un árbol las cubre.</li>
+        <li><strong>No hace falta consultar nada.</strong> Si la respuesta no depende de datos que cambian, no necesitás que el sistema mire nada.</li>
+        <li><strong>Querés control total sobre lo que se responde.</strong> En rubros regulados, que el sistema nunca improvise es una ventaja, no una limitación.</li>
+        <li><strong>El presupuesto es ajustado.</strong> Un chatbot cuesta menos de desarrollar y no tiene costo por uso.</li>
+    </ul>
+
+    <h2>Cuándo necesitás un agente</h2>
+
+    <ul>
+        <li><strong>La gente escribe como habla.</strong> En WhatsApp nadie usa menús: escriben un párrafo con tres cosas mezcladas.</li>
+        <li><strong>La respuesta depende de datos que cambian.</strong> Disponibilidad, stock, estado de un pedido. Eso hay que consultarlo en el momento.</li>
+        <li><strong>Querés que resuelva, no que derive.</strong> La diferencia entre "te paso con alguien" y "listo, te lo reservé".</li>
+    </ul>
+
+    <h2>Un ejemplo concreto</h2>
+
+    <p>El sistema de <a href="/casos/pilatin/">Pilatin</a> es un agente, y se nota en los casos raros. Cuando una alumna avisa que falta un día, el sistema distingue si es una cancelación puntual o si está dando de baja su lugar fijo semanal — dos cosas que se dicen parecido y significan distinto.</p>
+
+    <p>Un árbol de decisión necesitaría un botón para cada caso. Un agente lo entiende del contexto.</p>
+
+    <p>Y hay una segunda cosa que muestra el ejemplo: el sistema <strong>sabe cuándo correrse</strong>. Si alguien necesita hablar con una persona, deriva el contacto en vez de insistir. Un buen agente no intenta resolver todo.</p>
+
+    <h2>Lo que también hay que decir</h2>
+
+    <p>Un agente tiene desventajas reales:</p>
+
+    <ul>
+        <li><strong>Cuesta más</strong>, de desarrollo y de uso: los modelos de lenguaje cobran por consumo.</li>
+        <li><strong>Es menos predecible.</strong> Bien armado no inventa cosas, pero hay que ponerle límites explícitos, y eso es parte del trabajo.</li>
+        <li><strong>Hay que probarlo con gente real.</strong> Las conversaciones de verdad siempre traen algo que nadie previó.</li>
+    </ul>
+
+    <p>Por eso la respuesta honesta a "¿necesito un agente?" es <em>depende de si tus clientes escriben como robots o como personas</em>. Si escriben como personas, necesitás un agente. Si eligen de un menú, no.</p>
+
+    <h2>En resumen</h2>
+
+    <ul>
+        <li>El <strong>chatbot</strong> sigue un camino dibujado. Barato, predecible, se rompe fuera del guion.</li>
+        <li>El <strong>agente</strong> interpreta y actúa. Más caro, más flexible, hay que ponerle límites.</li>
+        <li>La prueba está en las <strong>tres preguntas</strong> de más arriba.</li>
+        <li>Si te venden un "agente" que solo responde preguntas frecuentes, te están vendiendo un chatbot con otro nombre.</li>
+    </ul>
+
+    <p>Si querés ver qué se puede automatizar en general, está <a href="/servicios/automatizaciones/">la página de automatizaciones</a>. Y si lo que te interesa son los números, <a href="/blog/cuanto-cuesta-automatizar-un-negocio/">acá desglosamos los precios</a>.</p>
+
+</main>
+
+<section class="cta">
+    <div class="wrap">
+        <h2>¿No sabés cuál necesitás?</h2>
+        <p>Contanos cómo te escriben tus clientes y te decimos si te alcanza con un chatbot o te conviene un agente. La primera charla no tiene costo.</p>
+        <a class="btn-light" href="https://wa.me/5493415598979?text=Hola%20Santiago,%20le%C3%AD%20la%20nota%20sobre%20agentes%20y%20chatbots%20y%20quer%C3%ADa%20consultarte." target="_blank" rel="noopener">Contanos tu problema</a>
+    </div>
+</section>
+
+<footer>
+    <div class="wrap">
+        <span>&copy; 2026 SG Agents &middot; Santiago Grazziani</span>
+        <a href="/">Inicio</a>
+        <a href="/blog/">Blog</a>
+        <a href="/servicios/automatizaciones/">Automatizaciones</a>
+        <a href="/contacto/">Contacto</a>
+        <a href="/privacidad/">Privacidad</a>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>n8n, Make o Zapier: cuál conviene según el caso | SG Agents</title>
+
+<meta name="description" content="Comparación práctica de las tres herramientas de automatización: cómo cobra cada una, cuándo conviene cada cual, y la letra chica de la licencia de n8n.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Santiago Grazziani">
+<link rel="canonical" href="https://sgagents.vercel.app/blog/n8n-make-o-zapier/">
+
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="SG Agents">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://sgagents.vercel.app/blog/n8n-make-o-zapier/">
+<meta property="og:title" content="n8n, Make o Zapier: cuál conviene según el caso">
+<meta property="og:description" content="Comparación práctica de las tres herramientas de automatización: cómo cobra cada una, cuándo conviene cada cual, y la letra chica de la licencia de n8n.">
+<meta property="og:image" content="https://sgagents.vercel.app/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="n8n, Make o Zapier: cuál conviene según el caso">
+<meta name="twitter:description" content="Comparación práctica de las tres herramientas de automatización: cómo cobra cada una, cuándo conviene cada cual, y la letra chica de la licencia de n8n.">
+<meta name="twitter:image" content="https://sgagents.vercel.app/og-image.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body, h1, h2, h3, p, figure, blockquote, dl, dd, dt, table { margin: 0; }
+
+    :root {
+        --paper:       #EFF1EC;
+        --surface:     #FFFFFF;
+        --ink:         #15181A;
+        --muted:       #5B645E;
+        --line:        #E2E6E1;
+        --accent:      #0F5C48;
+        --accent-ink:  #0B4738;
+        --accent-wash: #EAF1EE;
+
+        --display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+        --text:    'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+        --mono:    'IBM Plex Mono', ui-monospace, 'Cascadia Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+        font-family: var(--text); background: var(--paper); color: var(--ink);
+        line-height: 1.75; -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { width: 100%; max-width: 720px; margin: 0 auto; padding-inline: 24px; }
+    a { color: var(--accent); }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+    header { border-bottom: 1px solid var(--line); background: var(--paper); }
+    .nav { display: flex; align-items: center; gap: 24px; padding-block: 18px; max-width: 1160px; }
+
+    .wordmark {
+        font-family: var(--display); font-weight: 800; font-size: 1.15rem;
+        letter-spacing: -0.02em; color: var(--ink); text-decoration: none;
+        margin-right: auto; display: inline-flex; align-items: center; gap: 9px;
+    }
+
+    .wordmark .mark { width: 13px; height: 13px; border-radius: 3px; background: var(--accent); }
+
+    .nav-cta {
+        font-size: 0.9rem; font-weight: 500; color: var(--accent); text-decoration: none;
+        border: 1.5px solid var(--accent); border-radius: 6px; padding: 7px 15px;
+        transition: background .18s ease, color .18s ease;
+    }
+
+    .nav-cta:hover { background: var(--accent); color: #fff; }
+
+    .crumbs {
+        font-family: var(--mono); font-size: 0.72rem;
+        letter-spacing: 0.1em; text-transform: uppercase;
+        color: var(--muted); padding-top: 40px;
+    }
+
+    .crumbs a { color: var(--muted); text-decoration: none; }
+    .crumbs a:hover { color: var(--accent); }
+    .crumbs span { margin-inline: 8px; opacity: .5; }
+
+    h1 {
+        font-family: var(--display); font-weight: 800;
+        font-size: clamp(1.95rem, 5.2vw, 2.85rem);
+        line-height: 1.1; letter-spacing: -0.032em;
+        text-wrap: balance; margin: 18px 0 18px;
+    }
+
+    .byline {
+        font-family: var(--mono); font-size: 0.74rem;
+        letter-spacing: 0.08em; text-transform: uppercase;
+        color: var(--muted); margin-bottom: 38px;
+    }
+
+    .standfirst {
+        font-size: 1.14rem; color: var(--ink);
+        border-left: 3px solid var(--accent); padding-left: 20px;
+        margin-bottom: 46px;
+    }
+
+    h2 {
+        font-family: var(--display); font-weight: 800;
+        font-size: clamp(1.4rem, 3.2vw, 1.75rem);
+        line-height: 1.18; letter-spacing: -0.026em; margin: 52px 0 16px;
+    }
+
+    h3 { font-family: var(--display); font-weight: 700; font-size: 1.05rem; letter-spacing: -0.015em; margin-top: 28px; }
+
+    p { margin-bottom: 18px; }
+    .lead-muted { color: var(--muted); }
+
+    ul, ol { margin: 0 0 20px; padding-left: 22px; }
+    li { margin-bottom: 9px; }
+
+    /* tabla de rangos */
+    .table-scroll { overflow-x: auto; margin: 26px 0; }
+
+    table {
+        width: 100%; border-collapse: collapse;
+        background: var(--surface); border: 1px solid var(--line);
+        border-radius: 12px; overflow: hidden;
+        font-size: 0.94rem;
+    }
+
+    th, td { padding: 13px 16px; text-align: left; border-bottom: 1px solid var(--line); }
+    thead th {
+        font-family: var(--mono); font-size: 0.68rem;
+        letter-spacing: 0.11em; text-transform: uppercase;
+        color: var(--muted); font-weight: 500;
+    }
+
+    tbody tr:last-child td { border-bottom: none; }
+    td strong { font-family: var(--mono); font-weight: 500; letter-spacing: -0.02em; }
+
+    /* caja de cuenta */
+    .box {
+        background: var(--accent-wash); border-radius: 12px;
+        padding: 24px 26px; margin: 28px 0;
+    }
+
+    .box h3 { margin-top: 0; color: var(--accent-ink); }
+    .box p { color: var(--accent-ink); }
+    .box p:last-child { margin-bottom: 0; }
+
+    .calc {
+        font-family: var(--mono); font-size: 0.92rem;
+        background: var(--surface); border: 1px solid var(--line);
+        border-radius: 8px; padding: 14px 16px; margin: 14px 0;
+        line-height: 1.9;
+    }
+
+    /* aviso */
+    .note {
+        border-left: 3px solid var(--line); padding-left: 18px;
+        color: var(--muted); font-size: 0.92rem; margin: 26px 0;
+    }
+
+    .cta { background: var(--accent); color: #fff; margin-top: 70px; padding-block: 60px; }
+    .cta h2 { color: #fff; margin: 0 0 14px; }
+    .cta p { color: rgba(255,255,255,.84); max-width: 48ch; }
+
+    .btn-light {
+        display: inline-block; font-size: 1rem; font-weight: 600;
+        background: #fff; color: var(--accent-ink); text-decoration: none;
+        border-radius: 7px; padding: 14px 26px; margin-top: 16px;
+        transition: transform .18s ease;
+    }
+
+    .btn-light:hover { transform: translateY(-1px); }
+
+    footer { background: var(--ink); color: #6E756F; padding-block: 30px; font-size: 0.86rem; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 22px; max-width: 1160px; }
+    footer a { color: #A9AFAB; text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { transition-duration: .01ms !important; animation: none !important; }
+    }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Inicio",
+          "item": "https://sgagents.vercel.app/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Blog",
+          "item": "https://sgagents.vercel.app/blog/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "n8n, Make o Zapier"
+        }
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "n8n, Make o Zapier: cuál conviene según el caso",
+      "description": "Comparación práctica de las tres herramientas de automatización: cómo cobra cada una, cuándo conviene cada cual, y la letra chica de la licencia de n8n.",
+      "image": "https://sgagents.vercel.app/og-image.jpg",
+      "inLanguage": "es-AR",
+      "datePublished": "2026-09-20",
+      "dateModified": "2026-09-20",
+      "mainEntityOfPage": "https://sgagents.vercel.app/blog/n8n-make-o-zapier/",
+      "author": {
+        "@id": "https://sgagents.vercel.app/#santiago"
+      },
+      "publisher": {
+        "@id": "https://sgagents.vercel.app/#organization"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header>
+    <nav class="wrap nav">
+        <a class="wordmark" href="/"><span class="mark"></span>SG Agents</a>
+        <a class="nav-cta" href="https://wa.me/5493415598979?text=Hola%20Santiago,%20quer%C3%ADa%20consultarte%20qu%C3%A9%20herramienta%20me%20conviene%20para%20automatizar." target="_blank" rel="noopener">Hablemos</a>
+    </nav>
+</header>
+
+<main class="wrap">
+    <p class="crumbs"><a href="/">Inicio</a><span>/</span><a href="/blog/">Blog</a><span>/</span>n8n, Make o Zapier</p>
+
+    <h1>n8n, Make o Zapier: cuál conviene según el caso</h1>
+
+    <p class="byline">20 de septiembre de 2026 &middot; Santiago Grazziani</p>
+
+    <p class="standfirst">Hacen cosas parecidas, cobran distinto, y una de las tres tiene una restricción de licencia que conviene conocer antes de elegir.</p>
+
+    <p>Son las tres herramientas que aparecen siempre que buscás cómo conectar dos sistemas sin programar. Hacen cosas parecidas, cobran distinto, y una de las tres tiene una restricción de licencia que casi nadie menciona.</p>
+
+    <h2>Qué es cada una</h2>
+
+    <div class="table-scroll">
+        <table>
+            <thead>
+                <tr><th>Herramienta</th><th>Cómo cobra</th><th>Curva de aprendizaje</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Zapier</strong></td><td>Por tarea ejecutada</td><td>La más fácil de todas</td></tr>
+                <tr><td><strong>Make</strong></td><td>Por operación</td><td>Media, visual</td></tr>
+                <tr><td><strong>n8n</strong></td><td>Gratis si lo hospedás vos; mensual en su nube</td><td>La más empinada</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p class="note">No pongo precios exactos a propósito: los tres cambian sus planes seguido y un número publicado hoy desinforma en seis meses. Lo que no cambia es el modelo de cobro, que es lo que importa para presupuestar. La diferencia práctica es que Zapier y Make <strong>escalan con el uso</strong> — cuanto más lo usás, más pagás — y n8n autohospedado no.</p>
+
+    <h2>Zapier: cuando querés que funcione hoy</h2>
+
+    <p>Es la más simple y la que más aplicaciones conecta. Si necesitás que un formulario cargue una fila en una planilla y mande un mail, lo armás en diez minutos sin leer nada.</p>
+
+    <p><strong>Su límite es el precio a volumen.</strong> Como cobra por tarea, un flujo que se dispara mil veces al mes cuesta mil veces. Para procesos de bajo volumen es la mejor opción; para alto volumen se vuelve cara rápido.</p>
+
+    <p>También se queda corta cuando la lógica se complica: condiciones anidadas, reintentos, manejo de errores.</p>
+
+    <h2>Make: el punto medio</h2>
+
+    <p>Más potente que Zapier en lógica y más barata a volumen, porque cobra por operación y las operaciones son más granulares. La interfaz visual deja ver el flujo entero como un diagrama, lo que ayuda mucho cuando hay varias ramas.</p>
+
+    <p>Es la opción razonable cuando Zapier te queda chica pero no querés administrar un servidor.</p>
+
+    <h2>n8n: la más flexible, y la que tiene letra chica</h2>
+
+    <p>Es la que más se parece a programar sin programar: podés meter código donde haga falta, controlar reintentos y manejar errores en serio. Y si la hospedás en tu propio servidor, <strong>no tiene costo por uso</strong> — pagás el servidor y nada más, corra diez veces o diez mil.</p>
+
+    <p>A cambio, es la más difícil de aprender y alguien tiene que mantener el servidor.</p>
+
+    <div class="box">
+        <h3>La letra chica de la licencia</h3>
+        <p>n8n no es software libre en el sentido clásico: usa una licencia llamada <strong>Sustainable Use License</strong>, de modelo <em>fair-code</em>.</p>
+        <p>Podés usarlo, modificarlo y autohospedarlo gratis <strong>para los fines internos de tu propio negocio</strong>. Eso cubre al 99% de los casos.</p>
+        <p>Lo que no está permitido sin licencia comercial es <strong>vender acceso a n8n</strong>: hospedar las automatizaciones de clientes que te pagan en tu instancia, revenderlo o ponerle tu marca encima.</p>
+        <p>Si contratás a alguien para que te arme automatizaciones y corren en <em>tu</em> servidor, estás dentro de lo permitido. Si el proveedor las corre en <em>su</em> instancia y te cobra por eso, ahí hace falta licencia comercial.</p>
+    </div>
+
+    <h2>Cuál te conviene</h2>
+
+    <ul>
+        <li><strong>Pocos flujos, poco volumen, querés resolverlo esta semana:</strong> Zapier.</li>
+        <li><strong>Lógica con varias ramas, volumen medio, sin ganas de administrar servidores:</strong> Make.</li>
+        <li><strong>Mucho volumen, lógica compleja, o te molesta que el costo crezca con el uso:</strong> n8n autohospedado.</li>
+        <li><strong>Querés n8n pero no un servidor propio:</strong> n8n Cloud, que es pago y no tiene el tema de la licencia.</li>
+    </ul>
+
+    <h2>Qué usamos nosotros y por qué</h2>
+
+    <p>Trabajamos principalmente con <strong>n8n</strong>, por tres razones concretas:</p>
+
+    <ul>
+        <li><strong>El costo no crece con el uso.</strong> Un asistente que responde cien mensajes por día cuesta lo mismo que uno que responde diez.</li>
+        <li><strong>La lógica de negocio real necesita excepciones.</strong> Distinguir una baja de una ausencia, manejar reintentos cuando una API falla: eso en Zapier se vuelve incómodo.</li>
+        <li><strong>Se puede llevar.</strong> Si mañana querés que lo siga otra persona, el flujo se exporta y se importa en otra instancia. No quedás atado a nosotros.</li>
+    </ul>
+
+    <p>No es que n8n sea mejor siempre. Si tu caso es "cuando entra un formulario, mandame un mail", Zapier lo resuelve más rápido y más barato, y te lo vamos a decir.</p>
+
+    <h2>En resumen</h2>
+
+    <ul>
+        <li><strong>Zapier</strong>: la más fácil, la más cara a volumen.</li>
+        <li><strong>Make</strong>: el punto medio entre potencia y simpleza.</li>
+        <li><strong>n8n</strong>: la más flexible y la más barata a volumen, con curva de aprendizaje y un servidor que mantener.</li>
+        <li>La licencia de n8n permite el uso interno del propio negocio, no revender acceso.</li>
+    </ul>
+
+    <p>Si querés ver cómo se traduce esto en un sistema real, está el <a href="/casos/pilatin/">caso de Pilatin</a>, y en <a href="/servicios/automatizaciones/">la página de automatizaciones</a> explicamos qué se puede resolver con esto.</p>
+
+</main>
+
+<section class="cta">
+    <div class="wrap">
+        <h2>¿No sabés cuál usar para tu caso?</h2>
+        <p>Contanos qué querés conectar y te decimos con qué se resuelve mejor. A veces la respuesta es la más simple y más barata de las tres.</p>
+        <a class="btn-light" href="https://wa.me/5493415598979?text=Hola%20Santiago,%20quer%C3%ADa%20consultarte%20qu%C3%A9%20herramienta%20me%20conviene%20para%20automatizar." target="_blank" rel="noopener">Contanos tu problema</a>
+    </div>
+</section>
+
+<footer>
+    <div class="wrap">
+        <span>&copy; 2026 SG Agents &middot; Santiago Grazziani</span>
+        <a href="/">Inicio</a>
+        <a href="/blog/">Blog</a>
+        <a href="/servicios/automatizaciones/">Automatizaciones</a>
+        <a href="/contacto/">Contacto</a>
+        <a href="/privacidad/">Privacidad</a>
+    </div>
+</footer>
+
+</body>
+</html>
