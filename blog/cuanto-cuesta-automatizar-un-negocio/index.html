@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuánto cuesta automatizar un negocio en Argentina | SG Agents</title>
+
+<meta name="description" content="Precios reales, qué los hace subir o bajar, y los costos mensuales que casi nadie menciona antes de cobrarte: WhatsApp API, modelos de IA y hosting.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Santiago Grazziani">
+<link rel="canonical" href="https://sgagents.vercel.app/blog/cuanto-cuesta-automatizar-un-negocio/">
+
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="SG Agents">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://sgagents.vercel.app/blog/cuanto-cuesta-automatizar-un-negocio/">
+<meta property="og:title" content="Cuánto cuesta automatizar un negocio en Argentina">
+<meta property="og:description" content="Precios reales, qué los hace subir o bajar, y los costos mensuales que casi nadie menciona antes de cobrarte.">
+<meta property="og:image" content="https://sgagents.vercel.app/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Cuánto cuesta automatizar un negocio en Argentina">
+<meta name="twitter:description" content="Precios reales, qué los hace subir o bajar, y los costos mensuales que casi nadie menciona antes de cobrarte.">
+<meta name="twitter:image" content="https://sgagents.vercel.app/og-image.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body, h1, h2, h3, p, figure, blockquote, dl, dd, dt, table { margin: 0; }
+
+    :root {
+        --paper:       #EFF1EC;
+        --surface:     #FFFFFF;
+        --ink:         #15181A;
+        --muted:       #5B645E;
+        --line:        #E2E6E1;
+        --accent:      #0F5C48;
+        --accent-ink:  #0B4738;
+        --accent-wash: #EAF1EE;
+
+        --display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+        --text:    'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+        --mono:    'IBM Plex Mono', ui-monospace, 'Cascadia Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+        font-family: var(--text); background: var(--paper); color: var(--ink);
+        line-height: 1.75; -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { width: 100%; max-width: 720px; margin: 0 auto; padding-inline: 24px; }
+    a { color: var(--accent); }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+    header { border-bottom: 1px solid var(--line); background: var(--paper); }
+    .nav { display: flex; align-items: center; gap: 24px; padding-block: 18px; max-width: 1160px; }
+
+    .wordmark {
+        font-family: var(--display); font-weight: 800; font-size: 1.15rem;
+        letter-spacing: -0.02em; color: var(--ink); text-decoration: none;
+        margin-right: auto; display: inline-flex; align-items: center; gap: 9px;
+    }
+
+    .wordmark .mark { width: 13px; height: 13px; border-radius: 3px; background: var(--accent); }
+
+    .nav-cta {
+        font-size: 0.9rem; font-weight: 500; color: var(--accent); text-decoration: none;
+        border: 1.5px solid var(--accent); border-radius: 6px; padding: 7px 15px;
+        transition: background .18s ease, color .18s ease;
+    }
+
+    .nav-cta:hover { background: var(--accent); color: #fff; }
+
+    .crumbs {
+        font-family: var(--mono); font-size: 0.72rem;
+        letter-spacing: 0.1em; text-transform: uppercase;
+        color: var(--muted); padding-top: 40px;
+    }
+
+    .crumbs a { color: var(--muted); text-decoration: none; }
+    .crumbs a:hover { color: var(--accent); }
+    .crumbs span { margin-inline: 8px; opacity: .5; }
+
+    h1 {
+        font-family: var(--display); font-weight: 800;
+        font-size: clamp(1.95rem, 5.2vw, 2.85rem);
+        line-height: 1.1; letter-spacing: -0.032em;
+        text-wrap: balance; margin: 18px 0 18px;
+    }
+
+    .byline {
+        font-family: var(--mono); font-size: 0.74rem;
+        letter-spacing: 0.08em; text-transform: uppercase;
+        color: var(--muted); margin-bottom: 38px;
+    }
+
+    .standfirst {
+        font-size: 1.14rem; color: var(--ink);
+        border-left: 3px solid var(--accent); padding-left: 20px;
+        margin-bottom: 46px;
+    }
+
+    h2 {
+        font-family: var(--display); font-weight: 800;
+        font-size: clamp(1.4rem, 3.2vw, 1.75rem);
+        line-height: 1.18; letter-spacing: -0.026em; margin: 52px 0 16px;
+    }
+
+    h3 { font-family: var(--display); font-weight: 700; font-size: 1.05rem; letter-spacing: -0.015em; margin-top: 28px; }
+
+    p { margin-bottom: 18px; }
+    .lead-muted { color: var(--muted); }
+
+    ul, ol { margin: 0 0 20px; padding-left: 22px; }
+    li { margin-bottom: 9px; }
+
+    /* tabla de rangos */
+    .table-scroll { overflow-x: auto; margin: 26px 0; }
+
+    table {
+        width: 100%; border-collapse: collapse;
+        background: var(--surface); border: 1px solid var(--line);
+        border-radius: 12px; overflow: hidden;
+        font-size: 0.94rem;
+    }
+
+    th, td { padding: 13px 16px; text-align: left; border-bottom: 1px solid var(--line); }
+    thead th {
+        font-family: var(--mono); font-size: 0.68rem;
+        letter-spacing: 0.11em; text-transform: uppercase;
+        color: var(--muted); font-weight: 500;
+    }
+
+    tbody tr:last-child td { border-bottom: none; }
+    td strong { font-family: var(--mono); font-weight: 500; letter-spacing: -0.02em; }
+
+    /* caja de cuenta */
+    .box {
+        background: var(--accent-wash); border-radius: 12px;
+        padding: 24px 26px; margin: 28px 0;
+    }
+
+    .box h3 { margin-top: 0; color: var(--accent-ink); }
+    .box p { color: var(--accent-ink); }
+    .box p:last-child { margin-bottom: 0; }
+
+    .calc {
+        font-family: var(--mono); font-size: 0.92rem;
+        background: var(--surface); border: 1px solid var(--line);
+        border-radius: 8px; padding: 14px 16px; margin: 14px 0;
+        line-height: 1.9;
+    }
+
+    /* aviso */
+    .note {
+        border-left: 3px solid var(--line); padding-left: 18px;
+        color: var(--muted); font-size: 0.92rem; margin: 26px 0;
+    }
+
+    .cta { background: var(--accent); color: #fff; margin-top: 70px; padding-block: 60px; }
+    .cta h2 { color: #fff; margin: 0 0 14px; }
+    .cta p { color: rgba(255,255,255,.84); max-width: 48ch; }
+
+    .btn-light {
+        display: inline-block; font-size: 1rem; font-weight: 600;
+        background: #fff; color: var(--accent-ink); text-decoration: none;
+        border-radius: 7px; padding: 14px 26px; margin-top: 16px;
+        transition: transform .18s ease;
+    }
+
+    .btn-light:hover { transform: translateY(-1px); }
+
+    footer { background: var(--ink); color: #6E756F; padding-block: 30px; font-size: 0.86rem; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 22px; max-width: 1160px; }
+    footer a { color: #A9AFAB; text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { transition-duration: .01ms !important; animation: none !important; }
+    }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://sgagents.vercel.app/" },
+        { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://sgagents.vercel.app/blog/" },
+        { "@type": "ListItem", "position": 3, "name": "Cuánto cuesta automatizar un negocio" }
+      ]
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Cuánto cuesta automatizar un negocio en Argentina",
+      "description": "Precios reales, qué los hace subir o bajar, y los costos mensuales que casi nadie menciona antes de cobrarte: WhatsApp API, modelos de IA y hosting.",
+      "image": "https://sgagents.vercel.app/og-image.jpg",
+      "inLanguage": "es-AR",
+      "datePublished": "2026-09-20",
+      "dateModified": "2026-09-20",
+      "mainEntityOfPage": "https://sgagents.vercel.app/blog/cuanto-cuesta-automatizar-un-negocio/",
+      "author": { "@id": "https://sgagents.vercel.app/#santiago" },
+      "publisher": { "@id": "https://sgagents.vercel.app/#organization" }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header>
+    <nav class="wrap nav">
+        <a class="wordmark" href="/"><span class="mark"></span>SG Agents</a>
+        <a class="nav-cta" href="https://wa.me/5493415598979?text=Hola%20Santiago,%20le%C3%AD%20tu%20nota%20sobre%20precios%20y%20quer%C3%ADa%20consultarte." target="_blank" rel="noopener">Hablemos</a>
+    </nav>
+</header>
+
+<main class="wrap">
+    <p class="crumbs"><a href="/">Inicio</a><span>/</span><a href="/blog/">Blog</a><span>/</span>Precios</p>
+
+    <h1>Cuánto cuesta automatizar un negocio en Argentina</h1>
+
+    <p class="byline">20 de septiembre de 2026 · Santiago Grazziani</p>
+
+    <p class="standfirst">Casi nadie publica precios en este rubro. Acá están los nuestros, qué los hace subir o bajar, y sobre todo los costos mensuales que suelen aparecer recién después de firmar.</p>
+
+    <p>Si estás averiguando cuánto sale automatizar algo en tu negocio, probablemente ya te pasó: entrás a tres o cuatro sitios y ninguno dice un número. Todos dicen "depende del proyecto" y te piden que dejes tus datos.</p>
+
+    <p>Y es cierto que depende. Pero eso no significa que no se pueda dar un rango honesto y explicar de qué depende. Eso es lo que sigue.</p>
+
+    <h2>Los rangos, sin vueltas</h2>
+
+    <div class="table-scroll">
+        <table>
+            <thead>
+                <tr>
+                    <th>Tipo de proyecto</th>
+                    <th>Desde</th>
+                    <th>Qué incluye</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Asistente de conversación</td>
+                    <td><strong>U$D 300</strong></td>
+                    <td>Un canal, preguntas frecuentes, integración con WhatsApp</td>
+                </tr>
+                <tr>
+                    <td>Automatización de punta a punta</td>
+                    <td><strong>U$D 1.000</strong></td>
+                    <td>Varias herramientas conectadas, lógica propia, reportes</td>
+                </tr>
+                <tr>
+                    <td>Proyecto a medida</td>
+                    <td><strong>A definir</strong></td>
+                    <td>Web, app interna o infraestructura completa</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p class="lead-muted">Son valores de desarrollo, por única vez. Los de SG Agents, a septiembre de 2026. Sirven como referencia de mercado para un proveedor local; una agencia grande cobra más y alguien que recién arranca cobra menos.</p>
+
+    <h2>Qué hace que suba o baje</h2>
+
+    <p>Cuatro cosas explican casi toda la diferencia entre un proyecto de 300 y uno de 3.000 dólares:</p>
+
+    <h3>1. Cuántos sistemas hay que tocar</h3>
+    <p>Automatizar algo que vive en un solo lugar es barato. Conectar WhatsApp con una planilla, la planilla con el sistema de facturación y el facturador con el mail multiplica el trabajo — y sobre todo multiplica los casos donde algo puede fallar.</p>
+
+    <h3>2. Cuántas excepciones tiene tu proceso</h3>
+    <p>Este es el que más sorprende. Un proceso con una sola regla se automatiza rápido. Uno con "salvo que sea cliente viejo", "excepto los viernes" y "si avisa con 24 horas no se cobra" lleva mucho más, porque cada excepción es lógica que hay que entender, escribir y probar.</p>
+    <p>Las excepciones no son un problema: son tu negocio. Pero cuestan.</p>
+
+    <h3>3. Si tus datos están ordenados</h3>
+    <p>Si ya tenés una planilla prolija, se arranca de ahí. Si la información está repartida entre cuadernos, WhatsApp y la memoria de alguien, hay una etapa previa de ordenar que no es opcional y que se cobra.</p>
+
+    <h3>4. Cuánto tiene que aguantar</h3>
+    <p>No es lo mismo algo que usan dos personas del equipo que algo que van a usar mil clientes. La diferencia no está en las funciones, está en todo lo que hay que prever para que no se caiga.</p>
+
+    <h2>Los costos que casi nadie te menciona</h2>
+
+    <p>Acá está la parte que más conviene leer antes de decidir. El desarrollo se paga una vez, pero algunas piezas tienen <strong>costo mensual</strong>, y no las cobra quien te desarrolla: las cobran las plataformas.</p>
+
+    <div class="table-scroll">
+        <table>
+            <thead>
+                <tr>
+                    <th>Componente</th>
+                    <th>Cómo se cobra</th>
+                    <th>De qué depende</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>WhatsApp Business API</td>
+                    <td>Por conversación</td>
+                    <td>Cuántas conversaciones tenés por mes y quién las inicia</td>
+                </tr>
+                <tr>
+                    <td>Modelos de IA</td>
+                    <td>Por uso</td>
+                    <td>Cuántos mensajes procesa y qué tan largos son</td>
+                </tr>
+                <tr>
+                    <td>Motor de automatización</td>
+                    <td>Mensual o gratis</td>
+                    <td>Gratis si va en tu propio servidor; mensual si es en la nube</td>
+                </tr>
+                <tr>
+                    <td>Hosting</td>
+                    <td>Mensual o gratis</td>
+                    <td>Para una web chica suele ser gratis; crece con el tráfico</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p class="note">No pongo cifras exactas a propósito: estas plataformas cambian sus precios seguido, y un número que publico hoy te puede desinformar en seis meses. Lo que no cambia es el modelo de cobro, que es lo que tenés que entender para presupuestar. Pedí siempre una estimación mensual junto con el presupuesto de desarrollo.</p>
+
+    <p>En un negocio chico estos costos suelen ser menores frente al desarrollo. Pero crecen con el volumen, y conviene saberlo desde el principio y no enterarse en el tercer mes.</p>
+
+    <h2>Cómo saber si te conviene</h2>
+
+    <p>Hay una cuenta simple que podés hacer en dos minutos, antes de hablar con nadie:</p>
+
+    <div class="box">
+        <h3>La cuenta</h3>
+        <p>Estimá cuántas horas por semana se van en la tarea que querés automatizar. Multiplicalas por lo que vale esa hora en tu negocio. Multiplicá por 52.</p>
+        <div class="calc">horas por semana × valor de la hora × 52 = ahorro anual estimado</div>
+        <p>Si ese número es varias veces el costo del desarrollo, la decisión es fácil. Si está cerca, probablemente no valga la pena todavía.</p>
+    </div>
+
+    <p>Un ejemplo con números redondos: si alguien dedica 5 horas por semana a responder los mismos mensajes, y esa hora vale 10 dólares, son 2.600 dólares al año. Un asistente de 300 dólares se paga en menos de dos meses.</p>
+
+    <p>Si en cambio son 30 minutos por semana, la cuenta da 260 dólares al año y no cierra. <strong>El volumen es lo que justifica automatizar</strong>, no lo molesta que sea la tarea.</p>
+
+    <h2>Qué ahorrás realmente</h2>
+
+    <p>Vale aclarar algo que se promete mal seguido: automatizar <strong>no suele bajar tus costos de inmediato</strong>. Si tenés un empleado, después de automatizar seguís teniendo un empleado.</p>
+
+    <p>Lo que cambia es en qué usa el tiempo. En el <a href="/casos/pilatin/">caso de Pilatin</a>, la dueña del estudio no despidió a nadie: dejó de pasar horas por semana contestando WhatsApp y las usó para dar clases y pensar cómo crecer.</p>
+
+    <p>Ese es el retorno real, y es más grande que el ahorro directo. Pero es honesto llamarlo por su nombre: ganás tiempo y sacás errores de encima, no necesariamente bajás la planilla de sueldos el mes que viene.</p>
+
+    <h2>Cuándo no gastes la plata</h2>
+
+    <ul>
+        <li><strong>Si el proceso cambia todo el tiempo.</strong> Vas a gastar más en mantenerlo que lo que ahorrás.</li>
+        <li><strong>Si el volumen es bajo.</strong> La cuenta de arriba no cierra y no hay magia que la haga cerrar.</li>
+        <li><strong>Si el proceso está mal armado.</strong> Automatizar un desorden te da un desorden más rápido.</li>
+        <li><strong>Si nadie en tu equipo lo va a usar.</strong> Pasa más de lo que parece: se construye algo que termina abandonado porque nadie lo pidió.</li>
+    </ul>
+
+    <p>Nosotros te lo decimos en la primera charla, que no tiene costo. Vender una automatización que no sirve es un mal negocio para los dos: vos perdés plata y nosotros perdemos un cliente que nos iba a recomendar.</p>
+
+    <h2>En resumen</h2>
+
+    <ul>
+        <li>Un asistente de conversación arranca en <strong>U$D 300</strong>; una automatización completa, en <strong>U$D 1.000</strong>.</li>
+        <li>El precio lo mueven la cantidad de sistemas, las excepciones de tu proceso, el orden de tus datos y la escala.</li>
+        <li>Hay <strong>costos mensuales de plataforma</strong> además del desarrollo. Pedí siempre la estimación mensual.</li>
+        <li>Si el ahorro anual estimado no supera varias veces el costo, esperá.</li>
+    </ul>
+
+    <p>Si querés ver cómo se traduce esto en un caso concreto, está el <a href="/casos/pilatin/">de Pilatin</a>. Y si querés entender qué se puede automatizar en general, lo explicamos en <a href="/servicios/automatizaciones/">la página de automatizaciones</a>.</p>
+</main>
+
+<section class="cta">
+    <div class="wrap">
+        <h2>¿Querés el número para tu caso?</h2>
+        <p>Contanos qué tarea te está comiendo el tiempo y te damos un rango concreto en la primera charla. Sin costo y sin obligación de contratar.</p>
+        <a class="btn-light" href="https://wa.me/5493415598979?text=Hola%20Santiago,%20le%C3%AD%20la%20nota%20de%20precios%20y%20quer%C3%ADa%20consultarte%20por%20mi%20caso." target="_blank" rel="noopener">Contanos tu problema</a>
+    </div>
+</section>
+
+<footer>
+    <div class="wrap">
+        <span>© 2026 SG Agents · Santiago Grazziani</span>
+        <a href="/">Inicio</a>
+        <a href="/blog/">Blog</a>
+        <a href="/servicios/automatizaciones/">Automatizaciones</a>
+        <a href="/privacidad/">Privacidad</a>
+        <a href="/terminos/">Términos</a>
+    </div>
+</footer>
+
+</body>
+</html>
