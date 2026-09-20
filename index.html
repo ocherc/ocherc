@@ -540,6 +540,64 @@
             border-bottom-color: var(--primary);
         }
 
+        .testimonial {
+            margin-top: 36px;
+            padding: 28px 30px;
+            background: rgba(0, 217, 255, 0.06);
+            border-left: 3px solid var(--primary);
+            border-radius: 8px;
+        }
+
+        .testimonial blockquote p {
+            color: #e5e7eb;
+            font-size: 1.05rem;
+            font-style: italic;
+            margin-bottom: 14px;
+        }
+
+        .testimonial blockquote p:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .testimonial-author {
+            color: #9ca3af;
+            font-size: 0.9rem;
+            margin-top: 18px;
+        }
+
+        .testimonial-author strong {
+            color: var(--primary);
+        }
+
+        .testimonial details {
+            margin-top: 20px;
+        }
+
+        .testimonial summary {
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 0.9rem;
+            list-style: none;
+        }
+
+        .testimonial summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .testimonial summary::before {
+            content: "+ ";
+        }
+
+        .testimonial details[open] summary::before {
+            content: "\2212 ";
+        }
+
+        .testimonial-full p {
+            color: #d1d5db;
+            font-size: 0.95rem;
+            margin-top: 14px;
+        }
+
         .case-stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -1197,21 +1255,21 @@
                     <div>
                         <h4 class="case-before">Antes</h4>
                         <ul class="case-list case-list-before">
-                            <li>Cada mensaje respondido a mano</li>
-                            <li>Las alumnas esperaban la confirmación</li>
-                            <li>Las reservas se superponían</li>
-                            <li>Las cancelaciones no quedaban registradas</li>
-                            <li>Fuera de horario no atendía nadie</li>
+                            <li>Frenar lo que estaba haciendo para contestar</li>
+                            <li>Mirar la planilla a mano en cada consulta</li>
+                            <li>Horas por semana solo administrando turnos</li>
+                            <li>Riesgo de duplicar un cupo o anotar mal un horario</li>
+                            <li>Cancelaciones que quedaban sin avisar</li>
                         </ul>
                     </div>
                     <div>
                         <h4>Después</h4>
                         <ul class="case-list">
-                            <li>El asistente responde solo</li>
-                            <li>Confirma el turno en el momento</li>
-                            <li>Chequea disponibilidad antes de confirmar</li>
-                            <li>Cada cancelación queda registrada</li>
-                            <li>Atiende a cualquier hora, todos los días</li>
+                            <li>Responde al toque, sin que nadie intervenga</li>
+                            <li>Chequea la disponibilidad real contra la planilla</li>
+                            <li>Actualiza la planilla sola</li>
+                            <li>Distingue cancelaciones fijas de puntuales</li>
+                            <li>Deriva el contacto cuando hace falta hablar con Belu</li>
                         </ul>
                     </div>
                 </div>
@@ -1229,6 +1287,23 @@
                         <div class="case-stat-number">24/7</div>
                         <div class="case-stat-label">Disponible</div>
                     </div>
+                </div>
+
+                <div class="testimonial">
+                    <blockquote>
+                        <p>"Dejé de ser la que está pegada al celular todo el día respondiendo lo mismo, y eso me devolvió tiempo real: para dar mejores clases, para pensar en hacer crecer el estudio, y para no llegar a fin de día agotada de tareas administrativas."</p>
+                        <p>"Lo que más valoro es que no es una solución genérica: se armó a medida de cómo funciona realmente Pilatin, con mi lógica de turnos, mis reglas de cancelación, mi forma de trabajar."</p>
+                    </blockquote>
+                    <p class="testimonial-author"><strong>Belu</strong> — Pilatin, estudio de pilates</p>
+
+                    <details>
+                        <summary>Leer el testimonio completo</summary>
+                        <div class="testimonial-full">
+                            <p>Antes de trabajar con SGAgents, la gestión del estudio me consumía un montón de tiempo que quería estar usando para dar clases, no para contestar WhatsApp. Todos los días eran los mismos mensajes: "¿tenés lugar el martes a las 18?", "quiero cancelar la clase del jueves", "¿cuánto sale la cuota?". Yo (o alguien del estudio) tenía que frenar lo que estaba haciendo, ir a mirar la planilla, confirmar disponibilidad y responder. Con el volumen de alumnas que tengo, eso se traducía en horas por semana solo administrando turnos, y encima siempre quedaba el riesgo de un error humano: anotar mal un horario, duplicar un cupo, olvidarme de avisar una cancelación.</p>
+                            <p>Ahora tengo un chatbot de WhatsApp que atiende todo eso solo. Las alumnas escriben para reservar, cancelar o consultar horarios, y el sistema responde al toque, chequea la disponibilidad real contra la planilla y actualiza todo automáticamente — incluso maneja las cancelaciones fijas y las puntuales por separado, y si alguien necesita hablar conmigo directamente, me deriva el contacto. Dejé de ser la que está pegada al celular todo el día respondiendo lo mismo, y eso me devolvió tiempo real: para dar mejores clases, para pensar en hacer crecer el estudio, y para no llegar a fin de día agotada de tareas administrativas.</p>
+                            <p>Lo que más valoro es que no es una solución genérica: se armó a medida de cómo funciona realmente Pilatin, con mi lógica de turnos, mis reglas de cancelación, mi forma de trabajar. Hoy el estudio funciona más ordenado y yo tengo la cabeza más libre para lo que realmente importa: mis alumnas.</p>
+                        </div>
+                    </details>
                 </div>
             </div>
         </div>
