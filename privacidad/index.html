@@ -1,170 +1,193 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Política de Privacidad | SG Agents</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidad | SG Agents</title>
 
-    <meta name="description" content="Qué datos recoge este sitio (ninguno), qué pasa cuando nos escribís y cómo ejercer tus derechos según la Ley 25.326.">
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="Santiago Grazziani">
-    <link rel="canonical" href="https://sgagents.vercel.app/privacidad/">
+<meta name="description" content="Qué datos recoge este sitio (ninguno), qué pasa cuando nos escribís y cómo ejercer tus derechos según la Ley 25.326.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Santiago Grazziani">
+<link rel="canonical" href="https://sgagents.vercel.app/privacidad/">
 
-    <link rel="icon" href="/favicon.ico" sizes="32x32">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-    <meta property="og:type" content="article">
-    <meta property="og:site_name" content="SG Agents">
-    <meta property="og:locale" content="es_AR">
-    <meta property="og:url" content="https://sgagents.vercel.app/privacidad/">
-    <meta property="og:title" content="Política de Privacidad | SG Agents">
-    <meta property="og:description" content="Qué datos recoge este sitio (ninguno), qué pasa cuando nos escribís y cómo ejercer tus derechos según la Ley 25.326.">
-    <meta property="og:image" content="https://sgagents.vercel.app/og-image.jpg">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="SG Agents">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://sgagents.vercel.app/privacidad/">
+<meta property="og:title" content="Política de Privacidad | SG Agents">
+<meta property="og:description" content="Qué datos recoge este sitio (ninguno), qué pasa cuando nos escribís y cómo ejercer tus derechos según la Ley 25.326.">
+<meta property="og:image" content="https://sgagents.vercel.app/og-image.jpg">
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
-        :root {
-            --primary: #00d9ff;
-            --accent: #f093fb;
-            --darker: #08070f;
-        }
+<style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body, h1, h2, p { margin: 0; }
 
-        body {
-            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background-color: var(--darker);
-            color: #d1d5db;
-            line-height: 1.7;
-        }
+    :root {
+        --paper:       #EFF1EC;
+        --surface:     #FFFFFF;
+        --ink:         #15181A;
+        --muted:       #5B645E;
+        --line:        #E2E6E1;
+        --accent:      #0F5C48;
+        --accent-wash: #EAF1EE;
 
-        .wrap {
-            max-width: 760px;
-            margin: 0 auto;
-            padding: 50px 20px 80px;
-        }
+        --display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+        --text:    'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+        --mono:    'IBM Plex Mono', ui-monospace, 'Cascadia Mono', monospace;
+    }
 
-        .brand {
-            display: inline-block;
-            font-size: 1.25rem;
-            font-weight: bold;
-            text-decoration: none;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 40px;
-        }
+    body {
+        font-family: var(--text);
+        background: var(--paper);
+        color: var(--ink);
+        line-height: 1.7;
+        -webkit-font-smoothing: antialiased;
+    }
 
-        h1 {
-            font-size: 2.1rem;
-            color: #f9fafb;
-            margin-bottom: 10px;
-            line-height: 1.25;
-        }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
 
-        .updated {
-            color: #6b7280;
-            font-size: 0.875rem;
-            margin-bottom: 44px;
-        }
+    .topbar { border-bottom: 1px solid var(--line); background: var(--paper); }
 
-        h2 {
-            font-size: 1.15rem;
-            color: var(--primary);
-            margin: 38px 0 14px;
-        }
+    .topbar .wrap { padding-block: 18px; }
 
-        p { margin-bottom: 14px; }
+    .wordmark {
+        font-family: var(--display);
+        font-weight: 800;
+        font-size: 1.1rem;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+    }
 
-        ul { margin: 0 0 14px 22px; }
+    .wordmark .mark { width: 12px; height: 12px; border-radius: 3px; background: var(--accent); }
 
-        li { margin-bottom: 8px; }
+    .wrap { width: 100%; max-width: 760px; margin: 0 auto; padding-inline: 24px; }
 
-        a {
-            color: var(--primary);
-            text-decoration: none;
-            border-bottom: 1px solid rgba(0, 217, 255, 0.4);
-        }
+    main { padding-block: 56px 80px; }
 
-        a:hover { border-bottom-color: var(--primary); }
+    h1 {
+        font-family: var(--display);
+        font-weight: 800;
+        font-size: clamp(1.9rem, 5vw, 2.6rem);
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        margin-bottom: 10px;
+    }
 
-        strong { color: #f3f4f6; }
+    .updated {
+        font-family: var(--mono);
+        font-size: 0.76rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 46px;
+    }
 
-        .note {
-            background: rgba(0, 217, 255, 0.06);
-            border-left: 3px solid var(--primary);
-            border-radius: 8px;
-            padding: 18px 22px;
-            margin: 22px 0;
-        }
+    h2 {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: 1.2rem;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        margin: 40px 0 14px;
+        padding-top: 14px;
+        border-top: 1px solid var(--line);
+    }
 
-        .note p:last-child { margin-bottom: 0; }
+    p { margin-bottom: 14px; color: var(--muted); }
 
-        footer {
-            margin-top: 60px;
-            padding-top: 26px;
-            border-top: 1px solid #262636;
-            font-size: 0.875rem;
-            color: #6b7280;
-        }
+    ul { margin: 0 0 14px 22px; color: var(--muted); }
 
-        footer a { margin-right: 18px; }
-    </style>
+    li { margin-bottom: 8px; }
+
+    a { color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(15, 92, 72, .35); }
+
+    a:hover { border-bottom-color: var(--accent); }
+
+    strong { color: var(--ink); font-weight: 600; }
+
+    code { font-family: var(--mono); font-size: 0.9em; background: var(--accent-wash); padding: 1px 5px; border-radius: 4px; color: var(--accent); }
+
+    .note {
+        background: var(--accent-wash);
+        border-left: 3px solid var(--accent);
+        border-radius: 10px;
+        padding: 20px 24px;
+        margin: 24px 0;
+    }
+
+    .note p { color: #0B4738; font-size: 0.93rem; }
+    .note p:last-child { margin-bottom: 0; }
+
+    footer { background: var(--ink); color: #6E756F; padding-block: 26px; font-size: 0.86rem; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+    footer a { color: #A9AFAB; border-bottom: none; }
+    footer a:hover { color: #fff; }
+</style>
 </head>
 <body>
-    <div class="wrap">
-        <a class="brand" href="/">&#129302; SG Agents</a>
-        <h1>Política de Privacidad</h1>
-        <p class="updated">Última actualización: 20 de septiembre de 2026</p>
-        <h2>Quién es responsable</h2>
-        <p>Este sitio pertenece a <strong>Santiago Grazziani</strong>, que opera comercialmente como SG Agents desde Rosario, provincia de Santa Fe, Argentina.</p>
-        <p>Para cualquier consulta sobre tus datos: <a href="mailto:santiago.grazziani@gmail.com">santiago.grazziani@gmail.com</a></p>
 
-        <h2>Qué recoge este sitio cuando lo visitás</h2>
-        <p><strong>Nada.</strong> Concretamente:</p>
-        <ul>
-            <li>No instala cookies de ningún tipo.</li>
-            <li>No usa Google Analytics ni ninguna otra herramienta de analítica.</li>
-            <li>No tiene píxeles de seguimiento de Meta, Google ni de nadie.</li>
-            <li>No tiene formularios: no hay ningún campo donde puedas dejar datos.</li>
-        </ul>
-        <p>Podés verificarlo vos mismo abriendo las herramientas de desarrollador del navegador y mirando las pestañas de red y de almacenamiento.</p>
+<div class="topbar">
+    <div class="wrap"><a class="wordmark" href="/"><span class="mark"></span>SG Agents</a></div>
+</div>
 
-        <h2>El único tercero involucrado</h2>
-        <p>La tipografía del sitio se carga desde <strong>Google Fonts</strong>. Para eso tu navegador hace una petición a <code>fonts.googleapis.com</code> y <code>fonts.gstatic.com</code>, y en esa petición Google recibe tu dirección IP, igual que en cualquier sitio que cargue un recurso externo.</p>
-        <p>No tenemos acceso a esa información ni la usamos para identificarte. Se rige por la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">política de privacidad de Google</a>.</p>
-
-        <h2>Cuando nos escribís</h2>
-        <p>El sitio tiene enlaces a WhatsApp y a una dirección de correo. Si decidís usarlos, ahí sí compartís datos:</p>
-        <ul>
-            <li><strong>Por WhatsApp:</strong> quedan tu número de teléfono, el nombre de tu perfil y el contenido de lo que escribas. La conversación pasa por la infraestructura de WhatsApp (Meta Platforms) y se rige también por sus políticas.</li>
-            <li><strong>Por correo:</strong> queda tu dirección de email y el contenido del mensaje, alojado en Gmail (Google).</li>
-        </ul>
-        <p>Esos datos se usan <strong>únicamente</strong> para responderte y, si el contacto avanza, para gestionar el trabajo acordado. No se venden, no se ceden ni se usan para enviarte publicidad.</p>
-        <p>Se conservan mientras dure la relación comercial o hasta que pidas que los borremos, lo que ocurra primero.</p>
-
-        <h2>Datos de los clientes de nuestros clientes</h2>
-        <p>Cuando desarrollamos un sistema para un cliente, ese sistema puede tratar datos de <em>sus</em> usuarios. En esos casos el responsable de esos datos es el cliente, y nosotros actuamos únicamente siguiendo sus instrucciones y bajo acuerdo de confidencialidad. No usamos esos datos para ningún fin propio.</p>
-
-        <h2>Tus derechos</h2>
-        <p>Según la <strong>Ley N° 25.326 de Protección de los Datos Personales</strong>, podés pedir acceder a tus datos, rectificarlos, actualizarlos o suprimirlos. Para hacerlo, escribí a <a href="mailto:santiago.grazziani@gmail.com">santiago.grazziani@gmail.com</a>.</p>
-        <div class="note">
-            <p>El titular de los datos personales tiene la facultad de ejercer el derecho de acceso a los mismos en forma gratuita a intervalos no inferiores a seis meses, salvo que se acredite un interés legítimo al efecto, conforme lo establecido en el artículo 14, inciso 3 de la Ley N° 25.326.</p>
-            <p>La Agencia de Acceso a la Información Pública, en su carácter de órgano de control de la Ley N° 25.326, tiene la atribución de atender las denuncias y reclamos que interpongan quienes resulten afectados en sus derechos por incumplimiento de las normas vigentes en materia de protección de datos personales.</p>
-        </div>
-
-        <h2>Cambios en esta política</h2>
-        <p>Si esto cambia (por ejemplo, si en algún momento se agrega un formulario de contacto o alguna herramienta de medición), se actualiza esta página y se modifica la fecha del encabezado.</p>
-
-        <footer>
-            <a href="/">Inicio</a>
-            <a href="/privacidad/">Privacidad</a>
-            <a href="/terminos/">Términos</a>
-        </footer>
+<main class="wrap">
+    <h1>Política de Privacidad</h1>
+    <p class="updated">Última actualización: 20 de septiembre de 2026</p>
+    <h2>Quién es responsable</h2>
+    <p>Este sitio pertenece a <strong>Santiago Grazziani</strong>, que opera comercialmente como SG Agents desde Rosario, provincia de Santa Fe, Argentina.</p>
+    <p>Para cualquier consulta sobre tus datos: <a href="mailto:santiago.grazziani@gmail.com">santiago.grazziani@gmail.com</a></p>
+    <h2>Qué recoge este sitio cuando lo visitás</h2>
+    <p><strong>Nada.</strong> Concretamente:</p>
+    <ul>
+    <li>No instala cookies de ningún tipo.</li>
+    <li>No usa Google Analytics ni ninguna otra herramienta de analítica.</li>
+    <li>No tiene píxeles de seguimiento de Meta, Google ni de nadie.</li>
+    <li>No tiene formularios: no hay ningún campo donde puedas dejar datos.</li>
+    </ul>
+    <p>Podés verificarlo vos mismo abriendo las herramientas de desarrollador del navegador y mirando las pestañas de red y de almacenamiento.</p>
+    <h2>El único tercero involucrado</h2>
+    <p>La tipografía del sitio se carga desde <strong>Google Fonts</strong>. Para eso tu navegador hace una petición a <code>fonts.googleapis.com</code> y <code>fonts.gstatic.com</code>, y en esa petición Google recibe tu dirección IP, igual que en cualquier sitio que cargue un recurso externo.</p>
+    <p>No tenemos acceso a esa información ni la usamos para identificarte. Se rige por la <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">política de privacidad de Google</a>.</p>
+    <h2>Cuando nos escribís</h2>
+    <p>El sitio tiene enlaces a WhatsApp y a una dirección de correo. Si decidís usarlos, ahí sí compartís datos:</p>
+    <ul>
+    <li><strong>Por WhatsApp:</strong> quedan tu número de teléfono, el nombre de tu perfil y el contenido de lo que escribas. La conversación pasa por la infraestructura de WhatsApp (Meta Platforms) y se rige también por sus políticas.</li>
+    <li><strong>Por correo:</strong> queda tu dirección de email y el contenido del mensaje, alojado en Gmail (Google).</li>
+    </ul>
+    <p>Esos datos se usan <strong>únicamente</strong> para responderte y, si el contacto avanza, para gestionar el trabajo acordado. No se venden, no se ceden ni se usan para enviarte publicidad.</p>
+    <p>Se conservan mientras dure la relación comercial o hasta que pidas que los borremos, lo que ocurra primero.</p>
+    <h2>Datos de los clientes de nuestros clientes</h2>
+    <p>Cuando desarrollamos un sistema para un cliente, ese sistema puede tratar datos de <em>sus</em> usuarios. En esos casos el responsable de esos datos es el cliente, y nosotros actuamos únicamente siguiendo sus instrucciones y bajo acuerdo de confidencialidad. No usamos esos datos para ningún fin propio.</p>
+    <h2>Tus derechos</h2>
+    <p>Según la <strong>Ley N° 25.326 de Protección de los Datos Personales</strong>, podés pedir acceder a tus datos, rectificarlos, actualizarlos o suprimirlos. Para hacerlo, escribí a <a href="mailto:santiago.grazziani@gmail.com">santiago.grazziani@gmail.com</a>.</p>
+    <div class="note">
+    <p>El titular de los datos personales tiene la facultad de ejercer el derecho de acceso a los mismos en forma gratuita a intervalos no inferiores a seis meses, salvo que se acredite un interés legítimo al efecto, conforme lo establecido en el artículo 14, inciso 3 de la Ley N° 25.326.</p>
+    <p>La Agencia de Acceso a la Información Pública, en su carácter de órgano de control de la Ley N° 25.326, tiene la atribución de atender las denuncias y reclamos que interpongan quienes resulten afectados en sus derechos por incumplimiento de las normas vigentes en materia de protección de datos personales.</p>
     </div>
+    <h2>Cambios en esta política</h2>
+    <p>Si esto cambia (por ejemplo, si en algún momento se agrega un formulario de contacto o alguna herramienta de medición), se actualiza esta página y se modifica la fecha del encabezado.</p>
+</main>
+
+<footer>
+    <div class="wrap">
+        <span>© 2026 SG Agents</span>
+        <a href="/">Inicio</a>
+        <a href="/privacidad/">Privacidad</a>
+        <a href="/terminos/">Términos</a>
+    </div>
+</footer>
+
 </body>
 </html>

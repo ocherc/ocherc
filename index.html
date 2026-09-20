@@ -1,1270 +1,1011 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automatización con Agentes de IA para Empresas | SG Agents</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Automatizaciones, webs y apps a medida | SG Agents</title>
 
-    <!-- SEO básico -->
-    <meta name="description" content="Automatizá procesos operativos con agentes de IA y n8n. Eliminá tareas repetitivas y escalá sin contratar. Consulta inicial sin cargo.">
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="Santiago Grazziani">
-    <link rel="canonical" href="https://sgagents.vercel.app/">
+<!-- SEO básico -->
+<meta name="description" content="Escuchamos el problema y construimos lo que lo resuelve: automatizaciones, webs y aplicaciones a medida para empresas. Consulta inicial sin cargo.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Santiago Grazziani">
+<link rel="canonical" href="https://sgagents.vercel.app/">
 
-    <!-- Favicons -->
-    <link rel="icon" href="/favicon.ico" sizes="32x32">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<!-- Favicons -->
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-    <!-- Open Graph / Redes Sociales -->
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="SG Agents">
-    <meta property="og:locale" content="es_AR">
-    <meta property="og:url" content="https://sgagents.vercel.app/">
-    <meta property="og:title" content="SG Agents - Tu negocio en automático con IA">
-    <meta property="og:description" content="Eliminá tareas repetitivas, reducí errores y escalá tu operación con flujos e infraestructura inteligente.">
-    <meta property="og:image" content="https://sgagents.vercel.app/og-image.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="SG Agents - Automatización con agentes de IA">
+<!-- Open Graph / Redes Sociales -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SG Agents">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://sgagents.vercel.app/">
+<meta property="og:title" content="SG Agents — automatizaciones, webs y apps a medida">
+<meta property="og:description" content="Escuchamos el problema y construimos lo que lo resuelve. Recuperás las horas que hoy se van en tareas que no deberían ocuparte.">
+<meta property="og:image" content="https://sgagents.vercel.app/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="SG Agents — automatizaciones, webs y apps a medida">
 
-    <!-- Twitter / X -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://sgagents.vercel.app/">
-    <meta name="twitter:title" content="SG Agents - Tu negocio en automático con IA">
-    <meta name="twitter:description" content="Eliminá tareas repetitivas, reducí errores y escalá tu operación con flujos e infraestructura inteligente.">
-    <meta name="twitter:image" content="https://sgagents.vercel.app/og-image.jpg">
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://sgagents.vercel.app/">
+<meta name="twitter:title" content="SG Agents — automatizaciones, webs y apps a medida">
+<meta name="twitter:description" content="Escuchamos el problema y construimos lo que lo resuelve. Recuperás las horas que hoy se van en tareas que no deberían ocuparte.">
+<meta name="twitter:image" content="https://sgagents.vercel.app/og-image.jpg">
 
-    <!-- Tipografía Poppins (preconnect para reducir el bloqueo de render) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 
-        :root {
-            --primary: #00d9ff;
-            --secondary: #667eea;
-            --accent: #f093fb;
-            --dark: #0f0f23;
-            --darker: #08070f;
-        }
+<style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body, h1, h2, h3, h4, p, figure, blockquote { margin: 0; }
 
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 90px; /* Evita que el header fijo tape los títulos al scrollear */
-        }
+    :root {
+        /* Neutros con sesgo verde: elegidos, no heredados de un gris puro */
+        --paper:       #EFF1EC;
+        --surface:     #FFFFFF;
+        --ink:         #15181A;
+        --muted:       #5B645E;
+        --line:        #E2E6E1;
+        --accent:      #0F5C48;
+        --accent-ink:  #0B4738;
+        --accent-wash: #EAF1EE;
 
-        body {
-            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background-color: var(--darker);
-            color: #e5e7eb;
-            line-height: 1.6;
-        }
+        --display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+        --text:    'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+        --mono:    'IBM Plex Mono', ui-monospace, 'Cascadia Mono', monospace;
+    }
 
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 
-        /* HEADER */
-        header {
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 50;
-            background: rgba(8, 7, 15, 0.8);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 217, 255, 0.2);
-            padding: 1rem 0;
-        }
+    body {
+        font-family: var(--text);
+        background-color: var(--paper);
+        color: var(--ink);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+    }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
+    .wrap { width: 100%; max-width: 1160px; margin: 0 auto; padding-inline: 24px; }
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+    a { color: var(--accent); }
 
-        .nav-links {
-            display: none;
-            gap: 30px;
-        }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
 
-        .nav-links a {
-            color: #d1d5db;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
+    /* ------------------------------------------------- tipografía común */
+    .eyebrow {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+    }
 
-        .nav-links a:hover {
-            color: var(--primary);
-        }
+    .eyebrow span { color: var(--accent); }
 
-        .btn-demo {
-            padding: 10px 20px;
-            background-color: var(--primary);
-            color: var(--darker);
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: none;
-        }
+    h2 {
+        font-family: var(--display);
+        font-weight: 800;
+        font-size: clamp(1.75rem, 3.6vw, 2.4rem);
+        line-height: 1.12;
+        letter-spacing: -0.028em;
+        text-wrap: balance;
+    }
 
-        .btn-demo:hover {
-            background-color: #00b8d4;
-            box-shadow: 0 0 20px rgba(0, 217, 255, 0.5);
-        }
+    h3 {
+        font-family: var(--display);
+        font-weight: 700;
+        letter-spacing: -0.02em;
+    }
 
-        @media (min-width: 768px) {
-            .nav-links { display: flex; }
-            .btn-demo { display: block; }
-        }
+    .section-lede { color: var(--muted); max-width: 54ch; margin-top: 14px; }
 
-        /* HERO */
-        .hero {
-            padding-top: 150px;
-            padding-bottom: 80px;
-            background: linear-gradient(to bottom, var(--darker), #1a1a2e);
-            position: relative;
-            overflow: hidden;
-        }
+    section { padding-block: 76px; }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(0, 217, 255, 0.2) 0%, transparent 70%);
-            top: -200px;
-            right: -200px;
-            border-radius: 50%;
-        }
+    .on-surface { background: var(--surface); border-block: 1px solid var(--line); }
 
-        .hero::after {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(240, 147, 251, 0.1) 0%, transparent 70%);
-            bottom: -200px;
-            left: -200px;
-            border-radius: 50%;
-        }
+    .section-head { margin-bottom: 46px; }
+    .section-head .eyebrow { margin-bottom: 14px; display: block; }
 
-        .hero-content {
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
+    /* ---------------------------------------------------------- header */
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background: rgba(239, 241, 236, 0.92);
+        border-bottom: 1px solid var(--line);
+    }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
+    @supports (backdrop-filter: blur(6px)) {
+        header { backdrop-filter: blur(6px); }
+    }
 
-        .hero h1 .gradient {
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+    .nav { display: flex; align-items: center; gap: 32px; padding-block: 18px; }
 
-        .hero p {
-            font-size: 1.25rem;
-            color: #9ca3af;
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
+    .wordmark {
+        font-family: var(--display);
+        font-weight: 800;
+        font-size: 1.15rem;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        text-decoration: none;
+        margin-right: auto;
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+    }
 
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 60px;
-        }
+    .wordmark .mark { width: 13px; height: 13px; border-radius: 3px; background: var(--accent); }
 
-        .btn-primary {
-            padding: 15px 30px;
-            background-color: var(--primary);
-            color: var(--darker);
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
+    .nav-links { display: none; gap: 28px; }
 
-        .btn-primary:hover {
-            background-color: #00b8d4;
-            box-shadow: 0 0 30px rgba(0, 217, 255, 0.5);
-        }
+    .nav-links a {
+        font-size: 0.925rem;
+        color: var(--muted);
+        text-decoration: none;
+        padding-bottom: 2px;
+        border-bottom: 1.5px solid transparent;
+        transition: color .18s ease, border-color .18s ease;
+    }
 
-        .btn-secondary {
-            padding: 15px 30px;
-            border: 2px solid var(--primary);
-            background-color: transparent;
-            color: var(--primary);
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
+    .nav-links a:hover { color: var(--ink); border-bottom-color: var(--accent); }
 
-        .btn-secondary:hover {
-            background-color: rgba(0, 217, 255, 0.1);
-        }
+    .nav-cta {
+        display: none;
+        font-size: 0.925rem;
+        font-weight: 500;
+        color: var(--accent);
+        text-decoration: none;
+        border: 1.5px solid var(--accent);
+        border-radius: 6px;
+        padding: 8px 16px;
+        transition: background .18s ease, color .18s ease;
+    }
 
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            padding-top: 40px;
-            border-top: 1px solid #444;
-            max-width: 520px;
-            margin: 0 auto;
-        }
+    .nav-cta:hover { background: var(--accent); color: #fff; }
 
-        .stat {
-            text-align: center;
-        }
+    @media (min-width: 900px) { .nav-links, .nav-cta { display: inline-flex; } }
 
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
 
-        .stat-label {
-            color: #9ca3af;
-            font-size: 0.875rem;
-        }
+    /* Grilla tenue: da profundidad sin ruido, y dice "sistemas" */
+    .hero { position: relative; }
 
-        /* SECTION */
-        section {
-            padding: 80px 20px;
-        }
+    .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image:
+            linear-gradient(to right, rgba(21, 24, 26, .05) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(21, 24, 26, .05) 1px, transparent 1px);
+        background-size: 62px 62px;
+        -webkit-mask-image: radial-gradient(ellipse 78% 72% at 46% 42%, #000 22%, transparent 76%);
+        mask-image: radial-gradient(ellipse 78% 72% at 46% 42%, #000 22%, transparent 76%);
+        pointer-events: none;
+    }
 
-        section h2 {
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 15px;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+    .hero > .wrap { position: relative; }
 
-        .section-subtitle {
-            text-align: center;
-            color: #9ca3af;
-            font-size: 1.25rem;
-            margin-bottom: 60px;
-        }
+    /* ------------------------------------------------------------ hero */
+    .hero { padding-block: 64px 80px; }
 
-        /* BENEFITS */
-        .benefits {
-            background-color: var(--dark);
-        }
+    .hero-grid { display: grid; gap: 56px; align-items: center; }
 
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
+    /* Sin esto los hijos del grid no bajan de su ancho de contenido */
+    .hero-grid > * { min-width: 0; }
 
-        .benefit-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 217, 255, 0.2);
-            padding: 30px;
-            border-radius: 12px;
-            transition: all 0.3s;
-        }
+    @media (min-width: 950px) {
+        .hero-grid { grid-template-columns: 1.02fr 0.98fr; gap: 68px; }
+        .hero { padding-block: 88px 100px; }
+    }
 
-        .benefit-card:hover {
-            border-color: rgba(0, 217, 255, 0.5);
-            box-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
-        }
+    .hero .eyebrow { display: block; margin-bottom: 26px; }
 
-        .benefit-card .icon {
-            font-size: 3rem;
-            margin-bottom: 15px;
-        }
+    h1 {
+        font-family: var(--display);
+        font-weight: 800;
+        font-size: clamp(2.15rem, 5.2vw, 3.5rem);
+        line-height: 1.06;
+        letter-spacing: -0.033em;
+        text-wrap: balance;
+        margin-bottom: 26px;
+    }
 
-        .benefit-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
+    h1 em { font-style: normal; color: var(--accent); position: relative; white-space: nowrap; }
 
-        .benefit-card p {
-            color: #9ca3af;
-        }
+    /* El subrayado se dibuja solo: único gesto decorativo de la página */
+    h1 em::after {
+        content: "";
+        position: absolute;
+        left: 0; bottom: 0.04em;
+        height: 0.09em; width: 100%;
+        background: var(--accent);
+        opacity: 0.28;
+        transform-origin: left;
+        animation: draw .75s .45s cubic-bezier(.2, .8, .3, 1) both;
+    }
 
-        /* SERVICES */
-        .services {
-            background-color: var(--darker);
-        }
+    @keyframes draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-        }
+    .lede { font-size: 1.1rem; color: var(--muted); max-width: 44ch; margin-bottom: 36px; }
+    .lede strong { color: var(--ink); font-weight: 600; }
 
-        .service-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 217, 255, 0.2);
-            padding: 30px;
-            border-radius: 12px;
-            transition: all 0.3s;
-        }
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 26px; }
 
-        .service-card:hover {
-            border-color: rgba(0, 217, 255, 0.5);
-            box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
-        }
+    .btn {
+        font-family: var(--text);
+        font-size: 0.97rem;
+        font-weight: 600;
+        background: var(--accent);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 7px;
+        padding: 14px 26px;
+        transition: background .18s ease, transform .18s ease;
+    }
 
-        .service-card .icon {
-            font-size: 3.5rem;
-            margin-bottom: 15px;
-        }
+    .btn:hover { background: var(--accent-ink); transform: translateY(-1px); }
 
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
+    .btn-ghost {
+        font-size: 0.97rem;
+        font-weight: 500;
+        color: var(--ink);
+        text-decoration: none;
+        padding-bottom: 3px;
+        background-image: linear-gradient(var(--accent), var(--accent));
+        background-repeat: no-repeat;
+        background-position: 0 100%;
+        background-size: 0% 1.5px;
+        transition: background-size .26s ease;
+    }
 
-        .service-card p {
-            color: #9ca3af;
-            margin-bottom: 15px;
-        }
+    .btn-ghost:hover { background-size: 100% 1.5px; }
 
-        .service-tag {
-            color: var(--primary);
-            font-family: 'Courier New', monospace;
-            font-size: 0.75rem;
-        }
+    /* --------------------------------------------- problema -> solución */
+    .work { display: flex; flex-direction: column; gap: 18px; }
 
-        /* CASE STUDY */
-        .case-study {
-            background-color: var(--dark);
-        }
+    .work-item {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 22px 24px;
+        box-shadow: 0 1px 2px rgba(21, 24, 26, .04), 0 12px 34px -24px rgba(21, 24, 26, .3);
+    }
 
-        .about {
-            background-color: var(--darker);
-        }
+    .work-label {
+        font-family: var(--mono);
+        font-size: 0.66rem;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 7px;
+    }
 
-        .about-card {
-            max-width: 820px;
-            margin: 0 auto;
-            display: flex;
-            gap: 36px;
-            align-items: flex-start;
-            background-color: var(--dark);
-            border: 1px solid rgba(0, 217, 255, 0.2);
-            border-radius: 16px;
-            padding: 40px;
-        }
+    .work-problem { font-size: 0.97rem; color: var(--muted); }
 
-        /* Preparado para la foto: se agrega una imagen con clase .about-photo antes
-           de .about-text y el layout la acomoda sin tocar nada mas. */
-        .about-photo {
-            width: 150px;
-            height: 150px;
-            flex-shrink: 0;
-            border-radius: 12px;
-            object-fit: cover;
-            border: 1px solid rgba(0, 217, 255, 0.3);
-        }
+    /* La flecha es la tesis de la página: de un problema real a algo construido */
+    .work-arrow { display: flex; align-items: center; gap: 10px; margin: 13px 0; color: var(--accent); }
+    .work-arrow::before { content: ""; flex: 1; height: 1px; background: var(--line); }
 
-        .about-text p {
-            color: #d1d5db;
-            margin-bottom: 18px;
-        }
+    .work-arrow span {
+        font-family: var(--mono);
+        font-size: 0.66rem;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+    }
 
-        .about-text p:last-child {
-            margin-bottom: 0;
-        }
+    .work-solution {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: 1.12rem;
+        line-height: 1.28;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        margin-bottom: 12px;
+    }
 
-        .about-text strong {
-            color: #f3f4f6;
-        }
+    .work-meta {
+        display: flex; align-items: center; flex-wrap: wrap; gap: 9px;
+        font-size: 0.85rem; color: var(--muted);
+    }
 
-        .about-text a {
-            color: var(--primary);
-            text-decoration: none;
-            border-bottom: 1px solid rgba(0, 217, 255, 0.4);
-        }
+    .work-meta strong { color: var(--ink); font-weight: 600; }
 
-        .about-text a:hover {
-            border-bottom-color: var(--primary);
-        }
+    .chip {
+        font-family: var(--mono);
+        font-size: 0.63rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        border-radius: 4px;
+        padding: 3px 8px;
+        margin-left: auto;
+        white-space: nowrap;
+    }
 
-        @media (max-width: 768px) {
-            .about-card {
-                flex-direction: column;
-                align-items: center;
-                text-align: left;
-                padding: 28px;
-                gap: 24px;
+    .chip-live { background: var(--accent-wash); color: var(--accent-ink); }
+    .chip-wip { background: #F2F2EE; color: var(--muted); border: 1px solid var(--line); }
+
+    /* ------------------------------------------------------- proceso */
+    .steps { display: grid; gap: 30px; counter-reset: paso; }
+
+    @media (min-width: 760px) { .steps { grid-template-columns: repeat(3, 1fr); gap: 44px; } }
+
+    .step { border-top: 2px solid var(--accent); padding-top: 20px; }
+
+    .step-n {
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.13em;
+        color: var(--accent);
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .step h3 { font-size: 1.18rem; margin-bottom: 8px; }
+    .step p { color: var(--muted); font-size: 0.95rem; }
+
+    /* ------------------------------------------------------ servicios */
+    .pillars { display: grid; gap: 22px; }
+
+    @media (min-width: 860px) { .pillars { grid-template-columns: repeat(3, 1fr); } }
+
+    .pillar {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 28px 26px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .on-surface .pillar { background: var(--paper); }
+
+    .pillar svg { width: 26px; height: 26px; stroke: var(--accent); fill: none; stroke-width: 1.6; margin-bottom: 18px; }
+
+    .pillar h3 { font-size: 1.28rem; margin-bottom: 10px; }
+    .pillar > p { color: var(--muted); font-size: 0.95rem; margin-bottom: 20px; }
+
+    .pillar ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 9px; }
+
+    .pillar li {
+        font-size: 0.89rem;
+        color: var(--ink);
+        padding-left: 18px;
+        position: relative;
+    }
+
+    .pillar li::before {
+        content: "";
+        position: absolute;
+        left: 0; top: 0.62em;
+        width: 7px; height: 1.5px;
+        background: var(--accent);
+    }
+
+    /* --------------------------------------------------------- trabajos */
+    .case {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 36px 32px;
+    }
+
+    .case-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 10px 14px; margin-bottom: 18px; }
+    .case-head h3 { font-size: 1.7rem; }
+    .case-head .case-sub { color: var(--muted); font-size: 0.95rem; }
+
+    .case > p { color: var(--muted); max-width: 66ch; }
+
+    .ba { display: grid; gap: 26px; margin-top: 30px; }
+
+    @media (min-width: 720px) { .ba { grid-template-columns: 1fr 1fr; gap: 36px; } }
+
+    .ba h4 {
+        font-family: var(--mono);
+        font-size: 0.7rem;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        margin-bottom: 14px;
+    }
+
+    .ba-before h4 { color: var(--muted); }
+    .ba-after h4 { color: var(--accent); }
+
+    .ba ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+
+    .ba li { font-size: 0.95rem; padding-left: 22px; position: relative; }
+
+    .ba-before li { color: var(--muted); }
+    .ba-before li::before { content: "\2715"; position: absolute; left: 0; color: #A8ADA9; font-size: 0.8em; top: 0.25em; }
+    .ba-after li::before { content: "\2192"; position: absolute; left: 0; color: var(--accent); }
+
+    .quote {
+        margin-top: 34px;
+        padding: 26px 28px;
+        background: var(--accent-wash);
+        border-radius: 12px;
+    }
+
+    .quote blockquote p { font-size: 1.02rem; color: var(--accent-ink); margin-bottom: 14px; }
+    .quote blockquote p:last-of-type { margin-bottom: 0; }
+
+    .quote-by { font-size: 0.88rem; color: var(--accent-ink); opacity: .8; margin-top: 16px; }
+    .quote-by strong { font-weight: 600; opacity: 1; }
+
+    .quote details { margin-top: 18px; }
+
+    .quote summary {
+        font-family: var(--mono);
+        font-size: 0.74rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--accent);
+        cursor: pointer;
+        list-style: none;
+    }
+
+    .quote summary::-webkit-details-marker { display: none; }
+    .quote summary::before { content: "+ "; }
+    .quote details[open] summary::before { content: "\2212 "; }
+    .quote details p { font-size: 0.93rem; color: var(--accent-ink); margin-top: 14px; opacity: .92; }
+
+    /* -------------------------------------------------------- tecnología */
+    .stack { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    .stack li {
+        list-style: none;
+        font-family: var(--mono);
+        font-size: 0.85rem;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        border-radius: 7px;
+        padding: 9px 14px;
+    }
+
+    .on-surface .stack li { background: var(--paper); }
+
+    /* ---------------------------------------------------------- sobre mí */
+    .about-grid { display: grid; gap: 34px; align-items: start; }
+    .about-grid > * { min-width: 0; }
+
+    @media (min-width: 820px) { .about-grid { grid-template-columns: 190px 1fr; gap: 46px; } }
+
+    .about-photo {
+        width: 170px; height: 170px;
+        border-radius: 14px;
+        object-fit: cover;
+        border: 1px solid var(--line);
+    }
+
+    .about-text p { color: var(--muted); margin-bottom: 16px; max-width: 62ch; }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-text strong { color: var(--ink); font-weight: 600; }
+
+    /* ---------------------------------------------------------- precios */
+    .plans { display: grid; gap: 22px; align-items: start; }
+
+    @media (min-width: 900px) { .plans { grid-template-columns: repeat(3, 1fr); } }
+
+    .plan {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 30px 26px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .plan-featured { border-color: var(--accent); box-shadow: 0 14px 40px -28px var(--accent); }
+
+    .plan-flag {
+        font-family: var(--mono);
+        font-size: 0.64rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 12px;
+    }
+
+    .plan h3 { font-size: 1.24rem; margin-bottom: 5px; }
+    .plan-sub { color: var(--muted); font-size: 0.89rem; margin-bottom: 20px; }
+
+    .plan-price {
+        font-family: var(--mono);
+        font-size: 2rem;
+        font-weight: 500;
+        letter-spacing: -0.03em;
+        font-variant-numeric: tabular-nums;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .plan-price small { display: block; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+
+    .plan ul { list-style: none; padding: 0; margin: 0 0 26px; display: grid; gap: 10px; }
+
+    .plan li { font-size: 0.9rem; padding-left: 20px; position: relative; }
+    .plan li::before { content: "\2192"; position: absolute; left: 0; color: var(--accent); }
+
+    .plan .btn, .plan .btn-outline { margin-top: auto; text-align: center; }
+
+    .btn-outline {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--accent);
+        text-decoration: none;
+        border: 1.5px solid var(--accent);
+        border-radius: 7px;
+        padding: 13px 22px;
+        transition: background .18s ease, color .18s ease;
+    }
+
+    .btn-outline:hover { background: var(--accent); color: #fff; }
+
+    .plans-note { margin-top: 26px; font-size: 0.86rem; color: var(--muted); }
+
+    /* -------------------------------------------------------------- CTA */
+    /* Único bloque de color saturado de la página: acá se gasta la audacia */
+    .cta { background: var(--accent); color: #fff; padding-block: 84px; }
+    .cta h2 { color: #fff; max-width: 20ch; }
+    .cta p { color: rgba(255,255,255,.82); max-width: 52ch; margin-top: 16px; }
+
+    .cta-grid { display: grid; gap: 32px; align-items: center; }
+    .cta-grid > * { min-width: 0; }
+
+    @media (min-width: 900px) {
+        .cta-grid { grid-template-columns: 1.15fr 0.85fr; gap: 64px; }
+        .cta-side { text-align: right; }
+        .cta-actions { justify-content: flex-end; }
+    }
+
+    .cta-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; }
+
+    .btn-light {
+        font-size: 1rem;
+        font-weight: 600;
+        background: #fff;
+        color: var(--accent-ink);
+        text-decoration: none;
+        border-radius: 7px;
+        padding: 15px 28px;
+        transition: transform .18s ease, box-shadow .18s ease;
+    }
+
+    .btn-light:hover { transform: translateY(-1px); box-shadow: 0 10px 26px -14px rgba(0,0,0,.55); }
+
+    .cta small { display: block; margin-top: 22px; font-size: 0.85rem; color: rgba(255,255,255,.7); }
+
+    /* ----------------------------------------------------------- footer */
+    footer { background: var(--ink); color: #A9AFAB; padding-block: 56px 36px; }
+
+    .foot-grid { display: grid; gap: 34px; }
+
+    @media (min-width: 760px) { .foot-grid { grid-template-columns: 1.6fr 1fr 1fr; gap: 48px; } }
+
+    .foot-brand { font-family: var(--display); font-weight: 800; color: #fff; font-size: 1.1rem; display: inline-flex; align-items: center; gap: 9px; margin-bottom: 12px; }
+    .foot-brand .mark { width: 12px; height: 12px; border-radius: 3px; background: var(--accent-wash); }
+
+    .foot-grid p { font-size: 0.92rem; max-width: 40ch; }
+
+    .foot-title { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.13em; text-transform: uppercase; color: #6E756F; margin-bottom: 14px; }
+
+    .foot-grid ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+    .foot-grid a { color: #A9AFAB; text-decoration: none; font-size: 0.92rem; transition: color .18s ease; }
+    .foot-grid a:hover { color: #fff; }
+
+    .foot-bottom {
+        margin-top: 44px; padding-top: 22px;
+        border-top: 1px solid #262B28;
+        display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px;
+        font-size: 0.84rem; color: #6E756F;
+    }
+
+    .foot-bottom a { color: #6E756F; text-decoration: none; margin-left: 18px; }
+    .foot-bottom a:hover { color: #fff; }
+
+    /* -------------------------------------------------------- movimiento */
+    .hero-copy > * { animation: fade .6s cubic-bezier(.2, .8, .3, 1) both; }
+    .hero-copy > :nth-child(1) { animation-delay: .04s; }
+    .hero-copy > :nth-child(2) { animation-delay: .12s; }
+    .hero-copy > :nth-child(3) { animation-delay: .20s; }
+    .hero-copy > :nth-child(4) { animation-delay: .28s; }
+
+    .work-item { animation: rise .55s cubic-bezier(.2, .8, .3, 1) both; }
+    .work-item:nth-child(1) { animation-delay: .60s; }
+    .work-item:nth-child(2) { animation-delay: .80s; }
+
+    @keyframes fade { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
+    @keyframes rise { from { opacity: 0; transform: translateY(11px); } to { opacity: 1; transform: none; } }
+
+    /* Revelado al scrollear, en CSS puro. El contenido ya está visible:
+       si el navegador no soporta scroll timelines, no se pierde nada. */
+    @supports (animation-timeline: view()) {
+        @media (prefers-reduced-motion: no-preference) {
+            .reveal {
+                animation: reveal linear both;
+                animation-timeline: view();
+                animation-range: entry 8% cover 26%;
+            }
+            @keyframes reveal {
+                from { opacity: 0; transform: translateY(16px); }
+                to   { opacity: 1; transform: none; }
             }
         }
-
-        .case-study-content {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 217, 255, 0.3);
-            padding: 50px;
-            border-radius: 12px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .case-badge {
-            display: inline-block;
-            background: rgba(0, 217, 255, 0.2);
-            border: 1px solid rgba(0, 217, 255, 0.5);
-            padding: 8px 16px;
-            border-radius: 8px;
-            color: var(--primary);
-            font-family: 'Courier New', monospace;
-            font-size: 0.75rem;
-            margin-bottom: 20px;
-        }
-
-        .case-study h3 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .case-study p {
-            color: #d1d5db;
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-
-        .case-challenges {
-            background: rgba(0, 217, 255, 0.05);
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
-
-        .case-challenges strong {
-            color: var(--primary);
-            font-family: 'Courier New', monospace;
-        }
-
-        .case-cols {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .case-cols h4 {
-            font-size: 1rem;
-            color: var(--primary);
-            margin-bottom: 14px;
-        }
-
-        .case-list {
-            list-style: none;
-            display: grid;
-            gap: 10px;
-        }
-
-        .case-list li {
-            color: #d1d5db;
-            font-size: 0.95rem;
-            padding-left: 22px;
-            position: relative;
-        }
-
-        .case-list li::before {
-            content: "\2192";
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-        }
-
-        .case-cols h4.case-before {
-            color: #9ca3af;
-        }
-
-        .case-list-before li {
-            color: #9ca3af;
-        }
-
-        .case-list-before li::before {
-            content: "\2715";
-            color: #6b7280;
-        }
-
-        .case-link {
-            display: inline-block;
-            margin-top: 30px;
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-            border-bottom: 1px solid rgba(0, 217, 255, 0.4);
-        }
-
-        .case-link:hover {
-            border-bottom-color: var(--primary);
-        }
-
-        .testimonial {
-            margin-top: 36px;
-            padding: 28px 30px;
-            background: rgba(0, 217, 255, 0.06);
-            border-left: 3px solid var(--primary);
-            border-radius: 8px;
-        }
-
-        .testimonial blockquote p {
-            color: #e5e7eb;
-            font-size: 1.05rem;
-            font-style: italic;
-            margin-bottom: 14px;
-        }
-
-        .testimonial blockquote p:last-of-type {
-            margin-bottom: 0;
-        }
-
-        .testimonial-author {
-            color: #9ca3af;
-            font-size: 0.9rem;
-            margin-top: 18px;
-        }
-
-        .testimonial-author strong {
-            color: var(--primary);
-        }
-
-        .testimonial details {
-            margin-top: 20px;
-        }
-
-        .testimonial summary {
-            color: var(--primary);
-            cursor: pointer;
-            font-size: 0.9rem;
-            list-style: none;
-        }
-
-        .testimonial summary::-webkit-details-marker {
-            display: none;
-        }
-
-        .testimonial summary::before {
-            content: "+ ";
-        }
-
-        .testimonial details[open] summary::before {
-            content: "\2212 ";
-        }
-
-        .testimonial-full p {
-            color: #d1d5db;
-            font-size: 0.95rem;
-            margin-top: 14px;
-        }
-
-        .case-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-            padding-top: 30px;
-            border-top: 1px solid #444;
-        }
-
-        .case-stat {
-            text-align: center;
-        }
-
-        .case-stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .case-stat-label {
-            color: #9ca3af;
-            font-size: 0.875rem;
-        }
-
-        /* TECHNOLOGIES */
-        .technologies {
-            background-color: var(--darker);
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-        }
-
-        .tech-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 217, 255, 0.2);
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .tech-card:hover {
-            border-color: rgba(0, 217, 255, 0.5);
-            box-shadow: 0 0 20px rgba(0, 217, 255, 0.2);
-        }
-
-        .tech-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        .tech-card h3 {
-            font-size: 1rem;
-            margin-bottom: 5px;
-        }
-
-        .tech-card p {
-            color: #9ca3af;
-            font-size: 0.875rem;
-        }
-
-        /* PRICING */
-        .pricing {
-            background-color: var(--dark);
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .pricing-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 217, 255, 0.2);
-            padding: 40px;
-            border-radius: 12px;
-            transition: all 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .pricing-card.popular {
-            border-color: var(--primary);
-            background: rgba(0, 217, 255, 0.1);
-            transform: scale(1.05);
-        }
-
-        .pricing-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .pricing-card .description {
-            color: #9ca3af;
-            font-size: 0.875rem;
-            margin-bottom: 20px;
-        }
-
-        .pricing-card .price {
-            font-size: 2.5rem;
-            font-weight: bold;
-            background: linear-gradient(to right, var(--primary), var(--accent));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 10px;
-        }
-
-        .pricing-card .period {
-            color: #9ca3af;
-            font-size: 0.875rem;
-            margin-bottom: 20px;
-        }
-
-        .pricing-card .btn-primary {
-            width: 100%;
-            margin-bottom: 30px;
-        }
-
-        .pricing-features {
-            flex-grow: 1;
-        }
-
-        .pricing-feature {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            color: #d1d5db;
-            font-size: 0.95rem;
-        }
-
-        .pricing-feature::before {
-            content: '✓';
-            color: var(--primary);
-            font-weight: bold;
-            flex-shrink: 0;
-        }
-
-        /* CTA */
-        .cta {
-            background: linear-gradient(to right, rgba(0, 217, 255, 0.1), rgba(240, 147, 251, 0.1));
-        }
-
-        .cta-content {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 217, 255, 0.3);
-            padding: 60px;
-            border-radius: 12px;
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .cta-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .cta-content p {
-            color: #d1d5db;
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-            line-height: 1.8;
-        }
-
-        .cta-features {
-            text-align: left;
-            margin: 30px 0;
-            display: inline-block;
-        }
-
-        .cta-feature {
-            color: #9ca3af;
-            margin: 15px 0;
-        }
-
-        .cta-feature strong {
-            color: var(--primary);
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-
-        /* FOOTER */
-        footer {
-            background-color: rgba(8, 7, 15, 0.8);
-            border-top: 1px solid rgba(0, 217, 255, 0.2);
-            padding: 40px 20px;
-        }
-
-        .footer-content {
-            max-width: 1280px;
-            margin: 0 auto;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-
-        .footer-section .footer-heading {
-            margin-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .footer-section p {
-            color: #9ca3af;
-            font-size: 0.95rem;
-            line-height: 1.8;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section li {
-            margin-bottom: 10px;
-        }
-
-        .footer-section a {
-            color: #9ca3af;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-section a:hover {
-            color: var(--primary);
-        }
-
-        .footer-legal a {
-            color: #9ca3af;
-            text-decoration: none;
-            margin-left: 18px;
-        }
-
-        .footer-legal a:hover {
-            color: var(--primary);
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #444;
-            padding-top: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            color: #9ca3af;
-            font-size: 0.875rem;
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .stats {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            section h2 {
-                font-size: 2rem;
-            }
-
-            .cta-content {
-                padding: 30px;
-            }
-
-            .pricing-card.popular {
-                transform: scale(1);
-            }
-        }
-    </style>
-    <script type="application/ld+json">
+    }
+
+    /* Quien pidió menos movimiento ve la página quieta y completa */
+    @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        .work-item, .hero-copy > *, h1 em::after, .reveal { animation: none; }
+        *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "ProfessionalService",
+      "@id": "https://sgagents.vercel.app/#organization",
+      "name": "SG Agents",
+      "url": "https://sgagents.vercel.app/",
+      "description": "Automatizaciones, desarrollo web y aplicaciones a medida para empresas. Escuchamos el problema y construimos la solución.",
+      "image": "https://sgagents.vercel.app/og-image.jpg",
+      "email": "santiago.grazziani@gmail.com",
+      "telephone": "+5493415598979",
+      "priceRange": "$$",
+      "founder": {
+        "@id": "https://sgagents.vercel.app/#santiago"
+      },
+      "hasOfferCatalog": {
+        "@id": "https://sgagents.vercel.app/#planes"
+      },
+      "areaServed": [
         {
-          "@type": "ProfessionalService",
-          "@id": "https://sgagents.vercel.app/#organization",
-          "name": "SG Agents",
-          "url": "https://sgagents.vercel.app/",
-          "description": "Automatización de procesos operativos e infraestructura con inteligencia artificial y agentes autónomos.",
-          "image": "https://sgagents.vercel.app/og-image.jpg",
-          "email": "santiago.grazziani@gmail.com",
-          "telephone": "+5493415598979",
-          "priceRange": "$$",
-          "founder": {
-            "@id": "https://sgagents.vercel.app/#santiago"
-          },
-          "hasOfferCatalog": {
-            "@id": "https://sgagents.vercel.app/#planes"
-          },
-          "areaServed": [
-            {
-              "@type": "City",
-              "name": "Rosario"
-            },
-            {
-              "@type": "Country",
-              "name": "Argentina"
-            }
-          ],
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Rosario",
-            "addressRegion": "Santa Fe",
-            "addressCountry": "AR"
-          },
-          "sameAs": [
-            "https://www.instagram.com/sgagents.ok/"
-          ]
+          "@type": "City",
+          "name": "Rosario"
         },
         {
-          "@type": "Person",
-          "@id": "https://sgagents.vercel.app/#santiago",
-          "name": "Santiago Grazziani",
-          "jobTitle": "Consultor en Automatización e IA",
-          "email": "santiago.grazziani@gmail.com",
-          "worksFor": {
-            "@id": "https://sgagents.vercel.app/#organization"
-          },
-          "knowsAbout": [
-            "n8n",
-            "Agentes de IA",
-            "Automatización de procesos",
-            "WhatsApp Business API",
-            "Integración de APIs",
-            "Desarrollo web"
-          ],
-          "description": "Consultor en automatización de procesos con inteligencia artificial, con formación en Administración de Empresas. Trabaja desde Rosario, Santa Fe.",
-          "homeLocation": {
-            "@type": "Place",
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Rosario",
-              "addressRegion": "Santa Fe",
-              "addressCountry": "AR"
-            }
-          },
-          "image": "https://sgagents.vercel.app/santiago-grazziani.jpg",
-          "sameAs": [
-            "https://www.linkedin.com/in/santiago-grazziani-74464022/"
-          ]
-        },
+          "@type": "Country",
+          "name": "Argentina"
+        }
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Rosario",
+        "addressRegion": "Santa Fe",
+        "addressCountry": "AR"
+      },
+      "sameAs": [
+        "https://www.instagram.com/sgagents.ok/"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://sgagents.vercel.app/#santiago",
+      "name": "Santiago Grazziani",
+      "jobTitle": "Consultor en automatización y desarrollo a medida",
+      "email": "santiago.grazziani@gmail.com",
+      "worksFor": {
+        "@id": "https://sgagents.vercel.app/#organization"
+      },
+      "knowsAbout": [
+        "n8n",
+        "Agentes de IA",
+        "Automatización de procesos",
+        "WhatsApp Business API",
+        "Integración de APIs",
+        "Desarrollo web"
+      ],
+      "description": "Consultor en automatización de procesos, desarrollo web y aplicaciones a medida, con formación en Administración de Empresas. Trabaja desde Rosario, Santa Fe.",
+      "homeLocation": {
+        "@type": "Place",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Rosario",
+          "addressRegion": "Santa Fe",
+          "addressCountry": "AR"
+        }
+      },
+      "image": "https://sgagents.vercel.app/santiago-grazziani.jpg",
+      "sameAs": [
+        "https://www.linkedin.com/in/santiago-grazziani-74464022/"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://sgagents.vercel.app/#website",
+      "url": "https://sgagents.vercel.app/",
+      "name": "SG Agents",
+      "inLanguage": "es-AR",
+      "publisher": {
+        "@id": "https://sgagents.vercel.app/#organization"
+      }
+    },
+    {
+      "@type": "Service",
+      "name": "Agentes de Conversación IA",
+      "description": "Asistentes inteligentes para WhatsApp, web o Telegram que razonan y responden al instante. Reservas, soporte y ventas.",
+      "serviceType": "Desarrollo de agentes conversacionales",
+      "provider": {
+        "@id": "https://sgagents.vercel.app/#organization"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Argentina"
+      }
+    },
+    {
+      "@type": "Service",
+      "name": "Automatización de Procesos",
+      "description": "Integración de herramientas (CRM, email, Sheets) sin código mediante flujos avanzados. Leads, pagos y notificaciones.",
+      "serviceType": "Automatización de procesos de negocio",
+      "provider": {
+        "@id": "https://sgagents.vercel.app/#organization"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Argentina"
+      }
+    },
+    {
+      "@type": "Service",
+      "name": "Dashboard y Reportes",
+      "description": "Visualización de datos en tiempo real con análisis personalizados. Métricas, seguimiento y decisiones.",
+      "serviceType": "Business intelligence",
+      "provider": {
+        "@id": "https://sgagents.vercel.app/#organization"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Argentina"
+      }
+    },
+    {
+      "@type": "Service",
+      "name": "Integraciones Avanzadas",
+      "description": "Conexión de APIs y servicios complejos: Instagram, Shopify, Stripe y más. E-commerce, redes y pagos.",
+      "serviceType": "Integración de sistemas",
+      "provider": {
+        "@id": "https://sgagents.vercel.app/#organization"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Argentina"
+      }
+    },
+    {
+      "@type": "Service",
+      "name": "Infraestructura IA Custom",
+      "description": "Entrenamiento de modelos de IA y agentes autónomos con datos operativos específicos. Análisis, predicción y optimización.",
+      "serviceType": "Desarrollo de infraestructura de IA",
+      "provider": {
+        "@id": "https://sgagents.vercel.app/#organization"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Argentina"
+      }
+    },
+    {
+      "@type": "Service",
+      "name": "Consultoría de Flujos",
+      "description": "Asesoramiento estratégico para identificar qué automatizar primero en la operación. Auditoría, planificación y roadmap.",
+      "serviceType": "Consultoría en automatización",
+      "provider": {
+        "@id": "https://sgagents.vercel.app/#organization"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Argentina"
+      }
+    },
+    {
+      "@type": "Service",
+      "name": "Desarrollo Web a Medida",
+      "description": "Sitios y tiendas con reservas, pagos y panel de gestión propio, conectados con tus flujos de automatización.",
+      "serviceType": "Desarrollo web",
+      "provider": {
+        "@id": "https://sgagents.vercel.app/#organization"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "Argentina"
+      }
+    },
+    {
+      "@type": "OfferCatalog",
+      "@id": "https://sgagents.vercel.app/#planes",
+      "name": "Planes SG Agents",
+      "itemListElement": [
         {
-          "@type": "WebSite",
-          "@id": "https://sgagents.vercel.app/#website",
-          "url": "https://sgagents.vercel.app/",
-          "name": "SG Agents",
-          "inLanguage": "es-AR",
-          "publisher": {
+          "@type": "Offer",
+          "name": "Agente Conversacional",
+          "description": "Asistente de IA para canales de mensajería. Integración oficial con WhatsApp, hasta 1000 flujos de conversación al mes, soporte y optimización por 2 semanas.",
+          "price": "300",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "seller": {
             "@id": "https://sgagents.vercel.app/#organization"
           }
         },
         {
-          "@type": "Service",
-          "name": "Agentes de Conversación IA",
-          "description": "Asistentes inteligentes para WhatsApp, web o Telegram que razonan y responden al instante. Reservas, soporte y ventas.",
-          "serviceType": "Desarrollo de agentes conversacionales",
-          "provider": {
+          "@type": "Offer",
+          "name": "Estructura Agéntica Pro",
+          "description": "Automatización completa de punta a punta con múltiples herramientas interconectadas, agentes con lógica personalizada, bases de datos estructuradas y reportes automáticos. Soporte técnico por 1 mes.",
+          "price": "1000",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock",
+          "seller": {
             "@id": "https://sgagents.vercel.app/#organization"
-          },
-          "areaServed": {
-            "@type": "Country",
-            "name": "Argentina"
           }
         },
         {
-          "@type": "Service",
-          "name": "Automatización de Procesos",
-          "description": "Integración de herramientas (CRM, email, Sheets) sin código mediante flujos avanzados. Leads, pagos y notificaciones.",
-          "serviceType": "Automatización de procesos de negocio",
-          "provider": {
+          "@type": "Offer",
+          "name": "Infraestructura Custom",
+          "description": "Proyecto operativo a medida: análisis profundo del ecosistema, arquitectura personalizada, integraciones ilimitadas, agentes multitarea y soporte continuo.",
+          "availability": "https://schema.org/InStock",
+          "seller": {
             "@id": "https://sgagents.vercel.app/#organization"
-          },
-          "areaServed": {
-            "@type": "Country",
-            "name": "Argentina"
           }
-        },
-        {
-          "@type": "Service",
-          "name": "Dashboard y Reportes",
-          "description": "Visualización de datos en tiempo real con análisis personalizados. Métricas, seguimiento y decisiones.",
-          "serviceType": "Business intelligence",
-          "provider": {
-            "@id": "https://sgagents.vercel.app/#organization"
-          },
-          "areaServed": {
-            "@type": "Country",
-            "name": "Argentina"
-          }
-        },
-        {
-          "@type": "Service",
-          "name": "Integraciones Avanzadas",
-          "description": "Conexión de APIs y servicios complejos: Instagram, Shopify, Stripe y más. E-commerce, redes y pagos.",
-          "serviceType": "Integración de sistemas",
-          "provider": {
-            "@id": "https://sgagents.vercel.app/#organization"
-          },
-          "areaServed": {
-            "@type": "Country",
-            "name": "Argentina"
-          }
-        },
-        {
-          "@type": "Service",
-          "name": "Infraestructura IA Custom",
-          "description": "Entrenamiento de modelos de IA y agentes autónomos con datos operativos específicos. Análisis, predicción y optimización.",
-          "serviceType": "Desarrollo de infraestructura de IA",
-          "provider": {
-            "@id": "https://sgagents.vercel.app/#organization"
-          },
-          "areaServed": {
-            "@type": "Country",
-            "name": "Argentina"
-          }
-        },
-        {
-          "@type": "Service",
-          "name": "Consultoría de Flujos",
-          "description": "Asesoramiento estratégico para identificar qué automatizar primero en la operación. Auditoría, planificación y roadmap.",
-          "serviceType": "Consultoría en automatización",
-          "provider": {
-            "@id": "https://sgagents.vercel.app/#organization"
-          },
-          "areaServed": {
-            "@type": "Country",
-            "name": "Argentina"
-          }
-        },
-        {
-          "@type": "Service",
-          "name": "Desarrollo Web a Medida",
-          "description": "Sitios y tiendas con reservas, pagos y panel de gestión propio, conectados con tus flujos de automatización.",
-          "serviceType": "Desarrollo web",
-          "provider": {
-            "@id": "https://sgagents.vercel.app/#organization"
-          },
-          "areaServed": {
-            "@type": "Country",
-            "name": "Argentina"
-          }
-        },
-        {
-          "@type": "OfferCatalog",
-          "@id": "https://sgagents.vercel.app/#planes",
-          "name": "Planes SG Agents",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "name": "Agente Conversacional",
-              "description": "Asistente de IA para canales de mensajería. Integración oficial con WhatsApp, hasta 1000 flujos de conversación al mes, soporte y optimización por 2 semanas.",
-              "price": "300",
-              "priceCurrency": "USD",
-              "availability": "https://schema.org/InStock",
-              "seller": {
-                "@id": "https://sgagents.vercel.app/#organization"
-              }
-            },
-            {
-              "@type": "Offer",
-              "name": "Estructura Agéntica Pro",
-              "description": "Automatización completa de punta a punta con múltiples herramientas interconectadas, agentes con lógica personalizada, bases de datos estructuradas y reportes automáticos. Soporte técnico por 1 mes.",
-              "price": "1000",
-              "priceCurrency": "USD",
-              "availability": "https://schema.org/InStock",
-              "seller": {
-                "@id": "https://sgagents.vercel.app/#organization"
-              }
-            },
-            {
-              "@type": "Offer",
-              "name": "Infraestructura Custom",
-              "description": "Proyecto operativo a medida: análisis profundo del ecosistema, arquitectura personalizada, integraciones ilimitadas, agentes multitarea y soporte continuo.",
-              "availability": "https://schema.org/InStock",
-              "seller": {
-                "@id": "https://sgagents.vercel.app/#organization"
-              }
-            }
-          ]
         }
       ]
     }
-    </script>
-
+  ]
+}
+</script>
 </head>
 <body>
-    <!-- HEADER -->
-    <header>
-        <nav class="container">
-            <div class="logo">🤖 SG Agents</div> <!-- Logo modificado con el nuevo nombre -->
-            <div class="nav-links">
-                <a href="#beneficios">Beneficios</a>
-                <a href="#servicios">Servicios</a>
-                <a href="#portfolio">Portfolio</a>
-                <a href="#sobre-mi">Sobre mí</a>
-                <a href="#precios">Precios</a>
-            </div>
-            <button class="btn-demo" onclick="document.getElementById('contacto').scrollIntoView();">Solicitar Demo</button>
-        </nav>
-    </header>
 
-    <!-- HERO -->
+<header>
+    <nav class="wrap nav">
+        <a class="wordmark" href="/"><span class="mark"></span>SG Agents</a>
+        <div class="nav-links">
+            <a href="#servicios">Servicios</a>
+            <a href="#trabajos">Trabajos</a>
+            <a href="#sobre-mi">Sobre mí</a>
+            <a href="#precios">Precios</a>
+        </div>
+        <a class="nav-cta" href="https://wa.me/5493415598979?text=Hola%20Santiago,%20vi%20tu%20web%20y%20quer%C3%ADa%20contarte%20un%20problema%20que%20tengo." target="_blank" rel="noopener">Hablemos</a>
+    </nav>
+</header>
+
+<main>
+    <!-- ================================================== HERO -->
     <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <div style="display: inline-block; background: rgba(0, 217, 255, 0.1); border: 1px solid rgba(0, 217, 255, 0.3); padding: 10px 20px; border-radius: 20px; color: var(--primary); font-family: 'Courier New', monospace; font-size: 0.85rem; margin-bottom: 30px;">
-                    🚀 Automatización Inteligente
+        <div class="wrap hero-grid">
+            <div class="hero-copy">
+                <p class="eyebrow">Software a medida <span>·</span> Rosario, Argentina</p>
+
+                <h1>Automatizaciones, webs y apps <em>a medida</em> para tu empresa</h1>
+
+                <p class="lede"><strong>Escuchamos el problema y construimos la solución.</strong> Recuperás las horas que hoy se van en tareas que no deberían ocuparte.</p>
+
+                <div class="actions">
+                    <a class="btn" href="https://wa.me/5493415598979?text=Hola%20Santiago,%20vi%20tu%20web%20y%20quer%C3%ADa%20contarte%20un%20problema%20que%20tengo." target="_blank" rel="noopener">Contanos tu problema</a>
+                    <a class="btn-ghost" href="#proceso">Ver cómo trabajamos</a>
                 </div>
-                <h1>Automatizá tu negocio con <span class="gradient">agentes de IA</span></h1>
-                <p>Eliminá tareas repetitivas, reducí errores y escalá sin contratar más gente. Impulsamos tu negocio con IA y agentes autónomos inteligentes.</p>
-                <div class="hero-buttons">
-                    <button class="btn-primary" onclick="document.getElementById('contacto').scrollIntoView();">Ver Demo Gratuita</button>
-                    <button class="btn-secondary" onclick="document.getElementById('servicios').scrollIntoView();">Ver Casos</button>
+            </div>
+
+            <aside class="work">
+                <article class="work-item">
+                    <p class="work-label">El problema</p>
+                    <p class="work-problem">Respondían más de 50 mensajes por día a mano para dar turnos.</p>
+                    <div class="work-arrow"><span>Lo que construimos</span></div>
+                    <p class="work-solution">Un asistente de WhatsApp que toma, confirma y cancela turnos solo</p>
+                    <p class="work-meta"><span><strong>Pilatin</strong> · estudio de pilates</span><span class="chip chip-live">Funcionando</span></p>
+                </article>
+
+                <article class="work-item">
+                    <p class="work-label">El problema</p>
+                    <p class="work-problem">Reservas de mesas del salón, inscripción a talleres, venta online y vendedores mayoristas: cuatro cosas separadas para manejar.</p>
+                    <div class="work-arrow"><span>Lo que construimos</span></div>
+                    <p class="work-solution">Una sola web que gestiona las cuatro</p>
+                    <p class="work-meta"><span><strong>El Druida</strong> · tienda libre de gluten</span><span class="chip chip-wip">En curso</span></p>
+                </article>
+            </aside>
+        </div>
+    </section>
+
+    <!-- ================================================== PROCESO -->
+    <section class="on-surface" id="proceso">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <span class="eyebrow">Cómo trabajamos</span>
+                <h2>Primero el problema. Después la herramienta.</h2>
+                <p class="section-lede">La tecnología es lo último que se decide. Lo primero es entender cómo funciona tu operación y dónde se te está yendo el tiempo.</p>
+            </div>
+
+            <div class="steps reveal">
+                <div class="step">
+                    <span class="step-n">Paso 01</span>
+                    <h3>Escuchamos</h3>
+                    <p>Una charla para entender qué hacés todos los días, qué te consume horas y qué se te rompe seguido. Sin cargo y sin compromiso.</p>
                 </div>
-                <div class="stats">
-                    <div class="stat">
-                        <div class="stat-number">8</div>
-                        <div class="stat-label">Herramientas integradas</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">&lt;1 min</div>
-                        <div class="stat-label">Tiempo de respuesta</div>
-                    </div>
-                    <div class="stat">
-                        <div class="stat-number">24/7</div>
-                        <div class="stat-label">Funcionando</div>
-                    </div>
+                <div class="step">
+                    <span class="step-n">Paso 02</span>
+                    <h3>Proponemos</h3>
+                    <p>Te decimos qué conviene resolver primero, cómo, en cuánto tiempo y a qué precio. Todo por escrito antes de empezar.</p>
+                </div>
+                <div class="step">
+                    <span class="step-n">Paso 03</span>
+                    <h3>Construimos y acompañamos</h3>
+                    <p>Lo armamos a medida de cómo trabajás vos, no de una plantilla. Después queda un período de soporte para ajustar lo que haga falta.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- BENEFICIOS -->
-    <section class="benefits" id="beneficios">
-        <div class="container">
-            <h2>¿Por qué SG Agents?</h2> <!-- Nombre modificado -->
-            <p class="section-subtitle">Resultados reales que crecen tu negocio</p>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <div class="icon">⏱️</div>
-                    <h3>Menos horas en tareas repetitivas</h3>
-                    <p>Elimina tareas manuales y repetitivas automáticamente.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="icon">💰</div>
-                    <h3>Menos costo operativo por tarea</h3>
-                    <p>Menos trabajo manual = menos gastos operacionales.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="icon">🤖</div>
-                    <h3>Agentes IA 24/7</h3>
-                    <p>Chatbots y asistentes avanzados ejecutando tareas siempre.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="icon">⚡</div>
-                    <h3>Escalabilidad</h3>
-                    <p>Crece sin contratar más personal. Los flujos agénticos escalan solos.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="icon">🔗</div>
-                    <h3>Integraciones ilimitadas</h3>
-                    <p>Conecta tus herramientas preferidas sin código.</p>
-                </div>
-                <div class="benefit-card">
-                    <div class="icon">📊</div>
-                    <h3>Control total</h3>
-                    <p>Reportes en tiempo real y datos a tu alcance.</p>
-                </div>
+    <!-- ================================================== SERVICIOS -->
+    <section id="servicios">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <span class="eyebrow">Servicios</span>
+                <h2>Tres formas de resolverlo</h2>
+                <p class="section-lede">Según cuál sea el problema, la solución es una automatización, un sistema web o una aplicación hecha para tu operación.</p>
+            </div>
+
+            <div class="pillars reveal">
+                <article class="pillar">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="3" width="7" height="6" rx="1.5"/><rect x="14.5" y="3" width="7" height="6" rx="1.5"/><rect x="8.5" y="15" width="7" height="6" rx="1.5"/><path d="M6 9v3h12V9M12 12v3"/></svg>
+                    <h3>Automatizaciones</h3>
+                    <p>Tareas que hoy hace una persona y podría hacer solo un sistema.</p>
+                    <ul>
+                        <li>Agentes de conversación para WhatsApp, web o Telegram</li>
+                        <li>Automatización de procesos entre tus herramientas</li>
+                        <li>Integraciones con APIs y servicios externos</li>
+                    </ul>
+                </article>
+
+                <article class="pillar">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="2"/><path d="M2.5 9h19M6 6.5h.01M8.5 6.5h.01M11 6.5h.01"/></svg>
+                    <h3>Webs y tiendas</h3>
+                    <p>Sitios que además de mostrar, resuelven: reservas, ventas y gestión.</p>
+                    <ul>
+                        <li>Desarrollo web a medida</li>
+                        <li>Reservas, turnos y venta online</li>
+                        <li>Paneles de administración propios</li>
+                    </ul>
+                </article>
+
+                <article class="pillar">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5 21 7l-9 4.5L3 7l9-4.5Z"/><path d="M3 12l9 4.5L21 12"/><path d="M3 17l9 4.5L21 17"/></svg>
+                    <h3>Apps a medida</h3>
+                    <p>Software interno para el problema puntual que nadie más te va a resolver.</p>
+                    <ul>
+                        <li>Aplicaciones internas para tu equipo</li>
+                        <li>Dashboards y reportes en tiempo real</li>
+                        <li>Consultoría e infraestructura de IA</li>
+                    </ul>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- SERVICIOS -->
-    <section class="services" id="servicios">
-        <div class="container">
-            <h2>Nuestros Servicios</h2>
-            <p class="section-subtitle">Soluciones adaptadas a tu negocio</p>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="icon">💬</div>
-                    <h3>Agentes de Conversación IA</h3>
-                    <p>Asistentes inteligentes para WhatsApp, web o Telegram que razonan y responden al instante.</p>
-                    <div class="service-tag">💡 Reservas, soporte, ventas</div>
-                </div>
-                <div class="service-card">
-                    <div class="icon">🔄</div>
-                    <h3>Automatización de Procesos</h3>
-                    <p>Integra tus herramientas (CRM, Email, Sheets, etc.) sin código mediante flujos avanzados.</p>
-                    <div class="service-tag">💡 Leads, pagos, notificaciones</div>
-                </div>
-                <div class="service-card">
-                    <div class="icon">📊</div>
-                    <h3>Dashboard & Reportes</h3>
-                    <p>Visualiza tus datos en tiempo real con análisis personalizados.</p>
-                    <div class="service-tag">💡 Métricas, seguimiento, decisiones</div>
-                </div>
-                <div class="service-card">
-                    <div class="icon">🤝</div>
-                    <h3>Integraciones Avanzadas</h3>
-                    <p>Conecta APIs y servicios complejos. Instagram, Shopify, Stripe, etc.</p>
-                    <div class="service-tag">💡 E-commerce, redes, pagos</div>
-                </div>
-                <div class="service-card">
-                    <div class="icon">🧠</div>
-                    <h3>Infraestructura IA Custom</h3>
-                    <p>Entrena modelos de IA y agentes autónomos con tus datos operativos específicos.</p>
-                    <div class="service-tag">💡 Análisis, predicción, optimización</div>
-                </div>
-                <div class="service-card">
-                    <div class="icon">⚙️</div>
-                    <h3>Consultoría de Flujos</h3>
-                    <p>Asesoramiento estratégico. Identificamos qué automatizar primero en tu operación.</p>
-                    <div class="service-tag">💡 Auditoría, planning, roadmap</div>
-                </div>
-                <div class="service-card">
-                    <div class="icon">🌐</div>
-                    <h3>Desarrollo Web a Medida</h3>
-                    <p>Sitios y tiendas con reservas, pagos y panel de gestión propio, conectados con tus flujos de automatización.</p>
-                    <div class="service-tag">💡 Reservas, e-commerce, paneles</div>
-                </div>
+    <!-- ================================================== TRABAJOS -->
+    <section class="on-surface" id="trabajos">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <span class="eyebrow">Trabajos</span>
+                <h2>Un sistema real, funcionando hoy</h2>
             </div>
-        </div>
-    </section>
 
-    <!-- CASO DE ESTUDIO -->
-    <section class="case-study" id="portfolio">
-        <div class="container">
-            <h2>Caso de Estudio</h2>
-            <p class="section-subtitle">Un sistema real, funcionando hoy</p>
-            <div class="case-study-content">
-                <div class="case-badge">ESTUDIO DE CASO</div>
-                <h3>Pilatin</h3>
-                <p>Un estudio de pilates que maneja sus turnos por WhatsApp: más de 50 mensajes por día que antes se respondían a mano, uno por uno.</p>
-
-                <div class="case-challenges">
-                    <p><strong style="color: var(--accent);">La solución:</strong><br>
-                    Un asistente de IA que atiende el WhatsApp del estudio, conectado con n8n y Google Sheets. Toma las reservas, las confirma y deja todo registrado sin que nadie intervenga.</p>
+            <div class="case reveal">
+                <div class="case-head">
+                    <h3>Pilatin</h3>
+                    <span class="case-sub">Estudio de pilates · Rosario</span>
                 </div>
 
-                <div class="case-cols">
-                    <div>
-                        <h4 class="case-before">Antes</h4>
-                        <ul class="case-list case-list-before">
+                <p>Manejaban todos los turnos por WhatsApp: más de 50 mensajes por día que antes se respondían a mano, uno por uno. Hoy los toma un asistente de IA conectado con n8n y Google Sheets.</p>
+
+                <div class="ba">
+                    <div class="ba-before">
+                        <h4>Antes</h4>
+                        <ul>
                             <li>Frenar lo que estaba haciendo para contestar</li>
                             <li>Mirar la planilla a mano en cada consulta</li>
                             <li>Horas por semana solo administrando turnos</li>
@@ -1272,9 +1013,9 @@
                             <li>Cancelaciones que quedaban sin avisar</li>
                         </ul>
                     </div>
-                    <div>
+                    <div class="ba-after">
                         <h4>Después</h4>
-                        <ul class="case-list">
+                        <ul>
                             <li>Responde al toque, sin que nadie intervenga</li>
                             <li>Chequea la disponibilidad real contra la planilla</li>
                             <li>Actualiza la planilla sola</li>
@@ -1284,235 +1025,175 @@
                     </div>
                 </div>
 
-                <div class="case-stats">
-                    <div class="case-stat">
-                        <div class="case-stat-number">50+</div>
-                        <div class="case-stat-label">Mensajes diarios gestionados</div>
-                    </div>
-                    <div class="case-stat">
-                        <div class="case-stat-number">0</div>
-                        <div class="case-stat-label">Turnos duplicados</div>
-                    </div>
-                    <div class="case-stat">
-                        <div class="case-stat-number">24/7</div>
-                        <div class="case-stat-label">Disponible</div>
-                    </div>
-                </div>
-
-                <div class="testimonial">
+                <div class="quote">
                     <blockquote>
                         <p>"Dejé de ser la que está pegada al celular todo el día respondiendo lo mismo, y eso me devolvió tiempo real: para dar mejores clases, para pensar en hacer crecer el estudio, y para no llegar a fin de día agotada de tareas administrativas."</p>
                         <p>"Lo que más valoro es que no es una solución genérica: se armó a medida de cómo funciona realmente Pilatin, con mi lógica de turnos, mis reglas de cancelación, mi forma de trabajar."</p>
                     </blockquote>
-                    <p class="testimonial-author"><strong>Belu</strong> — Pilatin, estudio de pilates</p>
+                    <p class="quote-by"><strong>Belu</strong> — Pilatin, estudio de pilates</p>
 
                     <details>
                         <summary>Leer el testimonio completo</summary>
-                        <div class="testimonial-full">
-                            <p>Antes de trabajar con SGAgents, la gestión del estudio me consumía un montón de tiempo que quería estar usando para dar clases, no para contestar WhatsApp. Todos los días eran los mismos mensajes: "¿tenés lugar el martes a las 18?", "quiero cancelar la clase del jueves", "¿cuánto sale la cuota?". Yo (o alguien del estudio) tenía que frenar lo que estaba haciendo, ir a mirar la planilla, confirmar disponibilidad y responder. Con el volumen de alumnas que tengo, eso se traducía en horas por semana solo administrando turnos, y encima siempre quedaba el riesgo de un error humano: anotar mal un horario, duplicar un cupo, olvidarme de avisar una cancelación.</p>
-                            <p>Ahora tengo un chatbot de WhatsApp que atiende todo eso solo. Las alumnas escriben para reservar, cancelar o consultar horarios, y el sistema responde al toque, chequea la disponibilidad real contra la planilla y actualiza todo automáticamente — incluso maneja las cancelaciones fijas y las puntuales por separado, y si alguien necesita hablar conmigo directamente, me deriva el contacto. Dejé de ser la que está pegada al celular todo el día respondiendo lo mismo, y eso me devolvió tiempo real: para dar mejores clases, para pensar en hacer crecer el estudio, y para no llegar a fin de día agotada de tareas administrativas.</p>
-                            <p>Lo que más valoro es que no es una solución genérica: se armó a medida de cómo funciona realmente Pilatin, con mi lógica de turnos, mis reglas de cancelación, mi forma de trabajar. Hoy el estudio funciona más ordenado y yo tengo la cabeza más libre para lo que realmente importa: mis alumnas.</p>
-                        </div>
+                        <p>Antes de trabajar con SGAgents, la gestión del estudio me consumía un montón de tiempo que quería estar usando para dar clases, no para contestar WhatsApp. Todos los días eran los mismos mensajes: "¿tenés lugar el martes a las 18?", "quiero cancelar la clase del jueves", "¿cuánto sale la cuota?". Yo (o alguien del estudio) tenía que frenar lo que estaba haciendo, ir a mirar la planilla, confirmar disponibilidad y responder. Con el volumen de alumnas que tengo, eso se traducía en horas por semana solo administrando turnos, y encima siempre quedaba el riesgo de un error humano: anotar mal un horario, duplicar un cupo, olvidarme de avisar una cancelación.</p>
+                        <p>Ahora tengo un chatbot de WhatsApp que atiende todo eso solo. Las alumnas escriben para reservar, cancelar o consultar horarios, y el sistema responde al toque, chequea la disponibilidad real contra la planilla y actualiza todo automáticamente — incluso maneja las cancelaciones fijas y las puntuales por separado, y si alguien necesita hablar conmigo directamente, me deriva el contacto. Dejé de ser la que está pegada al celular todo el día respondiendo lo mismo, y eso me devolvió tiempo real: para dar mejores clases, para pensar en hacer crecer el estudio, y para no llegar a fin de día agotada de tareas administrativas.</p>
+                        <p>Lo que más valoro es que no es una solución genérica: se armó a medida de cómo funciona realmente Pilatin, con mi lógica de turnos, mis reglas de cancelación, mi forma de trabajar. Hoy el estudio funciona más ordenado y yo tengo la cabeza más libre para lo que realmente importa: mis alumnas.</p>
                     </details>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- ================================================== TECNOLOGÍA -->
+    <section>
+        <div class="wrap">
+            <div class="section-head reveal">
+                <span class="eyebrow">Tecnología</span>
+                <h2>Con qué está hecho</h2>
+                <p class="section-lede">Herramientas conocidas y mantenidas, no inventos propios. Si mañana querés que lo siga otra persona, puede.</p>
+            </div>
+            <ul class="stack reveal">
+                <li>n8n</li>
+                <li>Modelos LLM</li>
+                <li>WhatsApp Business API</li>
+                <li>Google Sheets</li>
+                <li>APIs e integraciones</li>
+                <li>Telegram</li>
+                <li>Shopify</li>
+                <li>Stripe / Mercado Pago</li>
+            </ul>
+        </div>
+    </section>
 
-    <!-- QUIEN ESTA DETRAS -->
-    <section class="about" id="sobre-mi">
-        <div class="container">
-            <h2>Quién está detrás</h2>
-            <p class="section-subtitle">La persona que va a trabajar en tu operación</p>
-            <div class="about-card">
-                <img class="about-photo" src="/santiago-grazziani.jpg"
-                     width="150" height="150" loading="lazy" decoding="async"
-                     alt="Santiago Grazziani, consultor en automatización con IA en Rosario">
+    <!-- ================================================== SOBRE MÍ -->
+    <section class="on-surface" id="sobre-mi">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <span class="eyebrow">Sobre mí</span>
+                <h2>Quién está detrás</h2>
+            </div>
+
+            <div class="about-grid reveal">
+                <img class="about-photo" src="/santiago-grazziani.jpg" width="170" height="170" loading="lazy" decoding="async"
+                     alt="Santiago Grazziani, consultor en automatización y desarrollo a medida en Rosario">
                 <div class="about-text">
-                    <p>Hola, soy <strong>Santiago Grazziani</strong>. Trabajo desde <strong>Rosario, Santa Fe</strong>, y hace un año que me dedico a automatizar operaciones con inteligencia artificial.</p>
+                    <p>Hola, soy <strong>Santiago Grazziani</strong>. Trabajo desde <strong>Rosario, Santa Fe</strong>, y hace un año que me dedico a automatizar operaciones y construir software a medida.</p>
                     <p>Vengo de Administración de Empresas, no de programación. Siempre me tiró la tecnología, y terminé justo en el cruce de las dos cosas: entender cómo funciona un negocio por dentro y saber qué herramienta le sirve.</p>
                     <p>Por eso trabajo así: primero escucho cuál es tu problema y cómo opera tu día a día. Recién después armamos algo a medida. No te vendo una solución de catálogo.</p>
-                    <p>Hoy tengo funcionando el sistema de <strong>Pilatin</strong>: un asistente que atiende el WhatsApp del estudio y gestiona los turnos solo. Y estoy por entregar la web de <strong>El Druida</strong>, una tienda con reservas y panel de gestión de vendedores.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- TECNOLOGÍAS -->
-    <section class="technologies">
-        <div class="container">
-            <h2>Tecnología de Punta</h2>
-            <p class="section-subtitle">Usamos las mejores herramientas del mercado</p>
-            <div class="tech-grid">
-                <div class="tech-card">
-                    <div class="icon">🟣</div>
-                    <h3>n8n</h3>
-                    <p>Automatización de infraestructura</p>
-                </div>
-                <div class="tech-card">
-                    <div class="icon">🤖</div>
-                    <h3>Modelos LLM</h3>
-                    <p>IA generativa avanzada</p>
-                </div>
-                <div class="tech-card">
-                    <div class="icon">💬</div>
-                    <h3>WhatsApp API</h3>
-                    <p>Mensajería integrada</p>
-                </div>
-                <div class="tech-card">
-                    <div class="icon">📊</div>
-                    <h3>Google Sheets</h3>
-                    <p>Base de datos ágil</p>
-                </div>
-                <div class="tech-card">
-                    <div class="icon">🔌</div>
-                    <h3>APIs Integradas</h3>
-                    <p>Estructuras complejas</p>
-                </div>
-                <div class="tech-card">
-                    <div class="icon">📱</div>
-                    <h3>Telegram Bot</h3>
-                    <p>Automatización de canales</p>
-                </div>
-                <div class="tech-card">
-                    <div class="icon">🛍️</div>
-                    <h3>Shopify</h3>
-                    <p>E-commerce integrado</p>
-                </div>
-                <div class="tech-card">
-                    <div class="icon">💳</div>
-                    <h3>Stripe / MP</h3>
-                    <p>Pasarelas de pago</p>
+                    <p>Hoy tengo funcionando el sistema de <strong>Pilatin</strong>, que atiende el WhatsApp del estudio y gestiona los turnos solo. Y estoy por entregar la web de <strong>El Druida</strong>, que unifica reservas de mesas, talleres, venta online y gestión de vendedores mayoristas.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- PRECIOS -->
-    <section class="pricing" id="precios">
-        <div class="container">
-            <h2>Planes Flexibles</h2>
-            <p class="section-subtitle">Desde proyectos enfocados hasta soluciones operativas a medida</p>
-            <div class="pricing-grid">
-                <div class="pricing-card">
+    <!-- ================================================== PRECIOS -->
+    <section id="precios">
+        <div class="wrap">
+            <div class="section-head reveal">
+                <span class="eyebrow">Precios</span>
+                <h2>Planes de referencia</h2>
+                <p class="section-lede">El precio final depende del alcance y se define por escrito antes de empezar. Estos son los puntos de partida más habituales.</p>
+            </div>
+
+            <div class="plans reveal">
+                <article class="plan">
                     <h3>Agente Conversacional</h3>
-                    <p class="description">Asistente de IA para Canales de Mensajería</p>
-                    <div class="price">U$D300</div>
-                    <div class="period">Desarrollo</div>
-                    <button class="btn-primary" onclick="document.getElementById('contacto').scrollIntoView();">Solicitar Demo</button>
-                    <div class="pricing-features">
-                        <div class="pricing-feature">Resolución de preguntas operativas comunes</div>
-                        <div class="pricing-feature">Integración oficial con WhatsApp</div>
-                        <div class="pricing-feature">Hasta 1000 flujos de conversación al mes</div>
-                        <div class="pricing-feature">Soporte y optimización por 2 semanas</div>
-                    </div>
-                </div>
+                    <p class="plan-sub">Asistente de IA para canales de mensajería</p>
+                    <p class="plan-price">U$D 300<small>Desarrollo</small></p>
+                    <ul>
+                        <li>Resolución de preguntas operativas comunes</li>
+                        <li>Integración oficial con WhatsApp</li>
+                        <li>Hasta 1000 flujos de conversación al mes</li>
+                        <li>Soporte y optimización por 2 semanas</li>
+                    </ul>
+                    <a class="btn-outline" href="https://wa.me/5493415598979?text=Hola%20Santiago,%20me%20interesa%20el%20Agente%20Conversacional." target="_blank" rel="noopener">Consultar</a>
+                </article>
 
-                <div class="pricing-card popular">
+                <article class="plan plan-featured">
+                    <p class="plan-flag">El más pedido</p>
                     <h3>Estructura Agéntica Pro</h3>
-                    <p class="description">Procesos e Infraestructura Integrada</p>
-                    <div class="price">U$D1.000</div>
-                    <div class="period">Desarrollo</div>
-                    <button class="btn-primary" onclick="document.getElementById('contacto').scrollIntoView();">Solicitar Demo</button>
-                    <div class="pricing-features">
-                        <div class="pricing-feature">Automatización completa de punta a punta</div>
-                        <div class="pricing-feature">Múltiples herramientas interconectadas</div>
-                        <div class="pricing-feature">Agentes con lógica personalizada</div>
-                        <div class="pricing-feature">Bases de datos estructuradas</div>
-                        <div class="pricing-feature">Reportes e informes automáticos</div>
-                        <div class="pricing-feature">Soporte técnico garantizado por 1 mes</div>
-                    </div>
-                </div>
+                    <p class="plan-sub">Procesos e infraestructura integrada</p>
+                    <p class="plan-price">U$D 1.000<small>Desarrollo</small></p>
+                    <ul>
+                        <li>Automatización completa de punta a punta</li>
+                        <li>Múltiples herramientas interconectadas</li>
+                        <li>Agentes con lógica personalizada</li>
+                        <li>Bases de datos estructuradas</li>
+                        <li>Reportes e informes automáticos</li>
+                        <li>Soporte técnico por 1 mes</li>
+                    </ul>
+                    <a class="btn" href="https://wa.me/5493415598979?text=Hola%20Santiago,%20me%20interesa%20la%20Estructura%20Ag%C3%A9ntica%20Pro." target="_blank" rel="noopener">Consultar</a>
+                </article>
 
-                <div class="pricing-card">
-                    <h3>Infraestructura Custom</h3>
-                    <p class="description">Tu Proyecto Operativo Específico</p>
-                    <div class="price">A medida</div>
-                    <div class="period">Consultar</div>
-                    <button class="btn-primary" onclick="document.getElementById('contacto').scrollIntoView();">Agendar Llamada</button>
-                    <div class="pricing-features">
-                        <div class="pricing-feature">Análisis profundo del ecosistema del negocio</div>
-                        <div class="pricing-feature">Diseño de arquitectura personalizado</div>
-                        <div class="pricing-feature">Integraciones y llamadas API ilimitadas</div>
-                        <div class="pricing-feature">Agentes inteligentes avanzados multitarea</div>
-                        <div class="pricing-feature">Soporte continuo e infraestructura dedicada</div>
-                        <div class="pricing-feature">Optimización mensual de procesos</div>
-                    </div>
-                </div>
+                <article class="plan">
+                    <h3>Proyecto a medida</h3>
+                    <p class="plan-sub">Tu operación específica, de punta a punta</p>
+                    <p class="plan-price">A medida<small>Según alcance</small></p>
+                    <ul>
+                        <li>Análisis profundo del ecosistema del negocio</li>
+                        <li>Diseño de arquitectura personalizado</li>
+                        <li>Integraciones y llamadas API ilimitadas</li>
+                        <li>Webs y aplicaciones internas</li>
+                        <li>Soporte continuo e infraestructura dedicada</li>
+                        <li>Optimización mensual de procesos</li>
+                    </ul>
+                    <a class="btn-outline" href="https://wa.me/5493415598979?text=Hola%20Santiago,%20quiero%20consultarte%20por%20un%20proyecto%20a%20medida." target="_blank" rel="noopener">Agendar llamada</a>
+                </article>
             </div>
+
+            <p class="plans-note">Los valores son de referencia y están expresados en dólares. Ver los <a href="/terminos/">términos y condiciones</a>.</p>
         </div>
     </section>
 
-        <!-- CTA CON FORMULARIO INTEGRADO (MODIFICADO POR WHATSAPP DIRECTO) -->
+    <!-- ================================================== CTA -->
     <section class="cta" id="contacto">
-        <div class="container">
-            <div class="cta-content" style="max-width: 650px; text-align: center; padding: 50px 30px;">
-                <h2>¿Listo para delegar tu operación en la IA?</h2>
-                <p>Hablemos directamente por WhatsApp. Te mostramos cómo los flujos y agentes de SG Agents pueden optimizar tus operaciones, sin vueltas ni compromisos.</p>
-                
-                <div style="margin-top: 35px;">
-                    <!-- Botón Grande Verde de WhatsApp -->
-                    <a href="https://wa.me/5493415598979?text=Hola%20Santiago,%20vi%20tu%20web%20y%20me%20gustar%C3%ADa%20consultarte%20por%20una%20automatizaci%C3%B3n." 
-                       target="_blank" 
-                       style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; background-color: #25d366; color: #fff; text-decoration: none; font-size: 1.3rem; font-weight: bold; padding: 18px 40px; border-radius: 12px; width: 100%; max-width: 400px; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); transition: all 0.3s ease;"
-                       onmouseover="this.style.transform='scale(1.03)'; this.style.boxShadow='0 6px 25px rgba(37, 211, 102, 0.6)'; this.style.backgroundColor='#22c05b';"
-                       onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 20px rgba(37, 211, 102, 0.4)'; this.style.backgroundColor='#25d366';">
-                        💬 Escribime acá
-                    </a>
-                </div>
-
-                <p style="color: #9ca3af; font-size: 0.875rem; margin-top: 30px;">Respuesta inmediata • Consulta inicial incluida • Sin obligaciones contractuales</p>
+        <div class="wrap cta-grid">
+            <div>
+                <h2>Contanos qué te está comiendo el tiempo</h2>
+                <p>Una charla para entender el problema. Si se puede resolver, te decimos cómo. Si no, también.</p>
+            </div>
+            <div class="cta-side">
+                <div class="cta-actions">
+                <a class="btn-light" href="https://wa.me/5493415598979?text=Hola%20Santiago,%20vi%20tu%20web%20y%20quer%C3%ADa%20contarte%20un%20problema%20que%20tengo." target="_blank" rel="noopener">Escribinos por WhatsApp</a>
+                <a class="btn-ghost" style="color:#fff;background-image:linear-gradient(#fff,#fff)" href="mailto:santiago.grazziani@gmail.com">O mandanos un mail</a>
+            </div>
+                <small>Consulta inicial sin cargo · Respuesta el mismo día · Sin obligación de contratar</small>
             </div>
         </div>
     </section>
+</main>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <div class="footer-heading">🤖 SG Agents</div> <!-- Nombre modificado -->
-                    <p>Infraestructura y automatización inteligente para hacer crecer tu negocio de forma eficiente.</p>
-                </div>
-                <div class="footer-section">
-                    <div class="footer-heading">Soluciones</div>
-                    <ul>
-                        <li><a href="#servicios">Agentes IA</a></li>
-                        <li><a href="#servicios">Automatización</a></li>
-                        <li><a href="#servicios">Integraciones</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <div class="footer-heading">Compañía</div>
-                    <ul>
-                        <li><a href="#portfolio">Casos</a></li>
-                        <li><a href="#sobre-mi">Sobre mí</a></li>
-                        <li><a href="#servicios">Tecnología</a></li>
-                        <li><a href="#precios">Precios</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <div class="footer-heading">Contacto</div>
-                    <ul>
-                        <li><a href="mailto:santiago.grazziani@gmail.com">Email</a></li> <!-- Correo real configurado -->
-                        <li><a href="#contacto">Solicitar Demo</a></li>
-                    </ul>
-                </div>
+<footer>
+    <div class="wrap">
+        <div class="foot-grid">
+            <div>
+                <span class="foot-brand"><span class="mark"></span>SG Agents</span>
+                <p>Automatizaciones, webs y aplicaciones a medida para empresas. Desde Rosario, Santa Fe, para todo el país.</p>
             </div>
-            <div class="footer-bottom">
-                <p>© 2026 SG Agents. Todos los derechos reservados.</p> <!-- Año y nombre actualizados -->
-                <p class="footer-legal"><a href="/privacidad/">Privacidad</a><a href="/terminos/">Términos</a></p>
+            <div>
+                <p class="foot-title">Servicios</p>
+                <ul>
+                    <li><a href="#servicios">Automatizaciones</a></li>
+                    <li><a href="#servicios">Webs y tiendas</a></li>
+                    <li><a href="#servicios">Apps a medida</a></li>
+                    <li><a href="#precios">Precios</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="foot-title">Contacto</p>
+                <ul>
+                    <li><a href="https://wa.me/5493415598979" target="_blank" rel="noopener">WhatsApp</a></li>
+                    <li><a href="mailto:santiago.grazziani@gmail.com">Email</a></li>
+                    <li><a href="#trabajos">Trabajos</a></li>
+                    <li><a href="#sobre-mi">Sobre mí</a></li>
+                </ul>
             </div>
         </div>
-    </footer>
+        <div class="foot-bottom">
+            <span>© 2026 SG Agents · Santiago Grazziani</span>
+            <span><a href="/privacidad/">Privacidad</a><a href="/terminos/">Términos</a></span>
+        </div>
+    </div>
+</footer>
 
-    <!-- BOTÓN FLOTANTE DE WHATSAPP -->
-    <a href="https://wa.me/5493415598979?text=Hola%20Santiago,%20vi%20tu%20web%20y%20me%20gustar%C3%ADa%20consultarte%20por%20una%20automatizaci%C3%B3n." 
-       target="_blank" 
-       style="position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background-color: #25d366; color: white; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 30px; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 100; text-decoration: none; transition: all 0.3s ease;"
-       onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 4px 25px rgba(37, 211, 102, 0.7)'"
-       onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(37, 211, 102, 0.4)'">
-        💬
-    </a>
 </body>
 </html>
