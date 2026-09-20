@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Desarrollo web a medida para negocios | SG Agents</title>
+
+<meta name="description" content="Sitios que además de mostrar, resuelven: reservas, turnos, venta online y paneles de gestión propios. Desarrollo web a medida desde Rosario, Santa Fe.">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Santiago Grazziani">
+<link rel="canonical" href="https://sgagents.vercel.app/servicios/desarrollo-web/">
+
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="SG Agents">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://sgagents.vercel.app/servicios/desarrollo-web/">
+<meta property="og:title" content="Desarrollo web a medida para negocios">
+<meta property="og:description" content="Sitios que además de mostrar, resuelven: reservas, turnos, venta online y paneles de gestión propios.">
+<meta property="og:image" content="https://sgagents.vercel.app/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Desarrollo web a medida para negocios">
+<meta name="twitter:description" content="Sitios que además de mostrar, resuelven: reservas, turnos, venta online y paneles de gestión propios.">
+<meta name="twitter:image" content="https://sgagents.vercel.app/og-image.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body, h1, h2, h3, p, figure, blockquote, dl, dd, dt { margin: 0; }
+
+    :root {
+        --paper:       #EFF1EC;
+        --surface:     #FFFFFF;
+        --ink:         #15181A;
+        --muted:       #5B645E;
+        --line:        #E2E6E1;
+        --accent:      #0F5C48;
+        --accent-ink:  #0B4738;
+        --accent-wash: #EAF1EE;
+
+        --display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+        --text:    'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
+        --mono:    'IBM Plex Mono', ui-monospace, 'Cascadia Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+        font-family: var(--text); background: var(--paper); color: var(--ink);
+        line-height: 1.7; -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { width: 100%; max-width: 820px; margin: 0 auto; padding-inline: 24px; }
+    a { color: var(--accent); }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+    header { border-bottom: 1px solid var(--line); background: var(--paper); }
+    .nav { display: flex; align-items: center; gap: 24px; padding-block: 18px; max-width: 1160px; }
+
+    .wordmark {
+        font-family: var(--display); font-weight: 800; font-size: 1.15rem;
+        letter-spacing: -0.02em; color: var(--ink); text-decoration: none;
+        margin-right: auto; display: inline-flex; align-items: center; gap: 9px;
+    }
+
+    .wordmark .mark { width: 13px; height: 13px; border-radius: 3px; background: var(--accent); }
+
+    .nav-cta {
+        font-size: 0.9rem; font-weight: 500; color: var(--accent); text-decoration: none;
+        border: 1.5px solid var(--accent); border-radius: 6px; padding: 7px 15px;
+        transition: background .18s ease, color .18s ease;
+    }
+
+    .nav-cta:hover { background: var(--accent); color: #fff; }
+
+    .crumbs {
+        font-family: var(--mono); font-size: 0.72rem;
+        letter-spacing: 0.1em; text-transform: uppercase;
+        color: var(--muted); padding-top: 40px;
+    }
+
+    .crumbs a { color: var(--muted); text-decoration: none; }
+    .crumbs a:hover { color: var(--accent); }
+    .crumbs span { margin-inline: 8px; opacity: .5; }
+
+    h1 {
+        font-family: var(--display); font-weight: 800;
+        font-size: clamp(2rem, 5.4vw, 3rem);
+        line-height: 1.08; letter-spacing: -0.032em;
+        text-wrap: balance; margin: 18px 0 20px;
+    }
+
+    .standfirst { font-size: 1.12rem; color: var(--muted); margin-bottom: 44px; }
+
+    h2 {
+        font-family: var(--display); font-weight: 800;
+        font-size: clamp(1.45rem, 3.2vw, 1.85rem);
+        line-height: 1.16; letter-spacing: -0.026em; margin: 58px 0 18px;
+    }
+
+    h3 { font-family: var(--display); font-weight: 700; font-size: 1.06rem; letter-spacing: -0.015em; }
+
+    p { margin-bottom: 18px; }
+    .lead-muted { color: var(--muted); }
+
+    .tasks { display: grid; gap: 16px; margin-top: 28px; }
+    @media (min-width: 680px) { .tasks { grid-template-columns: 1fr 1fr; gap: 18px; } }
+
+    .task { background: var(--surface); border: 1px solid var(--line); border-radius: 13px; padding: 20px 22px; }
+    .task h3 { margin-bottom: 6px; }
+    .task p { color: var(--muted); font-size: 0.94rem; margin: 0; }
+
+    .flow { list-style: none; padding: 0; margin: 28px 0 0; counter-reset: paso; }
+    .flow li { position: relative; padding: 0 0 26px 40px; border-left: 1px solid var(--line); }
+    .flow li:last-child { border-left-color: transparent; padding-bottom: 0; }
+
+    .flow li::before {
+        content: counter(paso); counter-increment: paso;
+        position: absolute; left: -13px; top: 0; width: 26px; height: 26px;
+        background: var(--accent); color: #fff; border-radius: 50%;
+        font-family: var(--mono); font-size: 0.72rem;
+        display: flex; align-items: center; justify-content: center;
+    }
+
+    .flow strong { display: block; font-family: var(--display); font-weight: 700; margin-bottom: 3px; }
+    .flow span { color: var(--muted); font-size: 0.96rem; }
+
+    .case-card {
+        background: var(--surface); border: 1px solid var(--line);
+        border-radius: 14px; padding: 28px 30px; margin-top: 28px;
+    }
+
+    .case-card .eyebrow {
+        font-family: var(--mono); font-size: 0.66rem;
+        letter-spacing: 0.13em; text-transform: uppercase;
+        color: var(--muted); margin-bottom: 10px;
+        display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+    }
+
+    .chip {
+        font-family: var(--mono); font-size: 0.63rem;
+        letter-spacing: 0.1em; text-transform: uppercase;
+        background: #F2F2EE; color: var(--muted);
+        border: 1px solid var(--line); border-radius: 4px; padding: 3px 8px;
+    }
+
+    .case-card h3 { font-size: 1.3rem; margin-bottom: 12px; }
+    .case-card p { color: var(--muted); }
+
+    .ba-mini { display: grid; gap: 22px; margin: 22px 0 6px; }
+    @media (min-width: 620px) { .ba-mini { grid-template-columns: 1fr 1fr; gap: 30px; } }
+
+    .ba-mini h4 {
+        font-family: var(--mono); font-weight: 500; font-size: 0.68rem;
+        letter-spacing: 0.13em; text-transform: uppercase; margin: 0 0 12px;
+    }
+
+    .ba-mini .b h4 { color: var(--muted); }
+    .ba-mini .a h4 { color: var(--accent); }
+
+    .ba-mini ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 9px; }
+    .ba-mini li { font-size: 0.93rem; padding-left: 21px; position: relative; line-height: 1.5; color: var(--muted); }
+    .ba-mini .b li::before { content: "\2715"; position: absolute; left: 0; color: #A8ADA9; font-size: .8em; top: .3em; }
+    .ba-mini .a li::before { content: "\2192"; position: absolute; left: 0; color: var(--accent); }
+
+    .case-link {
+        display: inline-block; margin-top: 18px; font-weight: 600; color: var(--accent);
+        text-decoration: none; border-bottom: 1.5px solid rgba(15, 92, 72, .35);
+        transition: border-color .2s ease;
+    }
+
+    .case-link:hover { border-bottom-color: var(--accent); }
+
+    .nope { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 14px; }
+    .nope li { padding-left: 24px; position: relative; color: var(--muted); }
+    .nope li::before { content: "\2715"; position: absolute; left: 0; top: .28em; color: #A8ADA9; font-size: .82em; }
+    .nope strong { color: var(--ink); font-weight: 600; }
+
+    .stack { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 24px; padding: 0; }
+    .stack li {
+        list-style: none; font-family: var(--mono); font-size: 0.83rem;
+        background: var(--surface); border: 1px solid var(--line);
+        border-radius: 7px; padding: 8px 13px;
+    }
+
+    .cta { background: var(--accent); color: #fff; margin-top: 70px; padding-block: 64px; }
+    .cta h2 { color: #fff; margin: 0 0 14px; }
+    .cta p { color: rgba(255,255,255,.84); max-width: 48ch; }
+
+    .btn-light {
+        display: inline-block; font-size: 1rem; font-weight: 600;
+        background: #fff; color: var(--accent-ink); text-decoration: none;
+        border-radius: 7px; padding: 14px 26px; margin-top: 16px;
+        transition: transform .18s ease;
+    }
+
+    .btn-light:hover { transform: translateY(-1px); }
+
+    footer { background: var(--ink); color: #6E756F; padding-block: 30px; font-size: 0.86rem; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 22px; max-width: 1160px; }
+    footer a { color: #A9AFAB; text-decoration: none; }
+    footer a:hover { color: #fff; }
+
+    @media (prefers-reduced-motion: reduce) {
+        html { scroll-behavior: auto; }
+        *, *::before, *::after { transition-duration: .01ms !important; animation: none !important; }
+    }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://sgagents.vercel.app/" },
+        { "@type": "ListItem", "position": 2, "name": "Servicios", "item": "https://sgagents.vercel.app/#servicios" },
+        { "@type": "ListItem", "position": 3, "name": "Desarrollo web" }
+      ]
+    },
+    {
+      "@type": "Service",
+      "name": "Desarrollo web a medida",
+      "description": "Sitios y tiendas con reservas, turnos, venta online y panel de gestión propio, conectados con los flujos de automatización del negocio.",
+      "serviceType": "Desarrollo web",
+      "url": "https://sgagents.vercel.app/servicios/desarrollo-web/",
+      "provider": { "@id": "https://sgagents.vercel.app/#organization" },
+      "areaServed": [
+        { "@type": "City", "name": "Rosario" },
+        { "@type": "Country", "name": "Argentina" }
+      ],
+      "inLanguage": "es-AR"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header>
+    <nav class="wrap nav">
+        <a class="wordmark" href="/"><span class="mark"></span>SG Agents</a>
+        <a class="nav-cta" href="https://wa.me/5493415598979?text=Hola%20Santiago,%20quer%C3%ADa%20consultarte%20por%20una%20web." target="_blank" rel="noopener">Hablemos</a>
+    </nav>
+</header>
+
+<main class="wrap">
+    <p class="crumbs"><a href="/">Inicio</a><span>/</span><a href="/#servicios">Servicios</a><span>/</span>Desarrollo web</p>
+
+    <h1>Desarrollo web a medida</h1>
+
+    <p class="standfirst">Un sitio que solo muestra información es un folleto caro. Nos interesan los que además resuelven algo: que tomen la reserva, cobren la venta y le den a tu equipo un lugar donde gestionar todo.</p>
+
+    <h2>Qué construimos</h2>
+    <p class="lead-muted">Casi siempre el pedido es "necesito una web", y lo que hace falta en realidad es alguna de estas cuatro cosas:</p>
+
+    <div class="tasks">
+        <article class="task">
+            <h3>Reservas y turnos</h3>
+            <p>Que el cliente reserve una mesa, un turno o un cupo sin escribirle a nadie, y que vos veas la agenda actualizada sin abrir una planilla.</p>
+        </article>
+        <article class="task">
+            <h3>Venta online</h3>
+            <p>Catálogo, carrito y cobro. Con precios distintos si vendés al público y al por mayor, que es donde la mayoría de las tiendas genéricas se quedan cortas.</p>
+        </article>
+        <article class="task">
+            <h3>Inscripción a eventos y talleres</h3>
+            <p>Cupos limitados, fechas, lista de inscriptos y avisos. Sin llevar la cuenta a mano ni pasar la lista por mensaje.</p>
+        </article>
+        <article class="task">
+            <h3>Un panel para tu equipo</h3>
+            <p>El lado de adentro: cargar productos, ver pedidos, gestionar vendedores, mirar cómo viene el mes. La parte que el cliente no ve y que hace que el negocio funcione.</p>
+        </article>
+    </div>
+
+    <h2>Cómo lo hacemos</h2>
+    <p class="lead-muted">El diseño viene después. Primero hay que entender cómo funciona tu negocio hoy y qué está trabando.</p>
+
+    <ol class="flow">
+        <li>
+            <strong>Escuchamos cómo trabajás</strong>
+            <span>Cómo tomás los pedidos hoy, dónde anotás las reservas, quién carga los precios, qué se te pierde. Sin cargo y sin compromiso.</span>
+        </li>
+        <li>
+            <strong>Definimos qué tiene que hacer la web</strong>
+            <span>Qué funciones entran, cuáles quedan para después, en cuánto tiempo y a qué precio. Todo por escrito antes de empezar.</span>
+        </li>
+        <li>
+            <strong>La construimos a medida</strong>
+            <span>Con tus categorías, tus reglas de precio, tu forma de trabajar. No un tema comprado al que tengas que adaptar el negocio.</span>
+        </li>
+        <li>
+            <strong>Te la entregamos andando</strong>
+            <span>Con los datos cargados, el equipo sabiendo usarla y un período de soporte para lo que aparezca.</span>
+        </li>
+    </ol>
+
+    <h2>Un caso real</h2>
+
+    <div class="case-card">
+        <p class="eyebrow"><span>El Druida · Bar &amp; café natural, Pueblo Esther</span><span class="chip">En curso</span></p>
+        <h3>De los cuadernos a una sola web</h3>
+        <p>El Druida es un bar libre de gluten que manejaba toda su operación a mano: planillas y cuadernos. Funcionaba mientras el negocio era chico. Pero creció — empezaron a vender productos al público, después al por mayor, y ahora suman un vendedor — y el cuaderno dejó de alcanzar.</p>
+
+        <div class="ba-mini">
+            <div class="b">
+                <h4>Antes</h4>
+                <ul>
+                    <li>Reservas de mesa anotadas a mano</li>
+                    <li>Inscripciones a talleres contadas de memoria</li>
+                    <li>Ventas y precios en planillas sueltas</li>
+                    <li>Sin forma de gestionar un vendedor</li>
+                </ul>
+            </div>
+            <div class="a">
+                <h4>Después</h4>
+                <ul>
+                    <li>Reserva de mesas desde la web</li>
+                    <li>Inscripción a talleres con cupos</li>
+                    <li>Tienda con venta al público y mayorista</li>
+                    <li>Panel para gestionar al vendedor</li>
+                </ul>
+            </div>
+        </div>
+
+        <p style="margin-top:18px">Cuatro cosas que antes vivían en cuatro lugares distintos, ahora en un solo sistema. Se entrega en un mes.</p>
+
+        <a class="case-link" href="https://eldruida-web.vercel.app" target="_blank" rel="noopener">Ver la web en construcción →</a>
+        <p style="margin-top:10px;font-size:0.86rem" class="lead-muted">Es una versión de demostración: los precios y parte de los productos son de muestra.</p>
+    </div>
+
+    <h2>Cuándo no hace falta una web a medida</h2>
+    <p>Si tu caso es alguno de estos, te conviene otra cosa y te lo vamos a decir antes de cobrarte:</p>
+
+    <ul class="nope">
+        <li><strong>Si solo necesitás estar presente.</strong> Si lo único que querés es que te encuentren y sepan dónde estás, una web sencilla o hasta un buen perfil de Google alcanza. No pagues por funciones que no vas a usar.</li>
+        <li><strong>Si vendés pocos productos y sin variantes.</strong> Para un catálogo chico y estable, una tienda armada sobre una plataforma existente sale menos y se mantiene sola.</li>
+        <li><strong>Si el proceso todavía no está definido.</strong> Si no tenés claro cómo querés que funcione la reserva o la venta, primero hay que ordenar eso. Una web no arregla un proceso que no existe.</li>
+    </ul>
+
+    <h2>Con qué está hecho</h2>
+    <p class="lead-muted">Herramientas conocidas y mantenidas, no desarrollos propios que solo entendemos nosotros. Si mañana querés que lo siga otra persona, puede.</p>
+    <ul class="stack">
+        <li>Desarrollo web a medida</li>
+        <li>Shopify</li>
+        <li>Stripe / Mercado Pago</li>
+        <li>APIs e integraciones</li>
+        <li>n8n</li>
+    </ul>
+
+    <h2>Cuánto cuesta</h2>
+    <p>Una web con funciones a medida entra en el rango de <strong>proyecto a medida</strong>: el precio depende de cuántas cosas tenga que resolver. Una web con reservas no cuesta lo mismo que una con tienda, mayoristas y panel de gestión.</p>
+    <p class="lead-muted">Lo definimos por escrito antes de empezar, después de entender el alcance. Podés ver los rangos de referencia en <a href="/#precios">la sección de precios</a>.</p>
+
+    <h2>Preguntas que nos hacen seguido</h2>
+
+    <h3>¿Cuánto tarda?</h3>
+    <p class="lead-muted">Depende de cuántas funciones entren. La web de El Druida, que resuelve reservas, talleres, tienda con dos tipos de precio y panel de gestión, se entrega en un mes. Algo más acotado lleva menos.</p>
+
+    <h3>¿Puedo cargar yo los productos y precios?</h3>
+    <p class="lead-muted">Sí, ese es el punto del panel. La idea no es que dependas de nosotros para cambiar un precio o agregar un producto. Si tenés que llamarnos por eso, el trabajo está mal hecho.</p>
+
+    <h3>¿Se puede conectar con lo que ya uso?</h3>
+    <p class="lead-muted">Casi siempre. Si ya tenés una planilla, un sistema de facturación o un WhatsApp por donde entran los pedidos, lo normal es conectarlo, no reemplazarlo. Eso se resuelve con <a href="/servicios/automatizaciones/">automatizaciones</a>.</p>
+
+    <h3>¿Qué pasa después de la entrega?</h3>
+    <p class="lead-muted">Queda un período de soporte incluido para ajustar lo que aparezca en el uso real, que siempre aparece algo. Después se puede acordar mantenimiento, o podés seguir vos.</p>
+</main>
+
+<section class="cta">
+    <div class="wrap">
+        <h2>¿Qué tendría que resolver tu web?</h2>
+        <p>Contanos cómo funciona tu negocio hoy y qué te gustaría que la web se ocupe de hacer. En la primera charla te decimos si hace falta algo a medida o te alcanza con menos.</p>
+        <a class="btn-light" href="https://wa.me/5493415598979?text=Hola%20Santiago,%20quer%C3%ADa%20contarte%20qu%C3%A9%20necesito%20para%20mi%20web." target="_blank" rel="noopener">Contanos tu problema</a>
+    </div>
+</section>
+
+<footer>
+    <div class="wrap">
+        <span>© 2026 SG Agents · Santiago Grazziani</span>
+        <a href="/">Inicio</a>
+        <a href="/servicios/automatizaciones/">Automatizaciones</a>
+        <a href="/casos/pilatin/">Caso Pilatin</a>
+        <a href="/privacidad/">Privacidad</a>
+        <a href="/terminos/">Términos</a>
+    </div>
+</footer>
+
+</body>
+</html>
