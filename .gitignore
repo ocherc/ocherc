@@ -1,3 +1,6 @@
 # Fotos originales de camara: pesan varios MB y traen GPS/EXIF embebidos.
 # Lo que se publica es la version procesada (santiago-grazziani.jpg).
 [0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]_[0-9]*.jpg
+
+# Notas internas de auditoria: no se publican.
+SEO-HANDOFF.md
