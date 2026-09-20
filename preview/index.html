@@ -13,18 +13,18 @@
 
 <style>
     *, *::before, *::after { box-sizing: border-box; }
-    body, h1, h2, h3, p, dl, dd, dt, figure { margin: 0; }
+    body, h1, h2, h3, p, figure { margin: 0; }
 
     :root {
         /* Neutros con sesgo verde: elegidos, no heredados de un gris puro */
-        --paper:      #FAFAF7;
-        --surface:    #FFFFFF;
-        --ink:        #15181A;
-        --muted:      #656E69;
-        --line:       #E2E6E1;
-        --accent:     #0F5C48;
-        --accent-ink: #0B4738;
-        --accent-wash:#EAF1EE;
+        --paper:       #FAFAF7;
+        --surface:     #FFFFFF;
+        --ink:         #15181A;
+        --muted:       #656E69;
+        --line:        #E2E6E1;
+        --accent:      #0F5C48;
+        --accent-ink:  #0B4738;
+        --accent-wash: #EAF1EE;
 
         --display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
         --text:    'IBM Plex Sans', 'Segoe UI', system-ui, sans-serif;
@@ -49,17 +49,9 @@
     }
 
     /* ---------------------------------------------------------- header */
-    header {
-        border-bottom: 1px solid var(--line);
-        background: var(--paper);
-    }
+    header { border-bottom: 1px solid var(--line); background: var(--paper); }
 
-    .nav {
-        display: flex;
-        align-items: center;
-        gap: 32px;
-        padding-block: 20px;
-    }
+    .nav { display: flex; align-items: center; gap: 32px; padding-block: 20px; }
 
     .wordmark {
         font-family: var(--display);
@@ -75,8 +67,7 @@
     }
 
     .wordmark .mark {
-        width: 13px;
-        height: 13px;
+        width: 13px; height: 13px;
         border-radius: 3px;
         background: var(--accent);
         display: inline-block;
@@ -109,26 +100,19 @@
 
     .nav-cta:hover { background: var(--accent); color: #fff; }
 
-    @media (min-width: 900px) {
-        .nav-links, .nav-cta { display: inline-flex; }
-    }
+    @media (min-width: 900px) { .nav-links, .nav-cta { display: inline-flex; } }
 
     /* ------------------------------------------------------------ hero */
     .hero { padding-block: 64px 80px; }
 
-    .hero-grid {
-        display: grid;
-        gap: 56px;
-        align-items: center;
-    }
+    .hero-grid { display: grid; gap: 56px; align-items: center; }
 
-    /* Sin esto los hijos del grid no bajan de su ancho de contenido y la
-       pagina desborda a lo ancho en pantallas chicas. */
+    /* Sin esto los hijos del grid no bajan de su ancho de contenido */
     .hero-grid > * { min-width: 0; }
 
     @media (min-width: 950px) {
-        .hero-grid { grid-template-columns: 1.05fr 0.95fr; gap: 72px; }
-        .hero { padding-block: 92px 104px; }
+        .hero-grid { grid-template-columns: 1.02fr 0.98fr; gap: 68px; }
+        .hero { padding-block: 88px 100px; }
     }
 
     .eyebrow {
@@ -145,28 +129,21 @@
     h1 {
         font-family: var(--display);
         font-weight: 800;
-        font-size: clamp(2.5rem, 6.2vw, 4.1rem);
-        line-height: 1.04;
-        letter-spacing: -0.035em;
+        font-size: clamp(2.15rem, 5.2vw, 3.5rem);
+        line-height: 1.06;
+        letter-spacing: -0.033em;
         text-wrap: balance;
         margin-bottom: 26px;
     }
 
-    h1 em {
-        font-style: normal;
-        color: var(--accent);
-        position: relative;
-        white-space: nowrap;
-    }
+    h1 em { font-style: normal; color: var(--accent); position: relative; white-space: nowrap; }
 
-    /* El subrayado se dibuja solo: es el unico gesto decorativo de la pagina */
+    /* El subrayado se dibuja solo: unico gesto decorativo de la pagina */
     h1 em::after {
         content: "";
         position: absolute;
-        left: 0;
-        bottom: 0.04em;
-        height: 0.09em;
-        width: 100%;
+        left: 0; bottom: 0.04em;
+        height: 0.09em; width: 100%;
         background: var(--accent);
         opacity: 0.28;
         transform-origin: left;
@@ -176,19 +153,15 @@
     @keyframes draw { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 
     .lede {
-        font-size: 1.12rem;
+        font-size: 1.1rem;
         color: var(--muted);
-        max-width: 46ch;
+        max-width: 44ch;
         margin-bottom: 36px;
     }
 
-    .actions {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        gap: 14px 26px;
-        margin-bottom: 52px;
-    }
+    .lede strong { color: var(--ink); font-weight: 600; }
+
+    .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 26px; }
 
     .btn {
         font-family: var(--text);
@@ -219,148 +192,112 @@
 
     .btn-ghost:hover { background-size: 100% 1.5px; }
 
-    /* ------------------------------------------------------------ datos */
-    /* Flex con wrap en vez de tres columnas fijas: en pantallas angostas
-       los datos se reacomodan en lugar de ensanchar la pagina. */
-    .facts {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 24px 44px;
-        padding-top: 30px;
-        border-top: 1px solid var(--line);
-    }
+    /* --------------------------------------------- problema -> solucion */
+    .work { display: flex; flex-direction: column; gap: 18px; }
 
-    .facts div { display: flex; flex-direction: column; gap: 3px; }
-
-    .facts dt {
-        font-family: var(--mono);
-        font-size: 1.5rem;
-        font-weight: 500;
-        letter-spacing: -0.03em;
-        font-variant-numeric: tabular-nums;
-        color: var(--ink);
-    }
-
-    .facts dd {
-        font-size: 0.79rem;
-        color: var(--muted);
-        margin: 0;
-        max-width: 13ch;
-        line-height: 1.35;
-    }
-
-    /* ------------------------------------------------- demo conversacion */
-    .demo {
+    .work-item {
         background: var(--surface);
         border: 1px solid var(--line);
         border-radius: 14px;
-        padding: 26px 24px 22px;
-        box-shadow: 0 1px 2px rgba(21, 24, 26, .04), 0 12px 34px -22px rgba(21, 24, 26, .3);
+        padding: 22px 24px;
+        box-shadow: 0 1px 2px rgba(21, 24, 26, .04), 0 12px 34px -24px rgba(21, 24, 26, .3);
     }
 
-    .demo-head {
+    .work-label {
+        font-family: var(--mono);
+        font-size: 0.66rem;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 7px;
+    }
+
+    .work-problem { font-size: 0.97rem; color: var(--muted); }
+
+    /* La flecha es la tesis de la pagina: de un problema real a algo construido */
+    .work-arrow {
         display: flex;
         align-items: center;
         gap: 10px;
-        padding-bottom: 18px;
-        margin-bottom: 20px;
-        border-bottom: 1px solid var(--line);
+        margin: 13px 0;
+        color: var(--accent);
     }
 
-    .demo-dot {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: var(--accent);
-        flex-shrink: 0;
+    .work-arrow::before {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--line);
     }
 
-    .demo-title { font-size: 0.9rem; font-weight: 600; }
-
-    .demo-tag {
+    .work-arrow span {
         font-family: var(--mono);
         font-size: 0.66rem;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+    }
+
+    .work-solution {
+        font-family: var(--display);
+        font-weight: 700;
+        font-size: 1.12rem;
+        line-height: 1.28;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        margin-bottom: 12px;
+    }
+
+    .work-meta {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 9px;
+        font-size: 0.85rem;
+        color: var(--muted);
+    }
+
+    .work-meta strong { color: var(--ink); font-weight: 600; }
+
+    .chip {
+        font-family: var(--mono);
+        font-size: 0.63rem;
         letter-spacing: 0.1em;
         text-transform: uppercase;
-        color: var(--muted);
-        border: 1px solid var(--line);
         border-radius: 4px;
-        padding: 3px 7px;
+        padding: 3px 8px;
         margin-left: auto;
+        white-space: nowrap;
     }
 
-    .thread { display: flex; flex-direction: column; gap: 12px; }
+    .chip-live { background: var(--accent-wash); color: var(--accent-ink); }
 
-    .msg {
-        font-size: 0.935rem;
-        line-height: 1.5;
-        padding: 11px 15px;
-        border-radius: 13px;
-        max-width: 85%;
-    }
+    .chip-wip { background: #F2F2EE; color: var(--muted); border: 1px solid var(--line); }
 
-    .msg.them {
-        background: #F1F2EF;
-        color: var(--ink);
-        border-bottom-left-radius: 4px;
-        align-self: flex-start;
-    }
-
-    .msg.bot {
-        background: var(--accent-wash);
-        color: var(--accent-ink);
-        border-bottom-right-radius: 4px;
-        align-self: flex-end;
-    }
-
-    .demo-foot {
-        font-size: 0.76rem;
-        color: var(--muted);
-        margin-top: 20px;
-        padding-top: 14px;
-        border-top: 1px solid var(--line);
-    }
-
-    /* Entrada escalonada de los mensajes, sin JavaScript */
-    .msg { animation: rise .5s cubic-bezier(.2, .8, .3, 1) both; }
-    .msg:nth-child(1) { animation-delay: .70s; }
-    .msg:nth-child(2) { animation-delay: .95s; }
-    .msg:nth-child(3) { animation-delay: 1.20s; }
-
-    @keyframes rise {
-        from { opacity: 0; transform: translateY(9px); }
-        to   { opacity: 1; transform: none; }
-    }
-
+    /* ---------------------------------------------------- movimiento */
     .hero-copy > * { animation: fade .6s cubic-bezier(.2, .8, .3, 1) both; }
     .hero-copy > :nth-child(1) { animation-delay: .04s; }
     .hero-copy > :nth-child(2) { animation-delay: .12s; }
     .hero-copy > :nth-child(3) { animation-delay: .20s; }
     .hero-copy > :nth-child(4) { animation-delay: .28s; }
-    .hero-copy > :nth-child(5) { animation-delay: .36s; }
+
+    .work-item { animation: rise .55s cubic-bezier(.2, .8, .3, 1) both; }
+    .work-item:nth-child(1) { animation-delay: .60s; }
+    .work-item:nth-child(2) { animation-delay: .80s; }
 
     @keyframes fade { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
+    @keyframes rise { from { opacity: 0; transform: translateY(11px); } to { opacity: 1; transform: none; } }
 
     /* Quien pidio menos movimiento ve la pagina quieta y completa */
     @media (prefers-reduced-motion: reduce) {
         html { scroll-behavior: auto; }
-        .msg, .hero-copy > *, h1 em::after { animation: none; }
+        .work-item, .hero-copy > *, h1 em::after { animation: none; }
         *, *::before, *::after { transition-duration: .01ms !important; }
     }
 
     /* ------------------------------------------------------------- nota */
-    .note {
-        border-top: 1px solid var(--line);
-        background: var(--surface);
-        padding-block: 26px 34px;
-    }
+    .note { border-top: 1px solid var(--line); background: var(--surface); padding-block: 26px 34px; }
 
-    .note p {
-        font-family: var(--mono);
-        font-size: 0.78rem;
-        color: var(--muted);
-        line-height: 1.7;
-    }
+    .note p { font-family: var(--mono); font-size: 0.78rem; color: var(--muted); line-height: 1.7; }
 
     .note strong { color: var(--ink); font-weight: 500; }
 </style>
@@ -372,7 +309,7 @@
         <a class="wordmark" href="/"><span class="mark"></span>SG Agents</a>
         <div class="nav-links">
             <a href="#servicios">Servicios</a>
-            <a href="#caso">Caso</a>
+            <a href="#trabajos">Trabajos</a>
             <a href="#sobre-mi">Sobre mí</a>
             <a href="#precios">Precios</a>
         </div>
@@ -384,47 +321,34 @@
     <section class="hero">
         <div class="wrap hero-grid">
             <div class="hero-copy">
-                <p class="eyebrow">Automatización con IA <span>·</span> Rosario, Argentina</p>
+                <p class="eyebrow">Software a medida <span>·</span> Rosario, Argentina</p>
 
-                <h1>Automatizá tu negocio con <em>agentes de IA</em></h1>
+                <h1>Automatizaciones, webs y apps <em>a medida</em> para tu empresa</h1>
 
-                <p class="lede">Eliminá tareas repetitivas, reducí errores y escalá tu operación sin contratar más gente.</p>
+                <p class="lede"><strong>Escuchamos el problema y construimos la solución.</strong> Recuperás las horas que hoy se van en tareas que no deberían ocuparte.</p>
 
                 <div class="actions">
-                    <a class="btn" href="https://wa.me/5493415598979" target="_blank" rel="noopener">Hablemos por WhatsApp</a>
-                    <a class="btn-ghost" href="#caso">Ver el caso de Pilatin</a>
+                    <a class="btn" href="https://wa.me/5493415598979" target="_blank" rel="noopener">Contanos tu problema</a>
+                    <a class="btn-ghost" href="#trabajos">Ver cómo trabajamos</a>
                 </div>
-
-                <dl class="facts">
-                    <div>
-                        <dt>24/7</dt>
-                        <dd>Funcionando</dd>
-                    </div>
-                    <div>
-                        <dt>&lt;1 min</dt>
-                        <dd>Tiempo de respuesta</dd>
-                    </div>
-                    <div>
-                        <dt>8</dt>
-                        <dd>Herramientas integradas</dd>
-                    </div>
-                </dl>
             </div>
 
-            <aside class="demo">
-                <div class="demo-head">
-                    <span class="demo-dot"></span>
-                    <span class="demo-title">Asistente de Pilatin</span>
-                    <span class="demo-tag">Ejemplo</span>
-                </div>
+            <aside class="work">
+                <article class="work-item">
+                    <p class="work-label">El problema</p>
+                    <p class="work-problem">Respondían más de 50 mensajes por día a mano para dar turnos.</p>
+                    <div class="work-arrow"><span>Lo que construimos</span></div>
+                    <p class="work-solution">Un asistente de WhatsApp que toma, confirma y cancela turnos solo</p>
+                    <p class="work-meta"><span><strong>Pilatin</strong> · estudio de pilates</span><span class="chip chip-live">Funcionando</span></p>
+                </article>
 
-                <div class="thread">
-                    <p class="msg them">¿Tenés lugar el martes a las 18?</p>
-                    <p class="msg bot">Sí, queda un lugar el martes 18:00. ¿Te lo reservo?</p>
-                    <p class="msg them">Dale, gracias!</p>
-                </div>
-
-                <p class="demo-foot">Los mensajes de la alumna son los que la dueña del estudio cita textualmente en su testimonio.</p>
+                <article class="work-item">
+                    <p class="work-label">El problema</p>
+                    <p class="work-problem">Pedidos, reservas y vendedores gestionados a mano, sin un panel común.</p>
+                    <div class="work-arrow"><span>Lo que construimos</span></div>
+                    <p class="work-solution">Una web con reservas y panel de gestión de vendedores</p>
+                    <p class="work-meta"><span><strong>El Druida</strong> · tienda sin T.A.C.C.</span><span class="chip chip-wip">En curso</span></p>
+                </article>
             </aside>
         </div>
     </section>
