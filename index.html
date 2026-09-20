@@ -514,6 +514,19 @@
             color: var(--primary);
         }
 
+        .case-cols h4.case-before {
+            color: #9ca3af;
+        }
+
+        .case-list-before li {
+            color: #9ca3af;
+        }
+
+        .case-list-before li::before {
+            content: "\2715";
+            color: #6b7280;
+        }
+
         .case-link {
             display: inline-block;
             margin-top: 30px;
@@ -1173,37 +1186,35 @@
             <div class="case-study-content">
                 <div class="case-badge">ESTUDIO DE CASO</div>
                 <h3>Pilatin</h3>
-                <p>Un estudio de pilates que manejaba todos sus turnos por WhatsApp: más de 50 mensajes por día respondidos a mano. Las alumnas esperaban la confirmación, las reservas se superponían y las cancelaciones no quedaban registradas en ningún lado.</p>
+                <p>Un estudio de pilates que maneja sus turnos por WhatsApp: más de 50 mensajes por día que antes se respondían a mano, uno por uno.</p>
 
                 <div class="case-challenges">
                     <p><strong style="color: var(--accent);">La solución:</strong><br>
-                    Una aplicación web donde cada alumna gestiona sus propios turnos, con un panel de administración para el estudio. WhatsApp dejó de ser el canal de reservas.</p>
+                    Un asistente de IA que atiende el WhatsApp del estudio, conectado con n8n y Google Sheets. Toma las reservas, las confirma y deja todo registrado sin que nadie intervenga.</p>
                 </div>
 
                 <div class="case-cols">
                     <div>
-                        <h4>Para las alumnas</h4>
-                        <ul class="case-list">
-                            <li>Cuenta propia, con email o con Google</li>
-                            <li>Turno puntual o lugar fijo todas las semanas</li>
-                            <li>Horarios libres actualizados al momento</li>
-                            <li>Cancelar o reprogramar sin escribirle a nadie</li>
-                            <li>Avisar una ausencia y recuperar la clase otro día</li>
+                        <h4 class="case-before">Antes</h4>
+                        <ul class="case-list case-list-before">
+                            <li>Cada mensaje respondido a mano</li>
+                            <li>Las alumnas esperaban la confirmación</li>
+                            <li>Las reservas se superponían</li>
+                            <li>Las cancelaciones no quedaban registradas</li>
+                            <li>Fuera de horario no atendía nadie</li>
                         </ul>
                     </div>
                     <div>
-                        <h4>Para el estudio</h4>
+                        <h4>Después</h4>
                         <ul class="case-list">
-                            <li>Agenda completa y ficha de cada alumna</li>
-                            <li>Turnos fijos, puntuales y cancelaciones en un solo lugar</li>
-                            <li>Reglas de cancelación tardía aplicadas solas</li>
-                            <li>Horarios y días cerrados configurables</li>
-                            <li>Importación desde planilla para migrar lo que ya tenían</li>
+                            <li>El asistente responde solo</li>
+                            <li>Confirma el turno en el momento</li>
+                            <li>Chequea disponibilidad antes de confirmar</li>
+                            <li>Cada cancelación queda registrada</li>
+                            <li>Atiende a cualquier hora, todos los días</li>
                         </ul>
                     </div>
                 </div>
-
-                <a class="case-link" href="https://pilatin.vercel.app" target="_blank" rel="noopener">Ver el sistema funcionando →</a>
 
                 <div class="case-stats">
                     <div class="case-stat">
