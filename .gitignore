@@ -1,3 +1,3 @@
-# Foto original sin procesar: 2,8 MB y con coordenadas GPS embebidas.
-# La version publicada es santiago-grazziani.jpg (recortada, 15 KB, sin EXIF).
-20260303_181858.jpg
+# Fotos originales de camara: pesan varios MB y traen GPS/EXIF embebidos.
+# Lo que se publica es la version procesada (santiago-grazziani.jpg).
+[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]_[0-9]*.jpg
