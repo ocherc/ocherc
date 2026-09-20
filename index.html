@@ -376,6 +376,66 @@
             background-color: var(--dark);
         }
 
+        .about {
+            background-color: var(--darker);
+        }
+
+        .about-card {
+            max-width: 820px;
+            margin: 0 auto;
+            display: flex;
+            gap: 36px;
+            align-items: flex-start;
+            background-color: var(--dark);
+            border: 1px solid rgba(0, 217, 255, 0.2);
+            border-radius: 16px;
+            padding: 40px;
+        }
+
+        /* Preparado para la foto: se agrega un <img class="about-photo"> antes
+           de .about-text y el layout la acomoda sin tocar nada mas. */
+        .about-photo {
+            width: 150px;
+            height: 150px;
+            flex-shrink: 0;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+        }
+
+        .about-text p {
+            color: #d1d5db;
+            margin-bottom: 18px;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-text strong {
+            color: #f3f4f6;
+        }
+
+        .about-text a {
+            color: var(--primary);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(0, 217, 255, 0.4);
+        }
+
+        .about-text a:hover {
+            border-bottom-color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .about-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: left;
+                padding: 28px;
+                gap: 24px;
+            }
+        }
+
         .case-study-content {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
@@ -757,8 +817,19 @@
             "Agentes de IA",
             "Automatización de procesos",
             "WhatsApp Business API",
-            "Integración de APIs"
-          ]
+            "Integración de APIs",
+            "Desarrollo web"
+          ],
+          "description": "Consultor en automatización de procesos con inteligencia artificial, con formación en Administración de Empresas. Trabaja desde Rosario, Santa Fe.",
+          "homeLocation": {
+            "@type": "Place",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Rosario",
+              "addressRegion": "Santa Fe",
+              "addressCountry": "AR"
+            }
+          }
         },
         {
           "@type": "WebSite",
@@ -913,6 +984,7 @@
                 <a href="#beneficios">Beneficios</a>
                 <a href="#servicios">Servicios</a>
                 <a href="#portfolio">Portfolio</a>
+                <a href="#sobre-mi">Sobre mí</a>
                 <a href="#precios">Precios</a>
             </div>
             <button class="btn-demo" onclick="document.getElementById('contacto').scrollIntoView();">Solicitar Demo</button>
@@ -1080,6 +1152,22 @@
         </div>
     </section>
 
+
+    <!-- QUIEN ESTA DETRAS -->
+    <section class="about" id="sobre-mi">
+        <div class="container">
+            <h2>Quién está detrás</h2>
+            <p class="section-subtitle">La persona que va a trabajar en tu operación</p>
+            <div class="about-card">
+                <div class="about-text">
+                    <p>Hola, soy <strong>Santiago Grazziani</strong>. Trabajo desde <strong>Rosario, Santa Fe</strong>, y hace un año que me dedico a automatizar operaciones con inteligencia artificial.</p>
+                    <p>Vengo de Administración de Empresas, no de programación. Siempre me tiró la tecnología, y terminé justo en el cruce de las dos cosas: entender cómo funciona un negocio por dentro y saber qué herramienta le sirve.</p>
+                    <p>Por eso trabajo así: primero escucho cuál es tu problema y cómo opera tu día a día. Recién después armamos algo a medida. No te vendo una solución de catálogo.</p>
+                    <p>Hoy tengo dos sistemas en producción: el de <strong>Pilatin</strong>, que gestiona turnos por WhatsApp de forma autónoma, y la web de <strong><a href="https://eldruida-web.vercel.app" target="_blank" rel="noopener">El Druida</a></strong>, con reservas y panel de gestión de vendedores.</p>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- TECNOLOGÍAS -->
     <section class="technologies">
         <div class="container">
@@ -1228,6 +1316,7 @@
                     <h4>Compañía</h4>
                     <ul>
                         <li><a href="#portfolio">Casos</a></li>
+                        <li><a href="#sobre-mi">Sobre mí</a></li>
                         <li><a href="#servicios">Tecnología</a></li>
                         <li><a href="#precios">Precios</a></li>
                     </ul>
