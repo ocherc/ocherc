@@ -1,9 +1,8 @@
-# Fotos originales de camara: pesan varios MB y traen GPS/EXIF embebidos.
-# Lo que se publica es la version procesada (santiago-grazziani.jpg).
+# Todo lo que no forma parte del sitio publicado vive acá:
+# fotos sin procesar, notas internas, borradores. Ver _local/LEEME.md
+_local/
+
+# Red de seguridad, por si algo cae suelto en la raíz otra vez.
 [0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]_[0-9]*.jpg
-
-# Notas internas de auditoria: no se publican.
-SEO-HANDOFF.md
-
-# Imagenes sueltas de WhatsApp: no se publican.
 WhatsApp Image*
+SEO-HANDOFF.md
